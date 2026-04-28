@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RCCB Career Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #CC0000;
+    --red-dark: #990000;
+    --red-light: #FFECEC;
+    --black: #111111;
+    --white: #FFFFFF;
+    --gray-50: #F7F7F7;
+    --gray-100: #EEEEEE;
+    --gray-200: #DDDDDD;
+    --gray-400: #999999;
+    --gray-600: #555555;
+    --gray-800: #222222;
+    --track-finance: #CC0000;
+    --track-hr: #0057A8;
+    --track-merch: #00843D;
+    --track-sales: #E07000;
+    --track-production: #6B2D8B;
+    --track-maintenance: #007A8C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--gray-50);
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  /* TOP NAV */
+  .top-nav {
+    background: var(--black);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 16px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-badge {
+    width: 36px;
+    height: 36px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: white;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    text-align: center;
+  }
+  .nav-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .nav-divider { flex: 1; }
+  .nav-track-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: none;
+  }
+  .nav-track-pill.visible { display: block; }
+
+  /* SIDE NAV */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 56px);
+  }
+  .side-nav {
+    width: 220px;
+    background: var(--white);
+    border-right: 1px solid var(--gray-200);
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .side-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    padding: 16px 16px 6px;
+  }
+  .side-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .side-nav-item:hover { background: var(--gray-50); color: var(--black); }
+  .side-nav-item.active {
+    background: var(--red-light);
+    color: var(--red-dark);
+    border-left-color: var(--red);
+    font-weight: 600;
+  }
+  .side-nav-item .icon { font-size: 15px; width: 18px; text-align: center; }
+  .side-track-divider {
+    border-top: 1px solid var(--gray-100);
+    margin: 8px 0;
+  }
+
+  /* MAIN CONTENT */
+  .main { flex: 1; overflow-y: auto; }
+  .page { display: none; padding: 40px 48px; max-width: 960px; }
+  .page.active { display: block; }
+
+  /* PAGE HEADERS */
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .page-subtitle {
+    font-size: 16px;
+    color: var(--gray-600);
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+  .page-divider {
+    height: 3px;
+    background: var(--red);
+    width: 60px;
+    margin-bottom: 32px;
+  }
+
+  /* HERO PAGE */
+  .hero-page {
+    background: var(--black);
+    min-height: calc(100vh - 56px);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .hero-content {
+    padding: 60px 64px 48px;
+    flex: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 3px;
+    margin-bottom: 24px;
+  }
+  .hero-h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 24px;
+  }
+  .hero-h1 span { color: var(--red); }
+  .hero-desc {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 48px;
+  }
+  .hero-tracks-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+  .hero-track-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 600px;
+  }
+  .hero-track-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-track-card:hover {
+    background: rgba(255,255,255,0.13);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+  .hero-track-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .hero-track-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+  }
+  .hero-footer {
+    background: var(--red);
+    padding: 16px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .hero-footer-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+  }
+  .hero-cta {
+    background: white;
+    color: var(--red-dark);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .hero-cta:hover { background: var(--gray-100); transform: scale(1.02); }
+
+  /* CONTENT BLOCKS */
+  .content-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .content-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .content-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--gray-600);
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .highlight-bar {
+    background: var(--red);
+    color: white;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  .highlight-bar h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .highlight-bar p { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.6; }
+
+  /* PEOPLE VISION */
+  .vision-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .vision-pillar {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 20px;
+    border-top: 4px solid var(--red);
+  }
+  .vision-pillar h4 {
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: var(--red-dark);
+  }
+  .vision-pillar p { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+  /* STEPS */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .step-item {
+    display: flex;
+    gap: 14px;
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 16px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 30px; height: 30px;
+    background: var(--red);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-text strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .step-text span { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+  /* COMPETENCIES */
+  .competency-list { display: flex; flex-direction: column; gap: 12px; }
+  .competency-item {
+    display: flex;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+  .comp-label {
+    background: var(--red-dark);
+    color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  .comp-desc {
+    background: white;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+  .comp-desc ul { padding-left: 16px; }
+  .comp-desc li { margin-bottom: 3px; }
+
+  /* IDP / DEVELOPMENT */
+  .idp-model {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .idp-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .idp-pct {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .idp-card h4 { font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 8px; }
+  .idp-card p { font-size: 12px; line-height: 1.5; }
+  .idp-otj { background: #FFF0E0; border: 1px solid #FFD4A0; }
+  .idp-otj .idp-pct { color: #C06000; }
+  .idp-otj h4 { color: #8A4400; }
+  .idp-otj p { color: #A05000; }
+  .idp-coach { background: #FFF7E0; border: 1px solid #FFE899; }
+  .idp-coach .idp-pct { color: #A07000; }
+  .idp-coach h4 { color: #6A4A00; }
+  .idp-coach p { color: #885000; }
+  .idp-formal { background: #FFE8E8; border: 1px solid #FFBCBC; }
+  .idp-formal .idp-pct { color: #AA0000; }
+  .idp-formal h4 { color: #770000; }
+  .idp-formal p { color: #990000; }
+
+  /* APPLYING PAGE */
+  .apply-steps { display: flex; flex-direction: column; gap: 0; }
+  .apply-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .apply-step:last-child { border-bottom: none; }
+  .apply-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--red);
+    line-height: 1;
+    width: 44px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .apply-content strong { font-size: 16px; font-weight: 700; display: block; margin-bottom: 4px; }
+  .apply-content p { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+
+  /* =============================================
+     CAREER EXPLORER (improved roadmap page)
+     ============================================= */
+  .explorer-wrap {
+    padding: 0;
+    max-width: 100%;
+  }
+  .explorer {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  /* Explorer header */
+  .exp-header {
+    background: var(--black);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .exp-logo {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: white; flex-shrink: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .exp-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    flex: 1; min-width: 120px;
+  }
+  .track-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .track-tab {
+    padding: 5px 13px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.55);
+    cursor: pointer; background: transparent; transition: all 0.15s;
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .track-tab:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.85); }
+  .track-tab.active { color: white; border-color: transparent; }
+
+  /* Body layout */
+  .exp-body { display: flex; min-height: 520px; }
+
+  /* Left: card grid */
+  .path-panel {
+    flex: 1;
+    padding: 20px 24px;
+    overflow-x: auto;
+    min-width: 0;
+  }
+  .path-hint {
+    font-size: 12px; color: var(--gray-400);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hint-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--red); display: inline-block; flex-shrink: 0;
+  }
+
+  /* Tier column labels */
+  .tier-labels-row {
+    display: flex; gap: 10px; margin-bottom: 10px;
+  }
+  .tier-label-pill {
+    text-align: center;
+    font-size: 10px; font-weight: 700;
+    padding: 4px 8px; border-radius: 4px;
+    letter-spacing: 0.4px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Each tier is a column */
+  .tiers-container {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .tier-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Flip card */
+  .flip-wrap {
+    width: 100%;
+    height: 128px;
+    perspective: 900px;
+    cursor: pointer;
+    position: relative;
+  }
+  .flip-inner {
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  .flip-wrap.flipped .flip-inner { transform: rotateY(180deg); }
+
+  .flip-face {
+    position: absolute; inset: 0;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  /* Front */
+  .flip-front {
+    background: white;
+    border: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    padding: 11px 12px 10px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .flip-wrap:hover:not(.dimmed) .flip-front {
+    border-color: var(--gray-400);
+  }
+  .flip-wrap.selected .flip-front {
+    border-width: 2px;
+  }
+  .flip-wrap.lateral .flip-front {
+    border-style: dashed;
+    border-color: var(--gray-300);
+    background: var(--gray-50);
+  }
+  .flip-wrap.dimmed {
+    opacity: 0.28;
+    pointer-events: none;
+  }
+  .flip-wrap.next-step .flip-front {
+    border-width: 2px;
+  }
+
+  .card-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 9px; font-weight: 700;
+    padding: 2px 7px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 7px; align-self: flex-start;
+  }
+  .card-title {
+    font-size: 12px; font-weight: 600;
+    color: var(--black);
+    line-height: 1.35;
+    flex: 1;
+  }
+  .flip-wrap.lateral .card-title { color: var(--gray-600); }
+  .flip-wrap.dimmed .card-title { color: var(--gray-400); }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 8px; gap: 4px;
+  }
+  .card-flip-hint {
+    font-size: 9px; color: var(--gray-400);
+    display: flex; align-items: center; gap: 2px;
+  }
+  .select-btn {
+    font-size: 9px; font-weight: 700;
+    padding: 2px 8px; border-radius: 3px;
+    border: 1px solid var(--gray-300);
+    background: transparent; cursor: pointer;
+    color: var(--gray-600);
+    font-family: 'Barlow', sans-serif;
+    transition: all 0.15s;
+    text-transform: uppercase; letter-spacing: 0.3px;
+    pointer-events: all;
+  }
+  .select-btn:hover { background: var(--gray-100); }
+  .flip-wrap.selected .select-btn {
+    color: white; border-color: transparent;
+  }
+
+  /* Back */
+  .flip-back {
+    transform: rotateY(180deg);
+    color: white;
+    padding: 12px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .back-role-type {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.6px; text-transform: uppercase;
+    opacity: 0.72; margin-bottom: 5px;
+  }
+  .back-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 14px;
+    line-height: 1.25; margin-bottom: 7px;
+  }
+  .back-desc { font-size: 11px; line-height: 1.55; opacity: 0.9; flex: 1; }
+  .back-close { font-size: 9px; opacity: 0.5; margin-top: 6px; text-align: right; }
+
+  /* Right: detail panel */
+  .detail-panel {
+    width: 230px;
+    flex-shrink: 0;
+    border-left: 1px solid var(--gray-200);
+    background: var(--gray-50);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+  }
+  .detail-empty {
+    text-align: center;
+    padding: 24px 8px;
+    color: var(--gray-400);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .detail-empty-icon { font-size: 30px; margin-bottom: 10px; display: block; }
+
+  .detail-section-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--gray-400);
+    margin-bottom: 7px;
+  }
+  .detail-role-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 20px;
+    color: var(--black); line-height: 1.2;
+    margin-bottom: 4px; text-transform: uppercase;
+  }
+  .detail-tier-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 700; padding: 3px 9px;
+    border-radius: 4px; margin-bottom: 10px;
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .detail-desc {
+    font-size: 12px; color: var(--gray-600);
+    line-height: 1.65;
+  }
+  .detail-paths-list {
+    display: flex; flex-direction: column; gap: 7px;
+  }
+  .detail-path-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; color: var(--gray-600);
+    padding: 7px 9px; border-radius: 8px;
+    background: white;
+    border: 1px solid var(--gray-200);
+    cursor: pointer; transition: all 0.12s;
+  }
+  .detail-path-item:hover {
+    border-color: var(--gray-400);
+    color: var(--black);
+    transform: translateX(2px);
+  }
+  .path-arrow-icon { font-size: 11px; flex-shrink: 0; font-weight: 700; }
+  .path-item-text { flex: 1; line-height: 1.3; font-weight: 500; }
+  .path-type-tag {
+    font-size: 8px; font-weight: 700; letter-spacing: 0.3px;
+    padding: 2px 5px; border-radius: 3px; flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  .legend { display: flex; flex-direction: column; gap: 7px; }
+  .legend-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; color: var(--gray-600);
+  }
+  .legend-swatch {
+    width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+  }
+  .legend-dash {
+    width: 14px; height: 0;
+    border-top: 2px dashed var(--gray-400);
+    flex-shrink: 0;
+  }
+
+  .reset-btn {
+    width: 100%; padding: 8px; border-radius: 6px;
+    font-size: 11px; font-weight: 700; font-family: 'Barlow', sans-serif;
+    text-transform: uppercase; letter-spacing: 0.3px;
+    background: transparent; border: 1px solid var(--gray-300);
+    color: var(--gray-600); cursor: pointer; transition: all 0.15s;
+  }
+  .reset-btn:hover { background: white; color: var(--black); }
+
+  .top-of-track-msg {
+    font-size: 12px; color: var(--gray-400);
+    font-style: italic; line-height: 1.5;
+  }
+
+  /* SUCCESS STORIES */
+  .stories-grid { display: flex; flex-direction: column; gap: 20px; }
+  .story-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+  }
+  .story-avatar {
+    width: 120px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 20px 16px;
+    background: var(--gray-50);
+    border-right: 1px solid var(--gray-200);
+  }
+  .avatar-circle {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .story-play-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid var(--gray-300);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Barlow', sans-serif;
+  }
+  .story-play-btn:hover { background: var(--red); color: white; border-color: var(--red); }
+  .story-play-icon { font-size: 10px; }
+  .story-content { padding: 20px 24px; flex: 1; }
+  .story-name { font-weight: 700; font-size: 18px; margin-bottom: 2px; }
+  .story-title { font-size: 13px; color: var(--red); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .story-path {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .path-step {
+    background: var(--gray-100);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-600);
+  }
+  .path-arrow { color: var(--red); font-weight: 700; font-size: 12px; }
+  .story-responsibilities { font-size: 13px; color: var(--gray-600); line-height: 1.7; }
+  .story-responsibilities strong { color: var(--black); }
+
+  /* AUDIO PLAYER MODAL */
+  .audio-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .audio-modal-overlay.open { display: flex; }
+  .audio-modal {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+  }
+  .audio-modal-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 28px;
+    color: white;
+    margin: 0 auto 16px;
+  }
+  .audio-modal h3 { font-weight: 700; font-size: 20px; margin-bottom: 4px; }
+  .audio-modal p { font-size: 14px; color: var(--gray-600); margin-bottom: 24px; }
+  .audio-player-bar {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .audio-track-bar {
+    height: 4px;
+    background: var(--gray-200);
+    border-radius: 2px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .audio-track-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s;
+  }
+  .audio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .audio-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--gray-600);
+    transition: color 0.15s;
+    padding: 4px;
+  }
+  .audio-btn:hover { color: var(--black); }
+  .audio-btn.play-pause {
+    background: var(--red);
+    color: white;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .audio-btn.play-pause:hover { background: var(--red-dark); color: white; }
+  .audio-time { font-size: 12px; color: var(--gray-400); display: flex; justify-content: space-between; }
+  .audio-modal-note {
+    font-size: 12px;
+    color: var(--gray-400);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .modal-close {
+    background: var(--gray-100);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gray-600);
+    cursor: pointer;
+  }
+  .modal-close:hover { background: var(--gray-200); }
+
+  /* TC utilities */
+  .tc-finance { background-color: var(--track-finance); }
+  .tc-hr { background-color: var(--track-hr); }
+  .tc-merch { background-color: var(--track-merch); }
+  .tc-sales { background-color: var(--track-sales); }
+  .tc-production { background-color: var(--track-production); }
+  .tc-maintenance { background-color: var(--track-maintenance); }
+
+  @media (max-width: 768px) {
+    .side-nav { display: none; }
+    .page { padding: 24px 16px; }
+    .hero-h1 { font-size: 48px; }
+    .hero-content { padding: 36px 24px 32px; }
+    .hero-footer { padding: 14px 24px; }
+    .hero-track-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .story-card { flex-direction: column; }
+    .story-avatar { width: 100%; flex-direction: row; padding: 16px; border-right: none; border-bottom: 1px solid var(--gray-200); }
+    .vision-pillars { grid-template-columns: 1fr; }
+    .idp-model { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .exp-body { flex-direction: column; }
+    .detail-panel { width: 100%; border-left: none; border-top: 1px solid var(--gray-200); }
+    .tiers-container { overflow-x: auto; }
+    .tier-column { min-width: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">
+    <div class="logo-badge">RCCB</div>
+    <span class="nav-title">Career Roadmap</span>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-track-pill" id="nav-track-pill"></div>
+</nav>
+
+<div class="layout">
+  <!-- SIDE NAV -->
+  <aside class="side-nav">
+    <div class="side-section-label">Guide</div>
+    <a class="side-nav-item active" data-page="home" onclick="showPage('home')">
+      <span class="icon">🏠</span> Home
+    </a>
+    <a class="side-nav-item" data-page="about" onclick="showPage('about')">
+      <span class="icon">📋</span> About the Program
+    </a>
+    <a class="side-nav-item" data-page="vision" onclick="showPage('vision')">
+      <span class="icon">👁</span> Our People Vision
+    </a>
+    <a class="side-nav-item" data-page="development" onclick="showPage('development')">
+      <span class="icon">📈</span> Own Your Development
+    </a>
+    <a class="side-nav-item" data-page="competencies" onclick="showPage('competencies')">
+      <span class="icon">⭐</span> Core Competencies
+    </a>
+    <a class="side-nav-item" data-page="steps" onclick="showPage('steps')">
+      <span class="icon">🎯</span> Steps to Advance
+    </a>
+    <a class="side-nav-item" data-page="applying" onclick="showPage('applying')">
+      <span class="icon">📝</span> Applying Internally
+    </a>
+    <div class="side-track-divider"></div>
+    <div class="side-section-label">By Track</div>
+    <a class="side-nav-item" data-page="roadmap" onclick="showPage('roadmap')">
+      <span class="icon">🗺</span> Career Roadmap
+    </a>
+    <a class="side-nav-item" data-page="stories" onclick="showPage('stories')">
+      <span class="icon">🎙</span> Success Stories
+    </a>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- HOME PAGE -->
+    <div class="page active hero-page" id="page-home">
+      <div class="hero-content">
+        <div class="hero-tag">Reyes Coca-Cola Bottling</div>
+        <h1 class="hero-h1">Your Career.<br><span>Your Journey.</span><br>Your Choice.</h1>
+        <p class="hero-desc">A comprehensive guide to envisioning your career journey at RCCB — explore paths, hear from real employees, and chart your own course.</p>
+        <div class="hero-tracks-label">Choose a career track to explore</div>
+        <div class="hero-track-grid">
+          <div class="hero-track-card" onclick="switchTrack('finance'); showPage('roadmap')">
+            <div class="hero-track-icon tc-finance" style="border-radius:8px;">💰</div>
+            <div class="hero-track-name">Field Finance</div>
+          </div>
+          <div class="hero-track-card" onclick="switchTrack('hr'); showPage('roadmap')">
+            <div class="hero-track-icon tc-hr" style="border-radius:8px;">🤝</div>
+            <div class="hero-track-name">Human Resources</div>
+          </div>
+          <div class="hero-track-card" onclick="switchTrack('merch'); showPage('roadmap')">
+            <div class="hero-track-icon tc-merch" style="border-radius:8px;">🛒</div>
+            <div class="hero-track-name">Merchandising</div>
+          </div>
+          <div class="hero-track-card" onclick="switchTrack('sales'); showPage('roadmap')">
+            <div class="hero-track-icon tc-sales" style="border-radius:8px;">📊</div>
+            <div class="hero-track-name">Sales</div>
+          </div>
+          <div class="hero-track-card" onclick="switchTrack('production'); showPage('roadmap')">
+            <div class="hero-track-icon tc-production" style="border-radius:8px;">⚙️</div>
+            <div class="hero-track-name">Production</div>
+          </div>
+          <div class="hero-track-card" onclick="switchTrack('maintenance'); showPage('roadmap')">
+            <div class="hero-track-icon tc-maintenance" style="border-radius:8px;">🔧</div>
+            <div class="hero-track-name">Maintenance</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-footer">
+        <div class="hero-footer-text">Reyes &nbsp;·&nbsp; Coca‑Cola &nbsp;·&nbsp; Bottling</div>
+        <button class="hero-cta" onclick="showPage('about')">Start the Guide →</button>
+      </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div class="page" id="page-about">
+      <div class="page-eyebrow">Career Roadmap Guide</div>
+      <h1 class="page-title">Crafting Success</h1>
+      <p class="page-subtitle">Navigate Your Career Journey with Purpose & Precision</p>
+      <div class="page-divider"></div>
+      <div class="highlight-bar">
+        <h3>World of RCCB</h3>
+        <p>At Reyes Coca-Cola Bottling, every day is filled with precision, efficiency, and dedication. From ensuring the smooth operation of machinery to maintaining strict quality control standards, every role demands attention to detail and a commitment to excellence — contributing to the company's reputation for delivering refreshment and satisfaction to millions around the world.</p>
+      </div>
+      <div class="two-col">
+        <div class="content-card">
+          <h3>Your Career Development Journey</h3>
+          <p>At RCCB, our People Pillar — <strong>Unlock the Full Potential of Our People</strong> — reflects our commitment to a growth-driven culture where every employee has the opportunity to thrive.</p>
+        </div>
+        <div class="content-card">
+          <h3>The Career Lattice</h3>
+          <p>We empower employees to explore career progression through <strong>vertical, horizontal, and diagonal movement</strong> across RCCB and the broader Reyes Family of Businesses.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <h3>How Career Growth Works at RCCB</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;">
+          <div style="background:var(--gray-50);border-radius:8px;padding:16px;">
+            <div style="font-weight:700;margin-bottom:6px;font-size:14px;">Ladder Progression</div>
+            <p style="font-size:13px;color:var(--gray-600);">Linear career paths moving upward through defined levels within your area of expertise.</p>
+          </div>
+          <div style="background:var(--gray-50);border-radius:8px;padding:16px;">
+            <div style="font-weight:700;margin-bottom:6px;font-size:14px;">Lattice Pathways</div>
+            <p style="font-size:13px;color:var(--gray-600);">More varied paths for growth — lateral moves, diagonal jumps, and cross-functional exploration.</p>
+          </div>
+          <div style="background:var(--gray-50);border-radius:8px;padding:16px;">
+            <div style="font-weight:700;margin-bottom:6px;font-size:14px;">Growth Opportunities</div>
+            <p style="font-size:13px;color:var(--gray-600);">Career advancement is driven by business needs and your own initiative to expand your skills.</p>
+          </div>
+          <div style="background:var(--gray-50);border-radius:8px;padding:16px;">
+            <div style="font-weight:700;margin-bottom:6px;font-size:14px;">The Possibilities Are Endless</div>
+            <p style="font-size:13px;color:var(--gray-600);">Career advancement doesn't have to be vertical — it's about obtaining new experiences that build your skills.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:24px;">
+        <button onclick="showPage('vision')" style="background:var(--red);color:white;border:none;padding:12px 28px;border-radius:8px;font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;cursor:pointer;text-transform:uppercase;letter-spacing:0.5px;">Next: Our People Vision →</button>
+      </div>
+    </div>
+
+    <!-- PEOPLE VISION PAGE -->
+    <div class="page" id="page-vision">
+      <div class="page-eyebrow">Reyes Family of Businesses</div>
+      <h1 class="page-title">Our People Vision</h1>
+      <p class="page-subtitle">The Heartbeat of Excellence</p>
+      <div class="page-divider"></div>
+      <div class="highlight-bar" style="background:var(--black);">
+        <h3>People Vision</h3>
+        <p>Our People Vision describes the behaviors and principles that support success for the Reyes Family of Businesses. These values are central to everything we do in our day-to-day work — grounded in Fairness, Individuality, and Mission/Purpose.</p>
+      </div>
+      <div class="vision-pillars">
+        <div class="vision-pillar">
+          <h4>Fairness</h4>
+          <p>We treat every person with dignity and equity, ensuring all employees have a fair opportunity to grow and succeed within our organization.</p>
+        </div>
+        <div class="vision-pillar">
+          <h4>Individuality</h4>
+          <p>We celebrate what makes each person unique, embracing diverse backgrounds, perspectives, and experiences as a source of strength.</p>
+        </div>
+        <div class="vision-pillar">
+          <h4>Mission & Purpose</h4>
+          <p>We connect each employee's work to the larger mission — delivering world-class beverages and creating lasting value for our communities.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <h3>Career Movement: A Personalized Journey</h3>
+        <p>Career progression unfolds at its own rhythm. While some employees are eager to explore new roles quickly, others prefer to remain in their current positions, patiently awaiting the right opportunity — sometimes for years. By developing a career roadmap, employees can navigate their journeys more strategically. Staying visible, fostering relationships, and leveraging insights from supervisors and human resources are essential practices that assist employees in identifying their next best move at RCCB.</p>
+      </div>
+    </div>
+
+    <!-- DEVELOPMENT PAGE -->
+    <div class="page" id="page-development">
+      <div class="page-eyebrow">Own Your Growth</div>
+      <h1 class="page-title">Own Your Development</h1>
+      <p class="page-subtitle">RCCB is committed to providing the best environment for your growth</p>
+      <div class="page-divider"></div>
+      <div class="content-card" style="margin-bottom:24px;">
+        <p>Reyes Coca-Cola Bottling is committed to providing the best work environment possible for our people at all times. Through career development opportunities, our annual talent and performance cycle, and our commitment to promoting from within, we aim to lift our employees up and help them grow along with the company.</p>
+      </div>
+      <div class="page-eyebrow" style="margin-bottom:12px;">The 70-20-10 Development Model</div>
+      <div class="idp-model">
+        <div class="idp-card idp-otj">
+          <div class="idp-pct">70%</div>
+          <h4>On the Job</h4>
+          <p>Learning gained through on-the-job experience, training, special projects, and short-term assignments</p>
+        </div>
+        <div class="idp-card idp-coach">
+          <div class="idp-pct">20%</div>
+          <h4>Coaching & Mentoring</h4>
+          <p>Knowledge built through interaction with others via formal & informal coaching, PDF feedback, mentorship, and shadowing</p>
+        </div>
+        <div class="idp-card idp-formal">
+          <div class="idp-pct">10%</div>
+          <h4>Formal Training</h4>
+          <p>Coursework designed to develop knowledge & skills via Career Connect, Harvard Business Review, and MindTools</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <h3>Individual Development Plan (IDP)</h3>
+        <p style="margin-bottom:12px;">An IDP is a tailored roadmap for your career at RCCB, focusing on specific goals and activities to enhance skills and contribute to professional growth and job performance. If you are aiming to advance in your career, remember that taking action is key.</p>
+        <p style="font-style:italic;color:var(--red);font-weight:600;">"The formula does not work successfully if the elements stand alone."</p>
+      </div>
+      <div class="content-card">
+        <h3>Additional Resources</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;">
+          <div style="background:var(--gray-50);padding:14px;border-radius:8px;text-align:center;">
+            <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Career Connect</div>
+            <div style="font-size:12px;color:var(--gray-600);">Learning Management System (LMS)</div>
+          </div>
+          <div style="background:var(--gray-50);padding:14px;border-radius:8px;text-align:center;">
+            <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Harvard Business Review</div>
+            <div style="font-size:12px;color:var(--gray-600);">Business insights & leadership</div>
+          </div>
+          <div style="background:var(--gray-50);padding:14px;border-radius:8px;text-align:center;">
+            <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Educational Assistance</div>
+            <div style="font-size:12px;color:var(--gray-600);">Tuition & certification support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPETENCIES PAGE -->
+    <div class="page" id="page-competencies">
+      <div class="page-eyebrow">Professional Standards</div>
+      <h1 class="page-title">Core Competencies</h1>
+      <p class="page-subtitle">The behaviors that support success across the Reyes Family of Businesses</p>
+      <div class="page-divider"></div>
+      <div class="competency-list">
+        <div class="competency-item">
+          <div class="comp-label">Strategic Thinking</div>
+          <div class="comp-desc"><ul>
+            <li>Manages processes and resources to meet strategic priorities</li>
+            <li>Executes on plans to drive business outcomes</li>
+            <li>Seeks to understand the changing needs of the industry</li>
+            <li>Demonstrates financial responsibility</li>
+          </ul></div>
+        </div>
+        <div class="competency-item">
+          <div class="comp-label">Developing Self & Others</div>
+          <div class="comp-desc"><ul>
+            <li>Seeks feedback & responds positively to improve personal effectiveness</li>
+            <li>Takes ownership & action on feedback and personal learning needs</li>
+            <li>Contributes to a culture of inclusion so everyone can succeed</li>
+            <li>Shares feedback constructively with peers</li>
+          </ul></div>
+        </div>
+        <div class="competency-item">
+          <div class="comp-label">Leading Change</div>
+          <div class="comp-desc"><ul>
+            <li>Seeks opportunities for & delivers continuous improvement</li>
+            <li>Continuously improves safety and wellness</li>
+            <li>Executes changes effectively, following clear plans and processes</li>
+            <li>Leverages data to make the business case for change</li>
+          </ul></div>
+        </div>
+        <div class="competency-item">
+          <div class="comp-label">Communicating Effectively</div>
+          <div class="comp-desc"><ul>
+            <li>Keeps people informed about results & progress</li>
+            <li>Actively listens to others</li>
+            <li>Demonstrates values and an environment of openness & inclusion</li>
+            <li>Develops relationships built on trust & open communication</li>
+          </ul></div>
+        </div>
+        <div class="competency-item">
+          <div class="comp-label">Driving Results</div>
+          <div class="comp-desc"><ul>
+            <li>Acts in accordance with the organization's mission, vision & values</li>
+            <li>Holds self accountable & pursues excellence</li>
+            <li>Challenges oneself to continually elevate performance</li>
+            <li>Focuses on safety & wellbeing as a critical priority</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEPS PAGE -->
+    <div class="page" id="page-steps">
+      <div class="page-eyebrow">Career Advancement</div>
+      <h1 class="page-title">Steps to Take</h1>
+      <p class="page-subtitle">To advance your career at RCCB</p>
+      <div class="page-divider"></div>
+      <div class="steps-grid">
+        <div class="step-item"><div class="step-num">01</div><div class="step-text"><strong>Set Clear Goals</strong><span>Define your career goals within the company. What position or level do you aspire to reach? Specific goals provide clear direction.</span></div></div>
+        <div class="step-item"><div class="step-num">02</div><div class="step-text"><strong>Communicate Your Aspirations</strong><span>Have open and honest discussions with your supervisor about your career goals and your desire for advancement.</span></div></div>
+        <div class="step-item"><div class="step-num">03</div><div class="step-text"><strong>Be in Good Standing</strong><span>To apply for a new role, ensure you are in good standing within your current position and aligned with RCCB competencies and skills.</span></div></div>
+        <div class="step-item"><div class="step-num">04</div><div class="step-text"><strong>Seek Opportunities</strong><span>Monitor internal job postings and apply for positions that align with your career goals. Tailor your resume for each application.</span></div></div>
+        <div class="step-item"><div class="step-num">05</div><div class="step-text"><strong>Apply for New Roles</strong><span>Locate your opportunity of interest at <strong>jobs.reyesholdings.com</strong> and apply as an internal candidate.</span></div></div>
+        <div class="step-item"><div class="step-num">06</div><div class="step-text"><strong>Take Initiative</strong><span>Volunteer for projects or tasks that go beyond your job description. Show your willingness to take on challenges and responsibilities.</span></div></div>
+        <div class="step-item"><div class="step-num">07</div><div class="step-text"><strong>Professionalism</strong><span>Maintain a professional image and behavior at all times. Your reputation within the company matters.</span></div></div>
+        <div class="step-item"><div class="step-num">08</div><div class="step-text"><strong>Adaptability</strong><span>Be adaptable and open to change. Companies appreciate employees who can embrace new challenges and opportunities.</span></div></div>
+        <div class="step-item"><div class="step-num">09</div><div class="step-text"><strong>Patience</strong><span>Understand that career advancement may not happen overnight. Be patient and persistent in your efforts.</span></div></div>
+        <div class="step-item"><div class="step-num">10</div><div class="step-text"><strong>Continue Networking</strong><span>Maintain your internal network and continue to build relationships with colleagues in various departments.</span></div></div>
+      </div>
+    </div>
+
+    <!-- APPLYING PAGE -->
+    <div class="page" id="page-applying">
+      <div class="page-eyebrow">Internal Mobility</div>
+      <h1 class="page-title">Applying Internally</h1>
+      <p class="page-subtitle">How to apply for a new role within RCCB</p>
+      <div class="page-divider"></div>
+      <div class="content-card" style="margin-bottom:24px;">
+        <p>RCCB is committed to promoting from within. When a new opportunity opens, internal candidates are encouraged to apply — your experience and knowledge of our culture is a real advantage.</p>
+      </div>
+      <div class="apply-steps" style="background:white;border:1px solid var(--gray-200);border-radius:12px;padding:8px 28px;">
+        <div class="apply-step">
+          <div class="apply-num">1</div>
+          <div class="apply-content"><strong>Talk to your manager</strong><p>Have a candid conversation with your supervisor about your interest in exploring new roles. This shows initiative and keeps the relationship transparent.</p></div>
+        </div>
+        <div class="apply-step">
+          <div class="apply-num">2</div>
+          <div class="apply-content"><strong>Connect with HR</strong><p>Reach out to your HR Business Partner to discuss your career goals. They can provide guidance on timing, eligibility, and which roles may be a great fit.</p></div>
+        </div>
+        <div class="apply-step">
+          <div class="apply-num">3</div>
+          <div class="apply-content"><strong>Search internal job postings</strong><p>Visit <strong style="color:var(--red);">jobs.reyesholdings.com</strong> to browse current openings. Filter by department, location, or level to find your opportunity.</p></div>
+        </div>
+        <div class="apply-step">
+          <div class="apply-num">4</div>
+          <div class="apply-content"><strong>Apply as an internal candidate</strong><p>Complete the application and make sure to indicate you are an internal candidate. Update your resume to highlight your RCCB experience and any new skills.</p></div>
+        </div>
+        <div class="apply-step">
+          <div class="apply-num">5</div>
+          <div class="apply-content"><strong>Prepare for the process</strong><p>Treat the interview as you would any professional interview. Use the STAR method to share specific examples that demonstrate your competencies and impact.</p></div>
+        </div>
+      </div>
+      <div class="highlight-bar" style="margin-top:24px;">
+        <h3>Remember</h3>
+        <p>You must be in good standing in your current role and have been in your current position for a minimum amount of time before applying. Check with your HR Business Partner for specific eligibility guidelines.</p>
+      </div>
+    </div>
+
+    <!-- CAREER ROADMAP PAGE (improved explorer) -->
+    <div class="page" id="page-roadmap" style="padding:32px 40px;max-width:100%;">
+      <div class="page-eyebrow">Interactive Career Explorer</div>
+      <h1 class="page-title">Career Roadmap</h1>
+      <p class="page-subtitle">Select your current role to reveal your path forward</p>
+      <div class="page-divider"></div>
+      <div class="explorer" id="explorer">
+        <div class="exp-header">
+          <div class="exp-logo">RCCB</div>
+          <div class="exp-title">Career Path Explorer</div>
+          <div class="track-tabs" id="track-tabs"></div>
+        </div>
+        <div class="exp-body">
+          <div class="path-panel" id="path-panel">
+            <div class="path-hint">
+              <span class="hint-dot"></span>
+              Flip any card for the role description. Hit <strong style="color:var(--black);">Select</strong> on your current role to highlight your possible next moves.
+            </div>
+            <div class="tier-labels-row" id="tier-labels-row"></div>
+            <div class="tiers-container" id="tiers-container"></div>
+          </div>
+          <div class="detail-panel" id="detail-panel">
+            <div class="detail-empty">
+              <span class="detail-empty-icon">🗺️</span>
+              Select a role to see your possible next moves
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS STORIES PAGE -->
+    <div class="page" id="page-stories">
+      <div id="stories-content"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- AUDIO MODAL -->
+<div class="audio-modal-overlay" id="audio-modal">
+  <div class="audio-modal">
+    <div class="audio-modal-avatar" id="modal-avatar"></div>
+    <h3 id="modal-name"></h3>
+    <p id="modal-title-role"></p>
+    <div class="audio-player-bar">
+      <div class="audio-time">
+        <span id="time-current">0:00</span>
+        <span id="time-total">—</span>
+      </div>
+      <div class="audio-track-bar">
+        <div class="audio-track-fill" id="track-fill" style="background:var(--red);"></div>
+      </div>
+      <div class="audio-controls">
+        <button class="audio-btn" onclick="skipAudio(-10)" title="Back 10s">⟪</button>
+        <button class="audio-btn play-pause" id="play-pause-btn" onclick="togglePlay()">▶</button>
+        <button class="audio-btn" onclick="skipAudio(10)" title="Forward 10s">⟫</button>
+      </div>
+    </div>
+    <p class="audio-modal-note">Audio files can be linked by replacing the placeholder URLs in the app data. Each employee's recording is tied to their story card.</p>
+    <button class="modal-close" onclick="closeAudioModal()">Close</button>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────
+const TRACKS = {
+  finance: {
+    name: 'Field Finance', color: '#CC0000', icon: '💰',
+    tiers: [
+      { id: 'ic', label: 'Individual Contributor', short: 'IC',
+        roles: [
+          { id: 'rpa', title: 'Route Processing Administrator', desc: 'Processes daily route settlements, cash handling, and financial reconciliation for distribution routes.', nexts: ['da','ffa','iv'] },
+          { id: 'da', title: 'Distribution Administrator', desc: 'Manages distribution center financial tracking, invoicing, and reporting across the facility.', nexts: ['ffa','lffa'] },
+          { id: 'iv', title: 'Inventory Coordinator', desc: 'Tracks inventory levels, reconciles variances, and supports warehouse accuracy and compliance.', nexts: ['ffa','lffa'] },
+          { id: 'ffa', title: 'Field Finance Administrator', desc: 'Oversees field-level financial administration and compliance with internal controls.', nexts: ['lffa','ffs'] },
+        ]},
+      { id: 'supervisor', label: 'Supervisor', short: 'Supervisor',
+        roles: [
+          { id: 'lffa', title: 'Lead Field Finance Administrator', desc: 'Leads a team of administrators; drives process improvements and financial accuracy.', nexts: ['ffs','sffs'] },
+          { id: 'ffs', title: 'Field Finance Supervisor', desc: 'Supervises field finance teams, ensuring safety, quality, and operational efficiency across routes.', nexts: ['sffs','ffm'] },
+          { id: 'sffs', title: 'Sr. Field Finance Supervisor', desc: 'Senior leader within field finance; drives continuous improvement and mentors supervisors.', nexts: ['ffm'] },
+        ]},
+      { id: 'manager', label: 'Manager', short: 'Manager',
+        roles: [
+          { id: 'ffm', title: 'Field Finance Manager', desc: 'Oversees all field finance operations, ensuring safety, quality, efficiency, and continuous improvement.', nexts: ['pd','bm'] },
+          { id: 'whm', title: 'Warehouse Manager', desc: 'Manages warehouse operations, inventory controls, and distribution workflows across the facility.', lateral: true, nexts: ['pd','som'] },
+          { id: 'qm', title: 'Quality Manager', desc: 'Leads quality assurance programs, audits, and continuous improvement initiatives for the plant.', lateral: true, nexts: ['pd'] },
+        ]},
+      { id: 'leader', label: 'Director+', short: 'Director+',
+        roles: [
+          { id: 'pd', title: 'Plant Director', desc: 'Manages cost plans, oversees strategy, analyzes performance, and leads department growth across the facility.', nexts: [] },
+          { id: 'som', title: 'Senior Operations Manager', desc: 'Drives safety, quality, and productivity improvements across the full facility and multiple departments.', lateral: true, nexts: ['pd'] },
+          { id: 'bm', title: 'Business Manager', desc: 'Leads a market unit\'s financial and operational performance, driving compliance and growth.', lateral: true, nexts: ['pd'] },
+        ]},
+    ],
+    stories: [
+      { name: 'Christine Espersen', role: 'Sr. Finance Manager, Corporate FP&A', initials: 'CE', path: ['Sales Analyst','Business Manager','Corp/Region Financial Analyst','Market Unit Finance Manager','Corporate Finance Manager'], responsibilities: ['Strategic partner to leaders of Corporate Functions','Analyze financial results and identify key business drivers','Lead annual budgeting and forecasting processes','Develop future subject matter experts in Finance'], audioUrl: '#' },
+      { name: 'Dawn Martin', role: 'Business Manager, Bakersfield California', initials: 'DM', path: ['Route Processing Administrator','Distribution Administrator','Field Finance Administrator','Lead Field Finance Administrator (CVMU)'], responsibilities: ['Drive compliance with policies and internal controls','Analyze OPEX to identify cost-saving opportunities','Leader and mentor for administration, operations, and sales teams','RCCB Cares ambassador in community events'], audioUrl: '#' },
+    ]
+  },
+  hr: {
+    name: 'Human Resources', color: '#0057A8', icon: '🤝',
+    tiers: [
+      { id: 'ic', label: 'Individual Contributor', short: 'IC',
+        roles: [
+          { id: 'hrc', title: 'HR Coordinator', desc: 'Provides administrative support for HR operations, onboarding, records management, and compliance.', nexts: ['hrg','tag'] },
+          { id: 'tag', title: 'Talent Acquisition Specialist', desc: 'Sources, screens, and recruits candidates to fill open roles across all RCCB departments.', nexts: ['hrg','shr'] },
+          { id: 'hrg', title: 'HR Generalist', desc: 'Handles employee relations, benefits administration, and HR compliance across a business unit.', nexts: ['shr','hrbp'] },
+          { id: 'hrd', title: 'HR Data Analyst', desc: 'Analyzes HR metrics and provides workforce insights to support people strategy decisions.', nexts: ['hrg','shr'] },
+        ]},
+      { id: 'supervisor', label: 'Supervisor', short: 'Supervisor',
+        roles: [
+          { id: 'shr', title: 'Sr. HR Generalist', desc: 'Manages complex employee relations issues and leads HR projects across multiple locations.', nexts: ['hrbp','hrm'] },
+          { id: 'hrbp', title: 'HR Business Partner', desc: 'Strategic HR partner to operational leaders; drives talent, engagement, and culture initiatives.', nexts: ['shrbp','hrm'] },
+        ]},
+      { id: 'manager', label: 'Manager', short: 'Manager',
+        roles: [
+          { id: 'shrbp', title: 'Sr. HR Business Partner', desc: 'Provides senior-level HR partnership across large business units and full regions.', nexts: ['dhr'] },
+          { id: 'hrm', title: 'HR Manager', desc: 'Leads the HR team for a region or business unit, overseeing all people practices.', nexts: ['dhr'] },
+          { id: 'ldm', title: 'L&D Manager', desc: 'Designs and leads learning and development programs across the full organization.', lateral: true, nexts: ['dhr'] },
+        ]},
+      { id: 'leader', label: 'Director+', short: 'Director+',
+        roles: [
+          { id: 'dhr', title: 'Director of Human Resources', desc: 'Sets HR strategy, leads the regional HR function, and partners with senior leadership on people priorities.', nexts: ['vph'] },
+          { id: 'vph', title: 'VP of People', desc: 'Oversees all HR functions at the enterprise level, driving people strategy for the full organization.', lateral: true, nexts: [] },
+        ]},
+    ],
+    stories: [
+      { name: 'Sandra Rivera', role: 'HR Business Partner, Southwest Region', initials: 'SR', path: ['HR Coordinator','HR Generalist','Sr. HR Generalist','HR Business Partner'], responsibilities: ['Partners with 6 operational leaders across 3 locations','Leads talent review and succession planning','Drives employee engagement and culture initiatives'], audioUrl: '#' },
+      { name: 'Kevin Park', role: 'Director of Human Resources', initials: 'KP', path: ['HR Generalist','HR Business Partner','HR Manager','Director of HR'], responsibilities: ['Oversees HR function for 1,200+ employees in region','Partners with VP-level leaders on workforce strategy','Leads manager training and leadership development programs'], audioUrl: '#' },
+    ]
+  },
+  merch: {
+    name: 'Merchandising', color: '#00843D', icon: '🛒',
+    tiers: [
+      { id: 'ic', label: 'Individual Contributor', short: 'IC',
+        roles: [
+          { id: 'mer', title: 'Merchandiser', desc: 'Stocks and displays Coca-Cola products at retail locations according to planograms and brand standards.', nexts: ['smer','ml'] },
+          { id: 'smer', title: 'Senior Merchandiser', desc: 'Handles higher-volume accounts and mentors newer merchandisers on the team.', nexts: ['ml','ms'] },
+        ]},
+      { id: 'supervisor', label: 'Supervisor', short: 'Supervisor',
+        roles: [
+          { id: 'ml', title: 'Merchandising Lead', desc: 'Leads a team of merchandisers in a defined territory; coordinates daily workflow and execution.', nexts: ['ms','mm'] },
+          { id: 'ms', title: 'Merchandising Supervisor', desc: 'Supervises merchandising operations across multiple accounts and team members in the market.', nexts: ['mm','kam'] },
+        ]},
+      { id: 'manager', label: 'Manager', short: 'Manager',
+        roles: [
+          { id: 'mm', title: 'Merchandising Manager', desc: 'Manages the full merchandising team for a market unit, driving execution and results.', nexts: ['dmm','rsm'] },
+          { id: 'kam', title: 'Key Account Manager', desc: 'Manages strategic retail accounts, driving partnership, placement, and volume growth.', lateral: true, nexts: ['dmm','rsm'] },
+        ]},
+      { id: 'leader', label: 'Director+', short: 'Director+',
+        roles: [
+          { id: 'dmm', title: 'District Merchandising Manager', desc: 'Leads merchandising strategy and execution across a full district with multiple market units.', nexts: ['rsm'] },
+          { id: 'rsm', title: 'Regional Sales Manager', desc: 'Leads sales and merchandising operations across a full region, partnering with senior leadership.', lateral: true, nexts: [] },
+        ]},
+    ],
+    stories: [
+      { name: 'Tanya Williams', role: 'Merchandising Supervisor, Phoenix Market', initials: 'TW', path: ['Merchandiser','Senior Merchandiser','Merchandising Lead','Merchandising Supervisor'], responsibilities: ['Supervises 14 merchandisers across 80+ retail accounts','Ensures planogram compliance and product freshness','Trains and develops team members for advancement'], audioUrl: '#' },
+    ]
+  },
+  sales: {
+    name: 'Sales', color: '#E07000', icon: '📊',
+    tiers: [
+      { id: 'ic', label: 'Individual Contributor', short: 'IC',
+        roles: [
+          { id: 'str', title: 'Sales Trainee', desc: 'Learns fundamentals of route sales, customer service, and product knowledge alongside experienced reps.', nexts: ['srep','ssr'] },
+          { id: 'srep', title: 'Sales Representative', desc: 'Manages an assigned route, building customer relationships and growing sales volume and distribution.', nexts: ['ssr','ss'] },
+          { id: 'ssr', title: 'Senior Sales Rep', desc: 'Handles complex accounts and mentors newer sales reps across the territory.', nexts: ['ss','kas'] },
+        ]},
+      { id: 'supervisor', label: 'Supervisor', short: 'Supervisor',
+        roles: [
+          { id: 'ss', title: 'Sales Supervisor', desc: 'Supervises a team of sales representatives and drives performance to quota across a territory.', nexts: ['sm','bdm'] },
+          { id: 'kas', title: 'Key Account Supervisor', desc: 'Manages a portfolio of strategic retail or chain accounts across the region.', lateral: true, nexts: ['sm'] },
+        ]},
+      { id: 'manager', label: 'Manager', short: 'Manager',
+        roles: [
+          { id: 'sm', title: 'Sales Manager', desc: 'Manages a full sales team for a market unit, setting strategy and driving results.', nexts: ['rsm2','vps'] },
+          { id: 'bdm', title: 'Business Development Manager', desc: 'Identifies and develops new business opportunities and channel partnerships.', lateral: true, nexts: ['rsm2'] },
+        ]},
+      { id: 'leader', label: 'Director+', short: 'Director+',
+        roles: [
+          { id: 'rsm2', title: 'Regional Sales Manager', desc: 'Leads sales operations across a region; partners with key accounts and senior leadership on strategy.', nexts: ['vps'] },
+          { id: 'vps', title: 'VP of Sales', desc: 'Sets enterprise-wide sales strategy and leads the full field sales organization.', lateral: true, nexts: [] },
+        ]},
+    ],
+    stories: [
+      { name: 'James Okonkwo', role: 'Sales Manager, Dallas Market Unit', initials: 'JO', path: ['Sales Trainee','Sales Representative','Sr. Sales Representative','Sales Supervisor','Sales Manager'], responsibilities: ['Leads team of 22 sales reps across Dallas territory','Grew volume 11% YoY through strategic account management','Mentors high-potential sales reps for supervisor roles'], audioUrl: '#' },
+    ]
+  },
+  production: {
+    name: 'Production', color: '#6B2D8B', icon: '⚙️',
+    tiers: [
+      { id: 'ic', label: 'Individual Contributor', short: 'IC',
+        roles: [
+          { id: 'mo', title: 'Machine Operator', desc: 'Operates production line machinery, maintaining safety and quality standards on the line.', nexts: ['ww','fo','mfg'] },
+          { id: 'ww', title: 'Warehouse Worker', desc: 'Supports warehouse operations including receiving, storing, and shipping product.', nexts: ['fo','mfg','whs'] },
+          { id: 'fo', title: 'Forklift Operator', desc: 'Safely operates forklifts to move product and materials throughout the facility.', nexts: ['mfg','whs'] },
+          { id: 'mfg', title: 'Manufacturing Lead', desc: 'Leads a production shift team, coordinating workflow and ensuring output targets are met.', nexts: ['ps','whs'] },
+        ]},
+      { id: 'supervisor', label: 'Supervisor', short: 'Supervisor',
+        roles: [
+          { id: 'ps', title: 'Production Supervisor', desc: 'Supervises production operations for a shift; ensures safety, quality, and throughput targets.', nexts: ['pm','qm2'] },
+          { id: 'sans', title: 'Sanitation Supervisor', desc: 'Leads sanitation team ensuring regulatory compliance and cleanliness standards across the facility.', lateral: true, nexts: ['pm'] },
+          { id: 'whs', title: 'Warehouse Supervisor', desc: 'Supervises warehouse team, inventory control, and daily logistics for the facility.', lateral: true, nexts: ['pm'] },
+        ]},
+      { id: 'manager', label: 'Manager', short: 'Manager',
+        roles: [
+          { id: 'pm', title: 'Production Manager', desc: 'Oversees all production operations for an area, driving KPIs and continuous improvement.', nexts: ['om','pd2'] },
+          { id: 'qm2', title: 'Quality Manager', desc: 'Leads quality assurance programs, audits, and continuous improvement initiatives for the plant.', lateral: true, nexts: ['om','pd2'] },
+        ]},
+      { id: 'leader', label: 'Director+', short: 'Director+',
+        roles: [
+          { id: 'om', title: 'Operations Manager', desc: 'Drives safety, quality, and productivity improvements across all operations at the facility.', nexts: ['pd2'] },
+          { id: 'pd2', title: 'Plant Director', desc: 'Manages all plant operations, cost plans, strategic planning, and full team development.', nexts: [] },
+        ]},
+    ],
+    stories: [
+      { name: 'Maria Santos', role: 'Manufacturing Lead, Atlanta Plant', initials: 'MS', path: ['Machine Operator','Senior Machine Operator','Manufacturing Lead'], responsibilities: ['Leads production shift of 18 operators','Reduced line downtime 23% through lean initiatives','Coaches team members on safety protocols and efficiency'], audioUrl: '#' },
+    ]
+  },
+  maintenance: {
+    name: 'Maintenance', color: '#007A8C', icon: '🔧',
+    tiers: [
+      { id: 'ic', label: 'Individual Contributor', short: 'IC',
+        roles: [
+          { id: 'mt1', title: 'Maintenance Technician I', desc: 'Performs routine maintenance and repairs on production and facility equipment.', nexts: ['mt2','mt3'] },
+          { id: 'mt2', title: 'Maintenance Technician II', desc: 'Handles more complex repairs and preventive maintenance tasks independently.', nexts: ['mt3','mnl'] },
+          { id: 'mt3', title: 'Sr. Maintenance Technician', desc: 'Troubleshoots complex equipment failures and mentors junior technicians on best practices.', nexts: ['mnl','mns'] },
+        ]},
+      { id: 'supervisor', label: 'Supervisor', short: 'Supervisor',
+        roles: [
+          { id: 'mnl', title: 'Maintenance Lead', desc: 'Leads a maintenance crew; coordinates PM schedules and work orders for the department.', nexts: ['mns','mnm'] },
+          { id: 'mns', title: 'Maintenance Supervisor', desc: 'Supervises the maintenance department for a shift or area, driving uptime and safety.', nexts: ['mnm'] },
+        ]},
+      { id: 'manager', label: 'Manager', short: 'Manager',
+        roles: [
+          { id: 'mnm', title: 'Maintenance Manager', desc: 'Manages the full maintenance function, overseeing budget, staffing, and equipment strategy.', nexts: ['ped','om2'] },
+          { id: 'ehs', title: 'EHS Manager', desc: 'Leads environmental health and safety programs and regulatory compliance for the facility.', lateral: true, nexts: ['ped'] },
+        ]},
+      { id: 'leader', label: 'Director+', short: 'Director+',
+        roles: [
+          { id: 'ped', title: 'Plant Engineering Director', desc: 'Leads engineering and maintenance strategy across the facility, driving capital projects.', nexts: [] },
+          { id: 'om2', title: 'Operations Manager', desc: 'Drives safety, quality, and productivity across all plant operations as a senior leader.', lateral: true, nexts: ['ped'] },
+        ]},
+    ],
+    stories: [
+      { name: 'David Reyes', role: 'Maintenance Supervisor, Fresno Facility', initials: 'DR', path: ['Maintenance Technician I','Sr. Maintenance Technician','Maintenance Lead','Maintenance Supervisor'], responsibilities: ['Manages 12 technicians across day and night shifts','Reduced unplanned downtime 31% in first year','Led $2M+ capital equipment upgrade project'], audioUrl: '#' },
+    ]
+  }
+};
+
+// Tier badge styles
+const TIER_CFG = {
+  ic:         { bg: '#EDE7F6', text: '#4A148C', label: 'Individual Contributor', badge: 'IC' },
+  supervisor: { bg: '#E8F5E9', text: '#1B5E20', label: 'Supervisor',             badge: 'Supervisor' },
+  manager:    { bg: '#E3F2FD', text: '#0D47A1', label: 'Manager',                badge: 'Manager' },
+  leader:     { bg: '#FBE9E7', text: '#BF360C', label: 'Director+',              badge: 'Director+' },
+};
+const LATERAL_CFG = { bg: '#F3E5F5', text: '#6A1B9A', label: 'Lateral Move', badge: 'Lateral' };
+
+// ─── STATE ──────────────────────────────────────────────────────────
+let currentTrack = 'finance';
+let selectedRoleId = null;
+let flippedCards = new Set();
+
+// ─── INIT ────────────────────────────────────────────────────────────
+function init() {
+  renderTabs();
+  renderExplorer();
+  renderDetailEmpty();
+}
+
+// ─── TABS ────────────────────────────────────────────────────────────
+function renderTabs() {
+  const t = TRACKS[currentTrack];
+  document.getElementById('track-tabs').innerHTML = Object.entries(TRACKS).map(([k, tr]) =>
+    `<button class="track-tab${k === currentTrack ? ' active' : ''}"
+      style="${k === currentTrack ? `background:${tr.color};border-color:${tr.color};` : ''}"
+      onclick="explorerSwitchTrack('${k}')">${tr.icon} ${tr.name}</button>`
+  ).join('');
+  // Update nav pill
+  const pill = document.getElementById('nav-track-pill');
+  pill.textContent = t.name;
+  pill.classList.add('visible');
+}
+
+// ─── EXPLORER RENDER ─────────────────────────────────────────────────
+function renderExplorer() {
+  const t = TRACKS[currentTrack];
+
+  // Tier label row
+  document.getElementById('tier-labels-row').innerHTML = t.tiers.map(tier => {
+    const cfg = TIER_CFG[tier.id];
+    return `<div class="tier-label-pill" style="background:${cfg.bg};color:${cfg.text};flex:${tier.roles.length};">${cfg.label}</div>`;
+  }).join('');
+
+  // Cards
+  const container = document.getElementById('tiers-container');
+  container.innerHTML = '';
+
+  t.tiers.forEach(tier => {
+    const col = document.createElement('div');
+    col.className = 'tier-column';
+    col.id = `tier-col-${tier.id}`;
+
+    tier.roles.forEach(role => {
+      const cfg = role.lateral ? LATERAL_CFG : TIER_CFG[tier.id];
+      const isSelected = selectedRoleId === role.id;
+      const isFlipped = flippedCards.has(role.id);
+      const arrowIcon = role.lateral ? '↔' : '↑';
+
+      const wrap = document.createElement('div');
+      wrap.className = `flip-wrap${role.lateral ? ' lateral' : ''}${isSelected ? ' selected' : ''}${isFlipped ? ' flipped' : ''}`;
+      wrap.id = `card-${role.id}`;
+      wrap.dataset.roleId = role.id;
+
+      const selectedStyle = isSelected ? `border-color:${t.color};border-width:2px;` : '';
+      const selectBtnStyle = isSelected ? `background:${t.color};color:white;border-color:${t.color};` : '';
+      const selectBtnLabel = isSelected ? '✓ Selected' : 'Select';
+
+      wrap.innerHTML = `
+        <div class="flip-inner">
+          <div class="flip-face flip-front" style="${selectedStyle}">
+            <div class="card-badge" style="background:${cfg.bg};color:${cfg.text};">${arrowIcon} ${cfg.badge}</div>
+            <div class="card-title">${role.title}</div>
+            <div class="card-footer">
+              <div class="card-flip-hint">↻ flip</div>
+              <button class="select-btn" style="${selectBtnStyle}" onclick="event.stopPropagation();explorerSelectRole('${role.id}')">${selectBtnLabel}</button>
+            </div>
+          </div>
+          <div class="flip-face flip-back" style="background:${role.lateral ? '#5E35B1' : t.color};">
+            <div>
+              <div class="back-role-type">${cfg.label}${role.lateral ? ' · Lateral' : ''}</div>
+              <div class="back-title">${role.title}</div>
+              <div class="back-desc">${role.desc}</div>
+            </div>
+            <div class="back-close">Tap to flip back</div>
+          </div>
+        </div>`;
+
+      wrap.addEventListener('click', () => explorerToggleFlip(role.id));
+      col.appendChild(wrap);
+    });
+
+    container.appendChild(col);
+  });
+
+  applyHighlighting();
+}
+
+function explorerToggleFlip(roleId) {
+  const card = document.getElementById(`card-${roleId}`);
+  if (!card) return;
+  if (flippedCards.has(roleId)) {
+    flippedCards.delete(roleId);
+    card.classList.remove('flipped');
+  } else {
+    flippedCards.add(roleId);
+    card.classList.add('flipped');
+  }
+}
+
+function explorerSelectRole(roleId) {
+  // Unflip
+  flippedCards.delete(roleId);
+  const card = document.getElementById(`card-${roleId}`);
+  if (card) card.classList.remove('flipped');
+
+  if (selectedRoleId === roleId) {
+    selectedRoleId = null;
+    renderDetailEmpty();
+  } else {
+    selectedRoleId = roleId;
+    renderDetailForRole(roleId);
+  }
+  renderExplorer();
+}
+
+function applyHighlighting() {
+  if (!selectedRoleId) return;
+  const t = TRACKS[currentTrack];
+  const allRoles = t.tiers.flatMap(ti => ti.roles);
+  const sel = allRoles.find(r => r.id === selectedRoleId);
+  const nextSet = new Set(sel ? sel.nexts : []);
+
+  document.querySelectorAll('.flip-wrap').forEach(card => {
+    const rid = card.dataset.roleId;
+    if (rid === selectedRoleId) {
+      card.classList.remove('dimmed'); card.classList.remove('next-step');
+    } else if (nextSet.has(rid)) {
+      card.classList.remove('dimmed'); card.classList.add('next-step');
+      const front = card.querySelector('.flip-front');
+      if (front) { front.style.borderColor = TRACKS[currentTrack].color; front.style.borderWidth = '2px'; }
+    } else {
+      card.classList.add('dimmed'); card.classList.remove('next-step');
+    }
+  });
+}
+
+function explorerSwitchTrack(track) {
+  currentTrack = track;
+  selectedRoleId = null;
+  flippedCards = new Set();
+  renderTabs();
+  renderExplorer();
+  renderDetailEmpty();
+}
+
+// ─── DETAIL PANEL ────────────────────────────────────────────────────
+function getAllRoles(track) {
+  return TRACKS[track].tiers.flatMap(ti => ti.roles.map(r => ({ ...r, tierId: ti.id })));
+}
+
+function renderDetailEmpty() {
+  document.getElementById('detail-panel').innerHTML = `
+    <div class="detail-empty">
+      <span class="detail-empty-icon">🗺️</span>
+      Select a role card to explore your possible next moves
+    </div>
+    <div>
+      <div class="detail-section-label">Legend</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-swatch" style="background:#EDE7F6;border:1px solid #CE93D8;"></div> Individual Contributor</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#E8F5E9;border:1px solid #A5D6A7;"></div> Supervisor</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#E3F2FD;border:1px solid #90CAF9;"></div> Manager</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#FBE9E7;border:1px solid #FFAB91;"></div> Director / Leadership</div>
+        <div class="legend-item"><div class="legend-dash"></div> Lateral / cross-track move</div>
+      </div>
+    </div>`;
+}
+
+function renderDetailForRole(roleId) {
+  const t = TRACKS[currentTrack];
+  const allRoles = getAllRoles(currentTrack);
+  const role = allRoles.find(r => r.id === roleId);
+  if (!role) return;
+
+  const cfg = role.lateral ? LATERAL_CFG : TIER_CFG[role.tierId];
+  const arrowIcon = role.lateral ? '↔' : '↑';
+
+  const nextRoles = (role.nexts || []).map(nid => {
+    const r = allRoles.find(x => x.id === nid);
+    if (!r) return null;
+    const nc = r.lateral ? LATERAL_CFG : TIER_CFG[r.tierId];
+    return { ...r, cfg: nc };
+  }).filter(Boolean);
+
+  document.getElementById('detail-panel').innerHTML = `
+    <div>
+      <div class="detail-section-label">Selected role</div>
+      <div class="detail-role-name">${role.title}</div>
+      <div class="detail-tier-badge" style="background:${cfg.bg};color:${cfg.text};">${arrowIcon} ${cfg.label}</div>
+      <div class="detail-desc">${role.desc}</div>
+    </div>
+    <div>
+      <div class="detail-section-label">${nextRoles.length > 0 ? 'Possible next moves' : 'Top of the track'}</div>
+      ${nextRoles.length > 0 ? `
+        <div class="detail-paths-list">
+          ${nextRoles.map(nr => `
+            <div class="detail-path-item" onclick="explorerSelectRole('${nr.id}')">
+              <span class="path-arrow-icon" style="color:${t.color};">${nr.lateral ? '↔' : '↑'}</span>
+              <span class="path-item-text">${nr.title}</span>
+              <span class="path-type-tag" style="background:${nr.cfg.bg};color:${nr.cfg.text};">${nr.cfg.badge}</span>
+            </div>`).join('')}
+        </div>` :
+        `<div class="top-of-track-msg">You've reached the top of this career track. Consider lateral moves or leadership development programs.</div>`
+      }
+    </div>
+    <button class="reset-btn" onclick="explorerSelectRole('${roleId}')">✕ Clear selection</button>`;
+}
+
+// ─── STORIES ─────────────────────────────────────────────────────────
+function renderStories() {
+  const t = TRACKS[currentTrack];
+  const storiesHTML = t.stories.map((s, idx) => {
+    const pathHTML = s.path.map((p, i) =>
+      `<span class="path-step">${p}</span>${i < s.path.length - 1 ? '<span class="path-arrow">→</span>' : ''}`
+    ).join('');
+    const respHTML = s.responsibilities.map(r => `<li>${r}</li>`).join('');
+    return `
+      <div class="story-card">
+        <div class="story-avatar">
+          <div class="avatar-circle" style="background:${t.color};">${s.initials}</div>
+          <button class="story-play-btn" onclick="openAudioModal(${idx})"><span class="story-play-icon">▶</span> Listen</button>
+        </div>
+        <div class="story-content">
+          <div class="story-name">${s.name}</div>
+          <div class="story-title">${s.role}</div>
+          <div class="story-path">${pathHTML}</div>
+          <div class="story-responsibilities"><strong>Responsibilities:</strong><ul style="margin-top:6px;padding-left:18px;">${respHTML}</ul></div>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('stories-content').innerHTML = `
+    <div class="page-eyebrow">Hear From Real Employees</div>
+    <h1 class="page-title">Success Stories</h1>
+    <p class="page-subtitle">Learn about ${t.name} career paths at RCCB</p>
+    <div class="page-divider"></div>
+    <div class="content-card" style="margin-bottom:24px;">
+      <p><strong>Career Movement: A Personalized Journey</strong> — Career progression unfolds at its own rhythm. Click <strong>Listen</strong> on any story to hear directly from our employees.</p>
+    </div>
+    <div class="stories-grid">${storiesHTML}</div>`;
+}
+
+// ─── AUDIO MODAL ──────────────────────────────────────────────────────
+let isPlaying = false, playInterval = null, playProgress = 0;
+
+function openAudioModal(idx) {
+  const t = TRACKS[currentTrack];
+  const s = t.stories[idx];
+  document.getElementById('modal-avatar').textContent = s.initials;
+  document.getElementById('modal-avatar').style.background = t.color;
+  document.getElementById('modal-name').textContent = s.name;
+  document.getElementById('modal-title-role').textContent = s.role;
+  document.getElementById('audio-modal').classList.add('open');
+  playProgress = 0; isPlaying = false;
+  document.getElementById('play-pause-btn').textContent = '▶';
+  document.getElementById('track-fill').style.width = '0%';
+  document.getElementById('time-current').textContent = '0:00';
+}
+function closeAudioModal() {
+  document.getElementById('audio-modal').classList.remove('open');
+  clearInterval(playInterval); isPlaying = false;
+}
+function togglePlay() {
+  isPlaying = !isPlaying;
+  document.getElementById('play-pause-btn').textContent = isPlaying ? '⏸' : '▶';
+  if (isPlaying) {
+    playInterval = setInterval(() => {
+      playProgress += 0.5;
+      if (playProgress >= 100) { playProgress = 0; isPlaying = false; document.getElementById('play-pause-btn').textContent = '▶'; clearInterval(playInterval); }
+      document.getElementById('track-fill').style.width = playProgress + '%';
+      const secs = Math.floor(playProgress * 1.8);
+      document.getElementById('time-current').textContent = Math.floor(secs/60) + ':' + String(secs%60).padStart(2,'0');
+    }, 500);
+  } else { clearInterval(playInterval); }
+}
+function skipAudio(secs) {
+  playProgress = Math.max(0, Math.min(100, playProgress + secs * 0.55));
+  document.getElementById('track-fill').style.width = playProgress + '%';
+}
+document.getElementById('audio-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeAudioModal();
+});
+
+// ─── PAGE NAVIGATION ──────────────────────────────────────────────────
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.side-nav-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.querySelector(`[data-page="${pageId}"]`)?.classList.add('active');
+  window.scrollTo(0, 0);
+  if (pageId === 'stories') renderStories();
+}
+
+function switchTrack(track) {
+  explorerSwitchTrack(track);
+}
+
+// ─── BOOT ─────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>
