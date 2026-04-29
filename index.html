@@ -1805,43 +1805,87 @@ function renderStories() {
     <div class="stories-grid">${storiesHTML}</div>`;
 }
 
+
 // ─── AUDIO MODAL ──────────────────────────────────────────────────────
-let isPlaying = false, playInterval = null, playProgress = 0;
+let audioEl = new Audio();
+let currentStory = null;
+
+function fmtTime(s) {
+  if (!isFinite(s) || s < 0) s = 0;
+  return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+}
 
 function openAudioModal(idx) {
   const t = TRACKS[currentTrack];
   const s = t.stories[idx];
+  currentStory = s;
+
   document.getElementById('modal-avatar').textContent = s.initials;
   document.getElementById('modal-avatar').style.background = t.color;
   document.getElementById('modal-name').textContent = s.name;
   document.getElementById('modal-title-role').textContent = s.role;
   document.getElementById('audio-modal').classList.add('open');
-  playProgress = 0; isPlaying = false;
+
+  // Reset UI
   document.getElementById('play-pause-btn').textContent = '▶';
   document.getElementById('track-fill').style.width = '0%';
   document.getElementById('time-current').textContent = '0:00';
+  document.getElementById('time-total').textContent = '—';
+
+  // Load the audio file (or clear it if there isn't one)
+  audioEl.pause();
+  if (s.audioUrl) {
+    audioEl.src = s.audioUrl;
+    audioEl.load();
+  } else {
+    audioEl.removeAttribute('src');
+  }
 }
+
 function closeAudioModal() {
   document.getElementById('audio-modal').classList.remove('open');
-  clearInterval(playInterval); isPlaying = false;
+  audioEl.pause();
+  audioEl.currentTime = 0;
+  document.getElementById('play-pause-btn').textContent = '▶';
 }
+
 function togglePlay() {
-  isPlaying = !isPlaying;
-  document.getElementById('play-pause-btn').textContent = isPlaying ? '⏸' : '▶';
-  if (isPlaying) {
-    playInterval = setInterval(() => {
-      playProgress += 0.5;
-      if (playProgress >= 100) { playProgress = 0; isPlaying = false; document.getElementById('play-pause-btn').textContent = '▶'; clearInterval(playInterval); }
-      document.getElementById('track-fill').style.width = playProgress + '%';
-      const secs = Math.floor(playProgress * 1.8);
-      document.getElementById('time-current').textContent = Math.floor(secs/60) + ':' + String(secs%60).padStart(2,'0');
-    }, 500);
-  } else { clearInterval(playInterval); }
+  if (!currentStory || !currentStory.audioUrl) return;
+  if (audioEl.paused) {
+    audioEl.play().catch(err => console.error('Audio play failed:', err));
+  } else {
+    audioEl.pause();
+  }
 }
+
 function skipAudio(secs) {
-  playProgress = Math.max(0, Math.min(100, playProgress + secs * 0.55));
-  document.getElementById('track-fill').style.width = playProgress + '%';
+  if (!isFinite(audioEl.duration)) return;
+  audioEl.currentTime = Math.max(0, Math.min(audioEl.duration, audioEl.currentTime + secs));
 }
+
+// Wire the audio element to update the UI
+audioEl.addEventListener('play', () => {
+  document.getElementById('play-pause-btn').textContent = '⏸';
+});
+audioEl.addEventListener('pause', () => {
+  document.getElementById('play-pause-btn').textContent = '▶';
+});
+audioEl.addEventListener('ended', () => {
+  document.getElementById('play-pause-btn').textContent = '▶';
+  document.getElementById('track-fill').style.width = '0%';
+  document.getElementById('time-current').textContent = '0:00';
+  audioEl.currentTime = 0;
+});
+audioEl.addEventListener('loadedmetadata', () => {
+  document.getElementById('time-total').textContent = fmtTime(audioEl.duration);
+});
+audioEl.addEventListener('timeupdate', () => {
+  if (!isFinite(audioEl.duration) || audioEl.duration === 0) return;
+  const pct = (audioEl.currentTime / audioEl.duration) * 100;
+  document.getElementById('track-fill').style.width = pct + '%';
+  document.getElementById('time-current').textContent = fmtTime(audioEl.currentTime);
+});
+
 document.getElementById('audio-modal').addEventListener('click', function(e) {
   if (e.target === this) closeAudioModal();
 });
