@@ -59,7 +59,7 @@
   .hero-h1 span { color: var(--red); }
   .hero-desc { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 520px; margin-bottom: 48px; }
   .hero-tracks-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
-  .hero-track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 800px; }
+  .hero-track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 900px; }
   .hero-track-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 18px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
   .hero-track-card:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
   .hero-track-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
@@ -291,26 +291,26 @@
             <div class="hero-track-icon" style="background:#00843D;">📊</div>
             <div class="hero-track-name">Sales</div>
           </div>
+          <div class="hero-track-card" onclick="switchTrack('merchandising'); showPage('roadmap')">
+            <div class="hero-track-icon" style="background:#B45309;">🛒</div>
+            <div class="hero-track-name">Merchandising</div>
+          </div>
           <div class="hero-track-card" onclick="switchTrack('finance'); showPage('roadmap')">
             <div class="hero-track-icon" style="background:#CC0000;">💰</div>
-            <div class="hero-track-name">Finance</div>
+            <div class="hero-track-name">Field Finance</div>
           </div>
           <div class="hero-track-card" onclick="switchTrack('delivery'); showPage('roadmap')">
             <div class="hero-track-icon" style="background:#B45309;">🚚</div>
-            <div class="hero-track-name">Delivery</div>
+            <div class="hero-track-name">Delivery / Transport</div>
           </div>
           <div class="hero-track-card" onclick="switchTrack('hr'); showPage('roadmap')">
             <div class="hero-track-icon" style="background:#0057A8;">🤝</div>
             <div class="hero-track-name">Human Resources</div>
           </div>
-          <div class="hero-track-card" onclick="switchTrack('equipment'); showPage('roadmap')">
-            <div class="hero-track-icon" style="background:#1D4ED8;">🔧</div>
-            <div class="hero-track-name">Equipment Services</div>
-          </div>
         </div>
       </div>
       <div class="hero-footer">
-        <div class="hero-footer-text">Reyes &nbsp;·&nbsp; Coca‑Cola &nbsp;·&nbsp; Bottling</div>
+        <div class="hero-footer-text">Reyes &nbsp;·&nbsp; Coca Cola &nbsp;·&nbsp; Bottling</div>
         <button class="hero-cta" onclick="showPage('about')">Start the Guide →</button>
       </div>
     </div>
@@ -319,7 +319,7 @@
     <div class="page" id="page-about">
       <div class="page-eyebrow">Career Roadmap Guide</div>
       <h1 class="page-title">Crafting Success</h1>
-      <p class="page-subtitle">Navigate Your Career Journey with Purpose & Precision</p>
+      <p class="page-subtitle">Navigate Your Career Journey with Purpose &amp; Precision</p>
       <div class="page-divider"></div>
       <div class="highlight-bar">
         <h3>World of RCCB</h3>
@@ -335,7 +335,6 @@
           <p>We empower employees to explore career progression through <strong>vertical, horizontal, and diagonal movement</strong> across RCCB and the broader Reyes Family of Businesses.</p>
         </div>
       </div>
-
       <div class="progression-visual-wrap">
         <div class="progression-visual-card">
           <h4>🪜 The Career Ladder</h4>
@@ -360,44 +359,37 @@
           <h4>🕸️ The Career Lattice</h4>
           <p>A flexible path — move up, sideways, or diagonally across departments.</p>
           <svg viewBox="0 0 280 210" width="100%" xmlns="http://www.w3.org/2000/svg">
-            <!-- vertical lines -->
             <line x1="60" y1="160" x2="60" y2="115" stroke="#DDDDDD" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="140" y1="160" x2="140" y2="115" stroke="#DDDDDD" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="220" y1="160" x2="220" y2="115" stroke="#DDDDDD" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="60" y1="90" x2="60" y2="45" stroke="#DDDDDD" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="140" y1="90" x2="140" y2="45" stroke="#DDDDDD" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="220" y1="90" x2="220" y2="45" stroke="#DDDDDD" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <!-- horizontal -->
             <line x1="75" y1="170" x2="125" y2="170" stroke="#CC0000" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="155" y1="170" x2="205" y2="170" stroke="#CC0000" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="75" y1="102" x2="125" y2="102" stroke="#CC0000" stroke-width="1.5" stroke-dasharray="4,3"/>
             <line x1="155" y1="102" x2="205" y2="102" stroke="#CC0000" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <!-- diagonal -->
             <line x1="75" y1="162" x2="125" y2="115" stroke="#6B2D8B" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.65"/>
             <line x1="155" y1="115" x2="205" y2="160" stroke="#6B2D8B" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.65"/>
             <line x1="75" y1="94" x2="165" y2="48" stroke="#6B2D8B" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.65"/>
-            <!-- IC row -->
             <circle cx="60" cy="170" r="15" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
             <text x="60" y="174" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="8" fill="#4A148C">IC</text>
             <circle cx="140" cy="170" r="15" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
             <text x="140" y="174" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="8" fill="#4A148C">IC</text>
             <circle cx="220" cy="170" r="15" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
             <text x="220" y="174" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="8" fill="#4A148C">IC</text>
-            <!-- Supervisor row -->
             <circle cx="60" cy="102" r="15" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
             <text x="60" y="106" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="7" fill="#1B5E20">SUP</text>
             <circle cx="140" cy="102" r="15" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
             <text x="140" y="106" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="7" fill="#1B5E20">SUP</text>
             <circle cx="220" cy="102" r="15" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
             <text x="220" y="106" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="7" fill="#1B5E20">SUP</text>
-            <!-- Manager row -->
             <circle cx="60" cy="35" r="15" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
             <text x="60" y="39" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="7" fill="#0D47A1">MGR</text>
             <circle cx="140" cy="35" r="15" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
             <text x="140" y="39" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="7" fill="#0D47A1">MGR</text>
             <circle cx="220" cy="35" r="15" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
             <text x="220" y="39" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="7" fill="#0D47A1">MGR</text>
-            <!-- Arrow labels -->
             <text x="60" y="152" text-anchor="middle" font-size="10" fill="#CC0000">↑</text>
             <text x="140" y="152" text-anchor="middle" font-size="10" fill="#CC0000">↑</text>
             <text x="220" y="152" text-anchor="middle" font-size="10" fill="#CC0000">↑</text>
@@ -408,7 +400,6 @@
             <text x="180" y="174" text-anchor="middle" font-size="10" fill="#CC0000">↔</text>
             <text x="100" y="106" text-anchor="middle" font-size="10" fill="#CC0000">↔</text>
             <text x="180" y="106" text-anchor="middle" font-size="10" fill="#CC0000">↔</text>
-            <!-- Legend -->
             <line x1="8" y1="200" x2="22" y2="200" stroke="#DDDDDD" stroke-width="1.5" stroke-dasharray="4,3"/>
             <text x="26" y="203" font-family="Barlow, sans-serif" font-size="8" fill="#999">vertical</text>
             <line x1="75" y1="200" x2="89" y2="200" stroke="#CC0000" stroke-width="1.5" stroke-dasharray="4,3"/>
@@ -418,7 +409,6 @@
           </svg>
         </div>
       </div>
-
       <div class="content-card">
         <h3>How Career Growth Works at RCCB</h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;">
@@ -444,7 +434,7 @@
       <div class="vision-pillars">
         <div class="vision-pillar"><h4>Fairness</h4><p>We treat every person with dignity and equity, ensuring all employees have a fair opportunity to grow and succeed within our organization.</p></div>
         <div class="vision-pillar"><h4>Individuality</h4><p>We celebrate what makes each person unique, embracing diverse backgrounds, perspectives, and experiences as a source of strength.</p></div>
-        <div class="vision-pillar"><h4>Mission & Purpose</h4><p>We connect each employee's work to the larger mission — delivering world-class beverages and creating lasting value for our communities.</p></div>
+        <div class="vision-pillar"><h4>Mission &amp; Purpose</h4><p>We connect each employee's work to the larger mission — delivering world-class beverages and creating lasting value for our communities.</p></div>
       </div>
       <div class="content-card">
         <h3>Career Movement: A Personalized Journey</h3>
@@ -465,8 +455,8 @@
       <div class="page-eyebrow" style="margin-bottom:12px;">The 70-20-10 Development Model</div>
       <div class="idp-model">
         <div class="idp-card idp-otj"><div class="idp-pct">70%</div><h4>On the Job</h4><p>Learning gained through on-the-job experience, training, special projects, and short-term assignments</p></div>
-        <div class="idp-card idp-coach"><div class="idp-pct">20%</div><h4>Coaching & Mentoring</h4><p>Knowledge built through interaction with others via formal & informal coaching, PDF feedback, mentorship, and shadowing</p></div>
-        <div class="idp-card idp-formal"><div class="idp-pct">10%</div><h4>Formal Training</h4><p>Coursework designed to develop knowledge & skills via Career Connect, Harvard Business Review, and MindTools</p></div>
+        <div class="idp-card idp-coach"><div class="idp-pct">20%</div><h4>Coaching &amp; Mentoring</h4><p>Knowledge built through interaction with others via formal &amp; informal coaching, PDF feedback, mentorship, and shadowing</p></div>
+        <div class="idp-card idp-formal"><div class="idp-pct">10%</div><h4>Formal Training</h4><p>Coursework designed to develop knowledge &amp; skills via Career Connect, Harvard Business Review, and MindTools</p></div>
       </div>
       <div class="content-card">
         <h3>Individual Development Plan (IDP)</h3>
@@ -499,10 +489,10 @@
       <div class="page-divider"></div>
       <div class="competency-list">
         <div class="competency-item"><div class="comp-label">Strategic Thinking</div><div class="comp-desc"><ul><li>Manages processes and resources to meet strategic priorities</li><li>Executes on plans to drive business outcomes</li><li>Seeks to understand the changing needs of the industry</li><li>Demonstrates financial responsibility</li></ul></div></div>
-        <div class="competency-item"><div class="comp-label">Developing Self & Others</div><div class="comp-desc"><ul><li>Seeks feedback & responds positively to improve personal effectiveness</li><li>Takes ownership & action on feedback and personal learning needs</li><li>Contributes to a culture of inclusion so everyone can succeed</li><li>Shares feedback constructively with peers</li></ul></div></div>
-        <div class="competency-item"><div class="comp-label">Leading Change</div><div class="comp-desc"><ul><li>Seeks opportunities for & delivers continuous improvement</li><li>Continuously improves safety and wellness</li><li>Executes changes effectively, following clear plans and processes</li><li>Leverages data to make the business case for change</li></ul></div></div>
-        <div class="competency-item"><div class="comp-label">Communicating Effectively</div><div class="comp-desc"><ul><li>Keeps people informed about results & progress</li><li>Actively listens to others</li><li>Demonstrates values and an environment of openness & inclusion</li><li>Develops relationships built on trust & open communication</li></ul></div></div>
-        <div class="competency-item"><div class="comp-label">Driving Results</div><div class="comp-desc"><ul><li>Acts in accordance with the organization's mission, vision & values</li><li>Holds self accountable & pursues excellence</li><li>Challenges oneself to continually elevate performance</li><li>Focuses on safety & wellbeing as a critical priority</li></ul></div></div>
+        <div class="competency-item"><div class="comp-label">Developing Self &amp; Others</div><div class="comp-desc"><ul><li>Seeks feedback &amp; responds positively to improve personal effectiveness</li><li>Takes ownership &amp; action on feedback and personal learning needs</li><li>Contributes to a culture of inclusion so everyone can succeed</li><li>Shares feedback constructively with peers</li></ul></div></div>
+        <div class="competency-item"><div class="comp-label">Leading Change</div><div class="comp-desc"><ul><li>Seeks opportunities for &amp; delivers continuous improvement</li><li>Continuously improves safety and wellness</li><li>Executes changes effectively, following clear plans and processes</li><li>Leverages data to make the business case for change</li></ul></div></div>
+        <div class="competency-item"><div class="comp-label">Communicating Effectively</div><div class="comp-desc"><ul><li>Keeps people informed about results &amp; progress</li><li>Actively listens to others</li><li>Demonstrates values and an environment of openness &amp; inclusion</li><li>Develops relationships built on trust &amp; open communication</li></ul></div></div>
+        <div class="competency-item"><div class="comp-label">Driving Results</div><div class="comp-desc"><ul><li>Acts in accordance with the organization's mission, vision &amp; values</li><li>Holds self accountable &amp; pursues excellence</li><li>Challenges oneself to continually elevate performance</li><li>Focuses on safety &amp; wellbeing as a critical priority</li></ul></div></div>
       </div>
       <button class="next-page-btn" onclick="showPage('steps')">Next: Steps to Advance →</button>
     </div>
@@ -613,185 +603,264 @@ const TRACKS = {
     name: 'Production', color: '#6B2D8B', icon: '⚙️',
     tiers: [
       { id: 'ic', roles: [
-        { id: 'p_mo', title: 'Machine Operator', desc: 'Operates production line machinery, maintaining safety and quality standards on the line.', nexts: ['p_mfg'] },
-        { id: 'p_smo', title: 'Sr. Machine Operator', desc: 'Handles complex equipment and mentors newer operators. Supports training and shift transitions.', nexts: ['p_mfg'] },
+        { id: 'p_ww',  title: 'Warehouse Worker',        desc: 'Supports production operations by receiving raw materials, staging finished goods, and keeping the production floor organized and safe.', nexts: ['p_ml','p_ws'] },
+        { id: 'p_pl',  title: 'Planner',                 desc: 'Coordinates production schedules and inventory plans to ensure lines run efficiently and product demand is met on time.', nexts: ['p_is'] },
+        { id: 'p_ic',  title: 'Inventory Coordinator',   desc: 'Tracks raw materials, WIP, and finished goods inventory; reconciles counts and flags discrepancies to minimize waste and downtime.', nexts: ['p_is'] },
+        { id: 'p_ml',  title: 'Manufacturing Lead',      desc: 'Directs hourly team members on the production line, coordinates shift workflow, and serves as first point of contact for line issues.', nexts: ['p_ps','p_ss','p_sans'] },
       ]},
       { id: 'supervisor', roles: [
-        { id: 'p_mfg', title: 'Manufacturing Lead', desc: 'Leads a production shift team, coordinating workflow and ensuring output targets are met.', nexts: ['p_ps'] },
-        { id: 'p_ps', title: 'Production Supervisor', desc: 'Supervises production operations for a shift; ensures safety, quality, and throughput targets.', nexts: ['p_pm'] },
+        { id: 'p_ps',   title: 'Production Supervisor',    desc: 'Supervises production operations for an assigned shift — managing headcount, safety compliance, quality standards, and throughput targets.', nexts: ['p_pm','p_wm','p_qm'] },
+        { id: 'p_sps',  title: 'Sr. Production Supervisor',desc: 'Manages multiple production lines or shifts, mentors supervisors, and drives continuous improvement across the manufacturing floor.', nexts: ['p_pm'] },
+        { id: 'p_ws',   title: 'Warehouse Supervisor',     desc: 'Oversees inbound/outbound warehouse operations on shift, ensuring accurate receiving, storage, and staging of production materials.', nexts: ['p_wm'] },
+        { id: 'p_sans', title: 'Sanitation Supervisor',    desc: 'Leads the sanitation crew in cleaning and sanitizing production equipment and facilities to meet food-safety and regulatory standards.', nexts: ['p_qm'] },
+        { id: 'p_is',   title: 'Inventory Supervisor',     desc: 'Supervises inventory control operations, cycle counts, and SAP/WMS data integrity across production and warehouse areas.', nexts: ['p_wm'] },
       ]},
       { id: 'manager', roles: [
-        { id: 'p_pm', title: 'Production Manager', desc: 'Oversees all production operations for an area, driving KPIs and continuous improvement.', nexts: ['p_om'] },
+        { id: 'p_pm',  title: 'Production Manager',    desc: 'Manages all production operations for an area, accountable for safety, quality, throughput KPIs, and the development of supervisory staff.', nexts: ['p_smom','p_wm2'] },
+        { id: 'p_wm',  title: 'Warehouse Manager',     desc: 'Leads warehouse operations including receiving, inventory control, and finished goods flow; partners cross-functionally with logistics and sales.', nexts: ['p_smom'] },
+        { id: 'p_qm',  title: 'Quality Manager',       desc: 'Oversees product quality programs, regulatory compliance, and food-safety audits; leads root-cause analysis and corrective action processes.', nexts: ['p_smom'] },
+        { id: 'p_wm2', title: 'Warehouse Manager',     desc: 'Manages full warehouse function supporting manufacturing — inbound raw materials, internal transfer logistics, and outbound finished goods accuracy.', nexts: ['p_smom'] },
       ]},
       { id: 'leader', roles: [
-        { id: 'p_om', title: 'Operations Manager', desc: 'Drives safety, quality, and productivity improvements across all operations at the facility.', nexts: ['p_pd'] },
-        { id: 'p_pd', title: 'Plant Director', desc: 'Manages all plant operations, cost plans, strategic planning, and full team development.', nexts: [] },
+        { id: 'p_smom', title: 'Sr. Manufacturing Ops Manager', desc: 'Drives safety, quality, and productivity across all production and warehouse functions at the facility; leads the site management team.', nexts: ['p_som','p_pd'] },
+        { id: 'p_som',  title: 'Senior Operations Manager',     desc: 'Oversees multi-department operations, champions lean/CI programs, and partners with the Plant Director on strategic planning.', nexts: ['p_pd'] },
+        { id: 'p_pd',   title: 'Plant Director',               desc: 'Leads all plant operations — safety, quality, production volume, cost management, and full team development — with P&L accountability.', nexts: [] },
       ]},
     ],
     stories: [
-      { name: 'Cole Volkers', role: 'Manufacturing Lead, Atlanta Plant', initials: 'CV', path: ['Machine Operator','Sr. Machine Operator','Manufacturing Lead'], responsibilities: ['Leads production shift of 18 operators','Reduced line downtime 23% through lean initiatives','Coaches team members on safety protocols and efficiency'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Maria Santos', role: 'Production Supervisor, Chicago Facility', initials: 'MS', path: ['Machine Operator','Manufacturing Lead','Production Supervisor'], responsibilities: ['Manages 2 production shifts across 40+ team members','Drives safety compliance and daily throughput targets','Mentors leads on people management and escalation handling'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'DeShawn Williams', role: 'Production Manager, Dallas Plant', initials: 'DW', path: ['Machine Operator','Manufacturing Lead','Production Supervisor','Production Manager'], responsibilities: ['Oversees full production floor for a high-volume facility','Implements KPI dashboards and shift accountability systems','Partners with maintenance and quality on cross-functional goals'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Priya Nair', role: 'Operations Manager, Phoenix Facility', initials: 'PN', path: ['Production Supervisor','Production Manager','Operations Manager'], responsibilities: ['Leads cross-departmental operations for 300+ person facility','Drove 18% efficiency gain through Lean/Six Sigma programs','Coaches managers on strategic planning and people development'], audioUrl: 'audio/Cole-Volkers.mp3'  },
+      { name: 'Cole Volkers',    role: 'Manufacturing Lead, Atlanta Plant',         initials: 'CV', path: ['Warehouse Worker','Manufacturing Lead'], responsibilities: ['Leads production shift of 18 operators','Reduced line downtime 23% through lean initiatives','Coaches team members on safety protocols and efficiency'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Maria Santos',    role: 'Production Supervisor, Chicago Facility',   initials: 'MS', path: ['Manufacturing Lead','Production Supervisor'], responsibilities: ['Manages 2 production shifts across 40+ team members','Drives safety compliance and daily throughput targets','Mentors leads on people management'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'DeShawn Williams',role: 'Production Manager, Dallas Plant',          initials: 'DW', path: ['Production Supervisor','Sr. Production Supervisor','Production Manager'], responsibilities: ['Oversees full production floor for high-volume facility','Implements KPI dashboards and shift accountability systems','Partners with maintenance and quality on cross-functional goals'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Priya Nair',      role: 'Plant Director, Phoenix Facility',          initials: 'PN', path: ['Production Manager','Sr. Mfg Ops Manager','Plant Director'], responsibilities: ['Leads cross-departmental operations for 300+ person facility','Drove 18% efficiency gain through Lean/Six Sigma programs','Coaches managers on strategic planning and people development'], audioUrl: 'audio/Cole-Volkers.mp3' },
     ]
   },
+
   warehouse: {
     name: 'Warehouse', color: '#007A8C', icon: '📦',
     tiers: [
       { id: 'ic', roles: [
-        { id: 'w_ww', title: 'Warehouse Associate', desc: 'Receives, stores, and picks orders in the distribution warehouse while maintaining safety and accuracy.', nexts: ['w_fo'] },
-        { id: 'w_fo', title: 'Forklift Operator', desc: 'Safely operates forklifts and pallet jacks to move product and materials throughout the facility.', nexts: ['w_wl'] },
+        { id: 'w_ww',  title: 'Warehouse Worker',       desc: 'Picks, packs, receives, and stores product in the distribution warehouse while maintaining safety, accuracy, and productivity standards.', nexts: ['w_ob','w_fo','w_ch','w_yj'] },
+        { id: 'w_ob',  title: 'Order Builder',          desc: 'Builds customer delivery orders by selecting and stacking product on pallets per route and account specifications, using RF scanning systems.', nexts: ['w_fo','w_wl'] },
+        { id: 'w_fo',  title: 'Forklift Operator',      desc: 'Safely operates sit-down and reach forklifts to receive, relocate, and stage product throughout the distribution center.', nexts: ['w_wl','w_sr'] },
+        { id: 'w_ch',  title: 'Checker',                desc: 'Verifies outbound orders for accuracy — scanning, counting, and confirming all product matches the delivery manifest before trucks are loaded.', nexts: ['w_wl'] },
+        { id: 'w_wi',  title: 'Warehouse Inventory',    desc: 'Conducts cycle counts, reconciles physical inventory to system records, and investigates variances to maintain a high inventory accuracy rate.', nexts: ['w_is'] },
+        { id: 'w_yj',  title: 'Yard Jockey (CDL Req.)', desc: 'Operates a yard truck to position trailers at dock doors for loading and unloading; requires a valid CDL and strong spatial awareness in tight spaces.', nexts: ['w_wl'] },
       ]},
       { id: 'supervisor', roles: [
-        { id: 'w_wl', title: 'Warehouse Lead', desc: 'Coordinates daily warehouse workflows, manages inbound and outbound product flow, and trains team members.', nexts: ['w_ws'] },
-        { id: 'w_ws', title: 'Warehouse Supervisor', desc: 'Supervises warehouse team, inventory control, and daily logistics for the facility.', nexts: ['w_wm'] },
+        { id: 'w_wl',  title: 'Warehouse Lead',                  desc: 'Coordinates day-to-day warehouse workflows, delegates tasks to team members, and ensures shift targets for pick accuracy and on-time loading are met.', nexts: ['w_ws','w_ss','w_ms'] },
+        { id: 'w_sr',  title: 'Shipping & Receiving Supervisor', desc: 'Supervises all inbound receiving and outbound shipping activity, ensures dock accuracy, and partners with carriers and route planners.', nexts: ['w_ws'] },
+        { id: 'w_ws',  title: 'Warehouse Supervisor',            desc: 'Supervises warehouse operations for a shift — managing team performance, safety compliance, inventory accuracy, and workflow efficiency.', nexts: ['w_wm','w_tm','w_ms2'] },
+        { id: 'w_is',  title: 'Inventory Supervisor',            desc: 'Leads the inventory control team, manages cycle count programs, and ensures WMS data integrity across all warehouse areas.', nexts: ['w_wm'] },
+        { id: 'w_ms',  title: 'Merchandising Supervisor',        desc: 'Supervises a team of merchandisers and reset specialists, ensuring proper product placement, display execution, and account compliance.', nexts: ['w_mm','w_ms2'] },
       ]},
       { id: 'manager', roles: [
-        { id: 'w_wm', title: 'Warehouse Manager', desc: 'Manages warehouse operations, inventory controls, staffing, and distribution workflows across the facility.', nexts: ['w_dom'] },
+        { id: 'w_wm',  title: 'Warehouse Manager',         desc: 'Manages full warehouse operations including staffing, inventory control, safety programs, and the efficient distribution of product to all routes.', nexts: ['w_muod','w_gm','w_tm2'] },
+        { id: 'w_tm',  title: 'Transportation Manager',    desc: 'Manages fleet scheduling, driver compliance, route efficiency, and carrier relationships to ensure cost-effective and on-time delivery.', nexts: ['w_muod','w_gm'] },
+        { id: 'w_mm',  title: 'Merchandising Manager',     desc: 'Leads the field merchandising operation — setting execution standards, managing the team to goal, and partnering with sales on account priorities.', nexts: ['w_muod','w_gm'] },
+        { id: 'w_ms2', title: 'Delivery Manager',          desc: 'Manages daily delivery operations, driver performance, route planning, and customer satisfaction metrics across a market unit.', nexts: ['w_muod','w_gm'] },
+        { id: 'w_pm',  title: 'Project Mgr, Field Ops',   desc: 'Leads cross-functional operational projects — from facility improvements to process redesigns — coordinating stakeholders and tracking milestones to completion.', nexts: ['w_muod'] },
+        { id: 'w_tm2', title: 'DSD Planning Manager',     desc: 'Manages Direct Store Delivery planning — routing, load sequencing, and scheduling optimization to maximize service levels and minimize cost.', nexts: ['w_muod'] },
       ]},
       { id: 'leader', roles: [
-        { id: 'w_dom', title: 'Director of Operations', desc: 'Leads multi-site warehousing and distribution strategy, driving safety, efficiency, and cost management.', nexts: [] },
+        { id: 'w_muod', title: 'Market Unit Ops Director',  desc: 'Directs all warehouse, delivery, and distribution operations for a full market unit — accountable for service levels, cost, safety, and team development.', nexts: ['w_gm','w_od2','w_od3'] },
+        { id: 'w_gm',   title: 'General Manager',           desc: 'Leads all aspects of a market unit — operations, sales, people, and financial performance — with full P&L accountability for the facility.', nexts: [] },
+        { id: 'w_od2',  title: 'Operations Director, Field Ops', desc: 'Sets field operations strategy across multiple market units, driving standardization, efficiency, and execution excellence at scale.', nexts: [] },
+        { id: 'w_od3',  title: 'Sr. Operations Manager',   desc: 'Manages a broad portfolio of operational functions across departments, coaching managers and driving facility-wide performance improvements.', nexts: ['w_gm'] },
       ]},
     ],
     stories: [
-      { name: 'Marcus Thompson', role: 'Warehouse Supervisor, Houston DC', initials: 'MT', path: ['Warehouse Associate','Forklift Operator','Warehouse Lead','Warehouse Supervisor'], responsibilities: ['Supervises 22 associates across receiving and fulfillment','Improved order accuracy rate to 99.4% within first year','Champions safety culture and monthly team recognition programs'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Yolanda Reyes', role: 'Warehouse Manager, Fresno Facility', initials: 'YR', path: ['Forklift Operator','Warehouse Lead','Warehouse Supervisor','Warehouse Manager'], responsibilities: ['Manages full warehouse operation including 45 team members','Implemented new inventory tracking system reducing shrink 30%','Partners with delivery and sales teams on product availability'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'James Okafor', role: 'Warehouse Lead, Denver DC', initials: 'JO', path: ['Warehouse Associate','Forklift Operator','Warehouse Lead'], responsibilities: ['Leads morning shift receiving and outbound operations','Trained 8 new associates in safety and SOPs over past year','Consistently achieves on-time load targets for delivery routes'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Dana Kowalski', role: 'Director of Operations, Midwest Region', initials: 'DK', path: ['Warehouse Associate','Warehouse Supervisor','Warehouse Manager','Director of Operations'], responsibilities: ['Oversees 4 distribution centers across the Midwest region','Led $3M facility optimization initiative in 2023','Develops and coaches site managers on operational excellence'], audioUrl: 'audio/Cole-Volkers.mp3'  },
+      { name: 'Marcus Thompson', role: 'Warehouse Supervisor, Houston DC',    initials: 'MT', path: ['Warehouse Worker','Order Builder','Warehouse Lead','Warehouse Supervisor'], responsibilities: ['Supervises 22 associates across receiving and fulfillment','Improved order accuracy to 99.4% within first year','Champions safety culture and monthly team recognition'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Yolanda Reyes',   role: 'Warehouse Manager, Fresno Facility', initials: 'YR', path: ['Forklift Operator','Warehouse Lead','Warehouse Supervisor','Warehouse Manager'], responsibilities: ['Manages full warehouse operation including 45 team members','Reduced shrink 30% through new inventory tracking system','Partners with delivery and sales on product availability'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'James Okafor',    role: 'DSD Planning Manager, Denver',       initials: 'JO', path: ['Order Builder','Warehouse Lead','Warehouse Supervisor','DSD Planning Manager'], responsibilities: ['Manages routing and load sequencing for 60+ daily routes','Reduced miles driven 12% through route optimization','Trains supervisors on planning tools and daily KPI review'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Dana Kowalski',   role: 'Market Unit Ops Director, Midwest',  initials: 'DK', path: ['Warehouse Supervisor','Warehouse Manager','Market Unit Ops Director'], responsibilities: ['Oversees warehouse, delivery, and fleet for 3-state market','Led $3M facility optimization initiative','Develops and coaches site managers on operational excellence'], audioUrl: 'audio/Cole-Volkers.mp3' },
     ]
   },
+
   sales: {
     name: 'Sales', color: '#00843D', icon: '📊',
     tiers: [
       { id: 'ic', roles: [
-        { id: 's_str', title: 'Sales Trainee', desc: 'Learns fundamentals of route sales, customer service, and product knowledge alongside experienced reps.', nexts: ['s_srep'] },
-        { id: 's_srep', title: 'Sales Representative', desc: 'Manages an assigned route, building customer relationships and growing sales volume and distribution.', nexts: ['s_ssr'] },
-        { id: 's_ssr', title: 'Senior Sales Rep', desc: 'Handles complex accounts and mentors newer sales reps across the territory.', nexts: ['s_ss'] },
+        { id: 's_cgr',  title: 'Customer Growth Rep (CGR)',       desc: 'Grows volume and distribution in assigned accounts through relationship-building, product placement, and promotional execution in the field.', nexts: ['s_sam','s_am','s_amop'] },
+        { id: 's_sam',  title: 'Sales Account Manager',           desc: 'Manages a portfolio of retail and foodservice accounts, delivering against volume, distribution, and revenue objectives through consultative selling.', nexts: ['s_dsm','s_sdm','s_rel'] },
+        { id: 's_am',   title: 'Account Manager',                 desc: 'Builds and maintains customer relationships across a territory, executing brand programs and driving incremental sales volume and new distribution.', nexts: ['s_dsm','s_sdm'] },
+        { id: 's_amop', title: 'Account Manager — On-Premise',    desc: 'Specializes in on-premise (restaurant, bar, venue) accounts — selling and growing fountain, draft, and cold drink placements across the territory.', nexts: ['s_dsm','s_opm'] },
+        { id: 's_rel',  title: 'Relief Account Mgr',             desc: 'Covers open routes and accounts during vacations and vacancies, maintaining service continuity and relationship quality across the market.', nexts: ['s_sam','s_dsm'] },
+        { id: 's_sa',   title: 'Sr. Sales Analyst',              desc: 'Analyzes sales data, market trends, and competitive intelligence to generate insights that support territory and district business planning.', nexts: ['s_san','s_dsm'] },
+        { id: 's_ae',   title: 'Account Executive — Retail/FSOP', desc: 'Drives volume growth and strategic partnerships with key retail and foodservice accounts, leading JBPs and multi-category initiatives.', nexts: ['s_dsm','s_ktm'] },
       ]},
       { id: 'supervisor', roles: [
-        { id: 's_ss', title: 'Sales Supervisor', desc: 'Supervises a team of sales representatives and drives performance to quota across a territory.', nexts: ['s_sm'] },
+        { id: 's_dsm',  title: 'District Sales Manager',    desc: 'Leads a team of sales reps across an assigned district — coaching performance, managing customer escalations, and driving execution of brand priorities.', nexts: ['s_asm','s_opm','s_san2'] },
+        { id: 's_opm',  title: 'OP Manager',               desc: 'Manages on-premise sales operations across a market, setting strategy for fountain and cold drink growth and leading the on-premise account team.', nexts: ['s_asm'] },
+        { id: 's_san',  title: 'Sales Analytics Manager',  desc: 'Leads the sales analytics function — building reporting frameworks, dashboards, and insights tools that enable data-driven selling at all levels.', nexts: ['s_asm','s_dso'] },
       ]},
       { id: 'manager', roles: [
-        { id: 's_sm', title: 'Sales Manager', desc: 'Manages a full sales team for a market unit, setting strategy and driving results.', nexts: ['s_rsm'] },
+        { id: 's_asm',  title: 'Area Sales Manager',         desc: 'Manages multiple district managers and their teams across a geographic area, translating regional strategy into local execution plans and results.', nexts: ['s_sdm2','s_odm','s_ktm','s_dso'] },
+        { id: 's_sdm2', title: 'Sales Development Mgr (SDM)',desc: 'Owns the capability-building agenda for the sales organization — designing training, coaching programs, and onboarding that elevate team effectiveness.', nexts: ['s_sdl','s_dso'] },
+        { id: 's_odm',  title: 'OP Development Manager',    desc: 'Leads new business development and expansion of on-premise accounts, identifying opportunities and building executable growth plans for the FSOP channel.', nexts: ['s_dso','s_dodfsop'] },
+        { id: 's_ktm',  title: 'Key Customer Teams Mgr',   desc: 'Leads a team of account executives managing strategic retail and foodservice customers, co-developing joint business plans and senior-level relationships.', nexts: ['s_dkt','s_dso'] },
+        { id: 's_san2', title: 'Sales Analytics Mgr',      desc: 'Manages the analytics team and drives insights programs that connect field performance data to actionable strategy for district and area leaders.', nexts: ['s_dso'] },
       ]},
       { id: 'leader', roles: [
-        { id: 's_rsm', title: 'Regional Sales Manager', desc: 'Leads sales operations across a region; partners with key accounts and senior leadership on strategy.', nexts: ['s_vps'] },
-        { id: 's_vps', title: 'VP of Sales', desc: 'Sets enterprise-wide sales strategy and leads the full field sales organization.', nexts: [] },
+        { id: 's_dso',    title: 'Dir. Sales Operations',          desc: 'Sets the operational framework for the field sales organization — cadence, tools, reporting, and efficiency programs that enable consistent execution.', nexts: ['s_sds'] },
+        { id: 's_sdl',    title: 'OP Development Lead',            desc: 'Senior leader accountable for the on-premise channel growth strategy — setting direction for FSOP teams and building key operator partnerships.', nexts: ['s_sds'] },
+        { id: 's_dodfsop',title: 'Dir. MU FSOP',                  desc: 'Directs all foodservice and on-premise sales activity for a market unit, setting channel strategy and building high-value operator relationships.', nexts: ['s_sds'] },
+        { id: 's_dkt',    title: 'Dir. Key Customer Teams',        desc: 'Leads strategic account relationships at the director level — owning JBP negotiations, executive partnerships, and key customer growth plans.', nexts: ['s_sds'] },
+        { id: 's_dcs',    title: 'Dir. Customer Solutions',        desc: 'Develops customer-centric solutions and programs that drive incremental revenue, improve satisfaction, and differentiate RCCB in the marketplace.', nexts: ['s_sds'] },
+        { id: 's_dmfe',   title: 'Dir. Market Field Execution',    desc: 'Leads in-market execution strategy — setting standards for display, shelf, and cold vault programs, and driving accountability across field teams.', nexts: ['s_sds'] },
+        { id: 's_sds',    title: 'Sr. Director Sales',             desc: 'Senior leader of the field sales organization — owning the go-to-market strategy, revenue targets, and the development of the sales management team.', nexts: [] },
       ]},
     ],
     stories: [
-      { name: 'James Okonkwo', role: 'Sales Manager, Dallas Market Unit', initials: 'JO', path: ['Sales Trainee','Sales Representative','Sr. Sales Rep','Sales Supervisor','Sales Manager'], responsibilities: ['Leads team of 22 sales reps across Dallas territory','Grew volume 11% YoY through strategic account management','Mentors high-potential sales reps for supervisor roles'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Alicia Fuentes', role: 'Sales Supervisor, San Antonio Territory', initials: 'AF', path: ['Sales Trainee','Sales Representative','Sales Supervisor'], responsibilities: ['Supervises 10 reps across high-volume grocery and convenience accounts','Consistently ranks top 5 in district for volume growth','Leads weekly ride-alongs and coaching sessions with her team'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Kevin Nash', role: 'Senior Sales Rep, Austin Route', initials: 'KN', path: ['Sales Trainee','Sales Representative','Senior Sales Rep'], responsibilities: ['Manages 85 accounts across Austin metro territory','Grew cold vault placement 40% in two consecutive years','Mentors 3 new sales trainees in route fundamentals'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Tanya Brooks', role: 'Regional Sales Manager, Southeast Region', initials: 'TB', path: ['Sales Representative','Sales Supervisor','Sales Manager','Regional Sales Manager'], responsibilities: ['Leads sales strategy across 6 market units and 150+ reps','Drove 14% regional volume increase in fiscal year 2023','Partners with marketing and finance on joint business plans'], audioUrl: 'audio/Cole-Volkers.mp3'  },
+      { name: 'James Okonkwo', role: 'Area Sales Manager, Dallas',           initials: 'JO', path: ['CGR','Account Manager','District Sales Manager','Area Sales Manager'], responsibilities: ['Leads 22 sales reps across Dallas territory','Grew volume 11% YoY through strategic account management','Mentors high-potential reps for district manager roles'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Alicia Fuentes', role: 'District Sales Manager, San Antonio', initials: 'AF', path: ['Sales Account Manager','District Sales Manager'], responsibilities: ['Supervises 10 reps across grocery and convenience accounts','Consistently ranks top 5 in region for volume growth','Leads weekly ride-alongs and coaching sessions'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Kevin Nash',    role: 'Sr. Sales Analyst, Austin',            initials: 'KN', path: ['CGR','Account Manager','Sr. Sales Analyst'], responsibilities: ['Builds market reporting and insights for 3-district area','Grew cold vault placement 40% in two consecutive years','Identified distribution gaps saving $800K annually'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Tanya Brooks',  role: 'Dir. Sales Operations, Southeast',    initials: 'TB', path: ['District Sales Manager','Area Sales Manager','Dir. Sales Operations'], responsibilities: ['Leads sales strategy across 6 market units and 150+ reps','Drove 14% regional volume increase in FY2023','Partners with marketing and finance on joint business plans'], audioUrl: 'audio/Cole-Volkers.mp3' },
     ]
   },
+
+  merchandising: {
+    name: 'Merchandising', color: '#B45309', icon: '🛒',
+    tiers: [
+      { id: 'ic', roles: [
+        { id: 'm_mer',  title: 'Merchandiser',              desc: 'Stocks shelves, fills coolers, rotates product, and builds displays at retail and foodservice accounts to ensure maximum brand presence and availability.', nexts: ['m_rm','m_pos','m_cgr'] },
+        { id: 'm_rm',   title: 'Reset Merchandiser',        desc: 'Executes shelf resets, new product cuts, and planogram changes at retail accounts — often working off-hours to minimize disruption.', nexts: ['m_ms'] },
+        { id: 'm_pos',  title: 'Point of Sale Clerk',       desc: 'Manages the distribution, placement, and tracking of point-of-sale materials across accounts to support brand campaigns and promotions.', nexts: ['m_ms'] },
+        { id: 'm_cgr',  title: 'Customer Growth Rep (West)',desc: 'Drives new distribution and volume growth in retail accounts, combining merchandising excellence with a consultative selling approach.', nexts: ['m_am','m_ms'] },
+        { id: 'm_am2',  title: 'Account Manager',           desc: 'Manages a portfolio of key retail accounts, executing brand standards and building strong customer relationships that grow volume and share.', nexts: ['m_dsm','m_ms'] },
+        { id: 'm_ae',   title: 'Account Executive',         desc: 'Leads strategic retail account relationships — co-developing promotional programs, managing JBP execution, and driving incremental display and shelf wins.', nexts: ['m_dsm','m_asm'] },
+      ]},
+      { id: 'supervisor', roles: [
+        { id: 'm_ms',   title: 'Merchandising Supervisor', desc: 'Supervises a team of merchandisers and reset reps across a district, ensuring execution standards, account compliance, and team productivity.', nexts: ['m_mm','m_ws','m_ds2'] },
+        { id: 'm_ws',   title: 'Warehouse Supervisor',    desc: 'Manages warehouse operations for a shift — receiving, picking, loading, and inventory accuracy — supporting the field merchandising team.', nexts: ['m_mm','m_wm'] },
+        { id: 'm_ds2',  title: 'Delivery Supervisor',     desc: 'Supervises delivery drivers on daily route execution, safety compliance, and customer satisfaction metrics across the market.', nexts: ['m_dm'] },
+        { id: 'm_dsm',  title: 'District Sales Manager',  desc: 'Leads a team of sales and merchandising reps in a district, coaching on execution standards and driving volume, distribution, and display goals.', nexts: ['m_asm','m_mm'] },
+        { id: 'm_am',   title: 'Account Manager',         desc: 'Manages strategic accounts in a territory, building joint programs and executing promotional plans that grow RCCB brand presence and volume.', nexts: ['m_dsm','m_asm'] },
+        { id: 'm_tm',   title: 'Territory Manager (West)', desc: 'Manages all sales and merchandising activity across a defined geographic territory — owning the customer relationship and execution standards end-to-end.', nexts: ['m_asm'] },
+      ]},
+      { id: 'manager', roles: [
+        { id: 'm_mm',   title: 'Merchandising Manager',   desc: 'Leads the field merchandising team for a market — setting execution KPIs, managing to budget, and partnering with sales on account-level priorities.', nexts: ['m_od','m_gm','m_fodm'] },
+        { id: 'm_wm',   title: 'Warehouse Manager',       desc: 'Manages the full warehouse operation, including staff, inventory, and logistics support for all field merchandising and delivery operations.', nexts: ['m_od','m_gm'] },
+        { id: 'm_dm',   title: 'Delivery Manager',        desc: 'Manages daily delivery operations — driver scheduling, route efficiency, fleet compliance, and end-to-end customer satisfaction across the market unit.', nexts: ['m_od','m_gm'] },
+        { id: 'm_asm',  title: 'Area Sales Manager',      desc: 'Leads multiple district managers and their teams, translating market strategy into local execution plans and holding the area to volume and share targets.', nexts: ['m_sd','m_gm'] },
+        { id: 'm_sdm',  title: 'Sales Development Mgr',   desc: 'Designs and delivers training and coaching programs that build selling skills and execution discipline across the market merchandising and sales teams.', nexts: ['m_od','m_sd'] },
+        { id: 'm_om',   title: 'Operations Manager',      desc: 'Manages cross-functional operations across warehouse, delivery, and merchandising — ensuring efficient coordination of all field execution activity.', nexts: ['m_od','m_gm'] },
+      ]},
+      { id: 'leader', roles: [
+        { id: 'm_od',   title: 'Operations Director',          desc: 'Leads all field operations for a market unit — overseeing merchandising, delivery, and warehouse functions with full accountability for execution and cost.', nexts: ['m_gm','m_fodm2'] },
+        { id: 'm_sd',   title: 'Sales Director',               desc: 'Sets the sales and merchandising growth strategy for a region, leads the management team, and owns the market unit revenue and share goals.', nexts: ['m_gm'] },
+        { id: 'm_fodm', title: 'FSOP Director',                desc: 'Leads the foodservice and on-premise channel across the market unit — building operator partnerships and driving fountain and cold drink volume.', nexts: ['m_gm'] },
+        { id: 'm_fodm2',title: 'Ops Director, Merchandising',  desc: 'Senior operations leader for the field merchandising function — driving standards, efficiency, and capability across all market unit merchandising teams.', nexts: ['m_gm'] },
+        { id: 'm_gm',   title: 'General Manager',              desc: 'Leads all commercial, operational, and people functions for a full market unit — accountable for P&L, customer relationships, and talent development.', nexts: [] },
+      ]},
+    ],
+    stories: [
+      { name: 'Tony Ramirez',   role: 'Merchandising Manager, San Diego',    initials: 'TR', path: ['Merchandiser','Reset Merchandiser','Merchandising Supervisor','Merchandising Manager'], responsibilities: ['Leads 24-person merchandising team across 200+ accounts','Drove cold vault compliance from 71% to 94%','Champions display execution standards across the market'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Shonda Pierce',  role: 'Area Sales Manager, Atlanta',         initials: 'SP', path: ['Account Manager','District Sales Manager','Area Sales Manager'], responsibilities: ['Manages 5 district managers and 45 reps across metro Atlanta','Grew market share 3 points in two years','Partners with operations on seasonal surge planning'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Brian Johansson',role: 'District Sales Manager, Minneapolis', initials: 'BJ', path: ['CGR','Account Manager','Territory Manager','District Sales Manager'], responsibilities: ['Leads 12-rep district across Minneapolis–St. Paul metro','Zero safety incidents in 4+ years of field management','Mentors territory managers on key account strategy'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Vanessa Osei',   role: 'Operations Director, Central Region', initials: 'VO', path: ['Merchandising Supervisor','Merchandising Manager','Operations Director'], responsibilities: ['Oversees merchandising and delivery ops for 8 market units','Led field execution standardization initiative in 2023','Develops market managers through quarterly leadership reviews'], audioUrl: 'audio/Cole-Volkers.mp3' },
+    ]
+  },
+
   finance: {
-    name: 'Finance', color: '#CC0000', icon: '💰',
+    name: 'Field Finance', color: '#CC0000', icon: '💰',
     tiers: [
       { id: 'ic', roles: [
-        { id: 'f_rpa', title: 'Route Processing Administrator', desc: 'Processes daily route settlements, cash handling, and financial reconciliation for distribution routes.', nexts: ['f_da','f_ffa'] },
-        { id: 'f_da', title: 'Distribution Administrator', desc: 'Manages distribution center financial tracking, invoicing, and reporting across the facility.', nexts: ['f_ffa'] },
-        { id: 'f_ffa', title: 'Field Finance Administrator', desc: 'Oversees field-level financial administration and compliance with internal controls.', nexts: ['f_lffa'] },
+        { id: 'f_rpa',  title: 'Route Processing Admin',       desc: 'Processes daily route settlements, cash reconciliation, and invoice adjustments — ensuring every driver\'s financial close is accurate and timely.', nexts: ['f_da','f_ffa'] },
+        { id: 'f_da',   title: 'Distribution Administrator',   desc: 'Manages distribution center financial tracking, vendor invoicing, and daily reporting across warehouse and delivery operations.', nexts: ['f_ffa','f_lffa'] },
+        { id: 'f_ffa',  title: 'Field Finance Administrator',  desc: 'Oversees field-level financial administration, accounts payable/receivable support, and compliance with RCCB internal controls.', nexts: ['f_lffa'] },
+        { id: 'f_hris', title: 'HRIS Analyst',                desc: 'Maintains HR information systems data integrity, generates workforce reports, and supports system configuration and user access management.', nexts: ['f_lffa','f_hrsup'] },
       ]},
       { id: 'supervisor', roles: [
-        { id: 'f_lffa', title: 'Lead Field Finance Admin', desc: 'Leads a team of administrators; drives process improvements and financial accuracy.', nexts: ['f_ffs'] },
-        { id: 'f_ffs', title: 'Field Finance Supervisor', desc: 'Supervises field finance teams, ensuring safety, quality, and operational efficiency across routes.', nexts: ['f_ffm'] },
+        { id: 'f_lffa',  title: 'Lead Field Finance Admin',   desc: 'Leads a team of finance administrators; drives process improvements, reviews work for accuracy, and escalates compliance issues to management.', nexts: ['f_ffs'] },
+        { id: 'f_ffs',   title: 'Field Finance Supervisor',   desc: 'Supervises the field finance team for a market, overseeing route settlement, cash handling, and financial compliance across all routes.', nexts: ['f_ffm'] },
+        { id: 'f_hrsup', title: 'HRIS Supervisor',           desc: 'Supervises HRIS operations, leads system upgrades and data audits, and supports HR and payroll teams with reporting and process automation.', nexts: ['f_hrism'] },
+        { id: 'f_tacsup',title: 'TAC Supervisor',            desc: 'Supervises the Talent Acquisition Coordinator team — managing requisition volume, candidate pipelines, and recruiter performance metrics.', nexts: ['f_ffm'] },
       ]},
       { id: 'manager', roles: [
-        { id: 'f_ffm', title: 'Field Finance Manager', desc: 'Oversees all field finance operations, ensuring safety, quality, efficiency, and continuous improvement.', nexts: ['f_pd'] },
+        { id: 'f_ffm',   title: 'Field Finance Manager',      desc: 'Manages all field finance operations for a region — overseeing budget, staffing, internal controls, and driving continuous improvement across sites.', nexts: ['f_pd','f_cap'] },
+        { id: 'f_hrism', title: 'HRIS Manager',               desc: 'Leads the HRIS function — managing system administration, data governance, workforce analytics, and vendor relationships for HR technology.', nexts: ['f_cap'] },
       ]},
       { id: 'leader', roles: [
-        { id: 'f_pd', title: 'Plant / Business Director', desc: 'Manages cost plans, oversees strategy, analyzes performance, and leads department growth across the facility.', nexts: [] },
+        { id: 'f_cap',   title: 'Capability Manager',          desc: 'Leads learning and organizational capability programs — designing development frameworks that build critical skills across the RCCB field finance workforce.', nexts: ['f_pd','f_capd'] },
+        { id: 'f_pd',    title: 'Plant / Business Director',   desc: 'Manages cost plans, P&L analysis, and strategic financial planning for a facility or business unit — partnering with operations and senior leadership.', nexts: ['f_capd'] },
+        { id: 'f_capd',  title: 'Capabilities Director',       desc: 'Sets the organizational capability and learning strategy for the enterprise — building programs that develop talent at every level of the organization.', nexts: [] },
       ]},
     ],
     stories: [
-      { name: 'Dawn Martin', role: 'Business Manager, Bakersfield California', initials: 'DM', path: ['Route Processing Admin','Distribution Administrator','Field Finance Administrator','Lead Field Finance Admin'], responsibilities: ['Drive compliance with policies and internal controls','Analyze OPEX to identify cost-saving opportunities','Leader and mentor for administration, operations, and sales teams','RCCB Cares ambassador in community events'], audioUrl: 'audio/Cole-Volkers.mp3' },
-      { name: 'Christine Espersen', role: 'Sr. Finance Manager, Corporate FP&A', initials: 'CE', path: ['Sales Analyst','Business Manager','Corp Financial Analyst','Market Unit Finance Manager','Corporate Finance Manager'], responsibilities: ['Strategic partner to leaders of Corporate Functions','Analyze financial results and identify key business drivers','Lead annual budgeting and forecasting processes','Develop future subject matter experts in Finance'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Ricardo Vega', role: 'Field Finance Supervisor, Southwest Region', initials: 'RV', path: ['Route Processing Admin','Field Finance Administrator','Lead Field Finance Admin','Field Finance Supervisor'], responsibilities: ['Supervises 12 admins across 3 distribution centers','Reduced settlement errors by 27% through process redesign','Conducts monthly reconciliation audits and compliance reviews'], audioUrl: 'audio/Cole-Volkers.mp3' },
-      { name: 'Lindsey Chu', role: 'Field Finance Manager, Pacific Northwest', initials: 'LC', path: ['Distribution Administrator','Field Finance Administrator','Field Finance Supervisor','Field Finance Manager'], responsibilities: ['Leads all field finance operations for 2-state region','Implemented automated reporting saving 15 hrs/week per center','Partners with plant director on monthly performance reviews'], audioUrl: 'audio/Cole-Volkers.mp3'  },
+      { name: 'Dawn Martin',      role: 'Business Manager, Bakersfield CA',     initials: 'DM', path: ['Route Processing Admin','Distribution Admin','Lead Field Finance Admin','Business Manager'], responsibilities: ['Drives compliance with policies and internal controls','Analyzes OPEX to identify cost-saving opportunities','Leader and mentor for admin, operations, and sales teams'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Christine Espersen',role: 'Sr. Finance Manager, Corporate FP&A', initials: 'CE', path: ['Sales Analyst','Business Manager','Corp Financial Analyst','Field Finance Manager'], responsibilities: ['Strategic partner to Corporate Functions leadership','Leads annual budgeting and forecasting processes','Develops future finance subject matter experts'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Ricardo Vega',     role: 'Field Finance Supervisor, Southwest',  initials: 'RV', path: ['Route Processing Admin','Field Finance Admin','Lead Field Finance Admin','Field Finance Supervisor'], responsibilities: ['Supervises 12 admins across 3 distribution centers','Reduced settlement errors 27% through process redesign','Conducts monthly reconciliation audits and compliance reviews'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Lindsey Chu',      role: 'Field Finance Manager, Pacific NW',    initials: 'LC', path: ['Distribution Admin','Field Finance Admin','Field Finance Supervisor','Field Finance Manager'], responsibilities: ['Leads all field finance operations for a 2-state region','Implemented automated reporting saving 15 hrs/week per center','Partners with plant director on monthly performance reviews'], audioUrl: 'audio/Cole-Volkers.mp3' },
     ]
   },
+
   delivery: {
-    name: 'Delivery', color: '#B45309', icon: '🚚',
+    name: 'Delivery / Transport', color: '#B45309', icon: '🚚',
     tiers: [
       { id: 'ic', roles: [
-        { id: 'd_dp', title: 'Delivery Helper / Pre-Loader', desc: 'Assists drivers with loading, unloading, and delivering product to customer accounts safely and efficiently.', nexts: ['d_dr'] },
-        { id: 'd_dr', title: 'Delivery Driver', desc: 'Safely operates a delivery vehicle to deliver Coca-Cola products to assigned customer accounts each day.', nexts: ['d_sdr'] },
-        { id: 'd_sdr', title: 'Senior Delivery Driver', desc: 'Manages a high-volume route, mentors newer drivers, and serves as a route specialist for the team.', nexts: ['d_dl'] },
+        { id: 'd_helper', title: 'Delivery Helper / Pre-Loader', desc: 'Assists with loading delivery trucks, staging product by route, and supporting drivers with physical unloading at customer accounts.', nexts: ['d_dr'] },
+        { id: 'd_dr',    title: 'Delivery Driver',              desc: 'Operates a delivery vehicle on an assigned route — safely transporting and delivering Coca-Cola products to retail, foodservice, and venue accounts daily.', nexts: ['d_sdr','d_dl'] },
+        { id: 'd_sdr',   title: 'Senior Delivery Driver',       desc: 'Manages a high-volume or complex route, mentors newer drivers on safety and customer service, and serves as a route specialist for the team.', nexts: ['d_dl'] },
       ]},
       { id: 'supervisor', roles: [
-        { id: 'd_dl', title: 'Delivery Lead', desc: 'Coordinates a team of drivers on daily route execution, resolving delivery issues and ensuring customer satisfaction.', nexts: ['d_ds'] },
-        { id: 'd_ds', title: 'Delivery Supervisor', desc: 'Supervises delivery operations for a market, managing performance, safety compliance, and customer relationships.', nexts: ['d_dm'] },
+        { id: 'd_dl',  title: 'Delivery Lead',           desc: 'Coordinates a group of drivers on daily route execution, resolves delivery issues in real time, and supports the supervisor with scheduling and compliance.', nexts: ['d_ds'] },
+        { id: 'd_ds',  title: 'Delivery Supervisor',     desc: 'Supervises delivery operations for a market — managing driver performance, DOT safety compliance, and end-to-end customer satisfaction on all routes.', nexts: ['d_dm'] },
       ]},
       { id: 'manager', roles: [
-        { id: 'd_dm', title: 'Delivery Manager', desc: 'Manages the full delivery operation for a market unit including routing, staffing, and cost efficiency.', nexts: ['d_dom'] },
+        { id: 'd_dm',  title: 'Delivery Manager',        desc: 'Manages the full delivery operation for a market unit — overseeing routing, driver scheduling, fleet compliance, cost control, and customer service outcomes.', nexts: ['d_dom'] },
       ]},
       { id: 'leader', roles: [
-        { id: 'd_dom', title: 'Director of Operations', desc: 'Leads delivery and distribution strategy across a full region, driving service levels, safety, and efficiency.', nexts: [] },
+        { id: 'd_dom', title: 'Director of Operations',  desc: 'Leads delivery and distribution strategy across a full region — driving service levels, fleet safety, cost efficiency, and the development of market managers.', nexts: [] },
       ]},
     ],
     stories: [
-      { name: 'Tony Ramirez', role: 'Delivery Supervisor, San Diego Market', initials: 'TR', path: ['Delivery Helper','Delivery Driver','Senior Delivery Driver','Delivery Lead','Delivery Supervisor'], responsibilities: ['Supervises 18 drivers across 6 routes in San Diego metro','Achieved 98.7% on-time delivery rate in 2023','Leads monthly safety meetings and driver coaching sessions'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Shonda Pierce', role: 'Delivery Manager, Atlanta Market Unit', initials: 'SP', path: ['Delivery Driver','Senior Delivery Driver','Delivery Lead','Delivery Supervisor','Delivery Manager'], responsibilities: ['Manages 45-driver fleet and all route planning for Atlanta MU','Reduced fuel costs 12% through optimized routing program','Partners with sales and warehouse on product availability'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Brian Johansson', role: 'Senior Delivery Driver, Minneapolis Route', initials: 'BJ', path: ['Delivery Helper','Delivery Driver','Senior Delivery Driver'], responsibilities: ['Manages one of the highest-volume routes in the market','Zero safety incidents in 4+ years of driving','Mentors 5 newer drivers on customer service and route efficiency'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Vanessa Osei', role: 'Director of Operations, Central Region', initials: 'VO', path: ['Delivery Driver','Delivery Supervisor','Delivery Manager','Director of Operations'], responsibilities: ['Oversees delivery operations across 8 market units','Led fleet modernization initiative improving safety scores 22%','Develops market-level managers through quarterly leadership reviews'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Tony Ramirez',   role: 'Delivery Supervisor, San Diego',    initials: 'TR', path: ['Delivery Helper','Delivery Driver','Sr. Delivery Driver','Delivery Lead','Delivery Supervisor'], responsibilities: ['Supervises 18 drivers across 6 routes in San Diego metro','Achieved 98.7% on-time delivery rate in 2023','Leads monthly safety meetings and driver coaching sessions'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Shonda Pierce',  role: 'Delivery Manager, Atlanta MU',      initials: 'SP', path: ['Delivery Driver','Sr. Delivery Driver','Delivery Lead','Delivery Supervisor','Delivery Manager'], responsibilities: ['Manages 45-driver fleet and all route planning for Atlanta MU','Reduced fuel costs 12% through optimized routing program','Partners with sales and warehouse on product availability'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Brian Johansson',role: 'Senior Delivery Driver, Minneapolis',initials: 'BJ', path: ['Delivery Helper','Delivery Driver','Sr. Delivery Driver'], responsibilities: ['Manages one of the highest-volume routes in the market','Zero safety incidents in 4+ years of driving','Mentors 5 newer drivers on customer service and efficiency'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Vanessa Osei',   role: 'Director of Operations, Central',   initials: 'VO', path: ['Delivery Driver','Delivery Supervisor','Delivery Manager','Director of Operations'], responsibilities: ['Oversees delivery operations across 8 market units','Fleet modernization initiative improved safety scores 22%','Develops market managers through quarterly leadership reviews'], audioUrl: 'audio/Cole-Volkers.mp3' },
     ]
   },
+
   hr: {
     name: 'Human Resources', color: '#0057A8', icon: '🤝',
     tiers: [
       { id: 'ic', roles: [
-        { id: 'h_hrc', title: 'HR Coordinator', desc: 'Provides administrative support for HR operations, onboarding, records management, and compliance.', nexts: ['h_hrg'] },
-        { id: 'h_tag', title: 'Talent Acquisition Specialist', desc: 'Sources, screens, and recruits candidates to fill open roles across all RCCB departments.', nexts: ['h_hrg'] },
-        { id: 'h_hrg', title: 'HR Generalist', desc: 'Handles employee relations, benefits administration, and HR compliance across a business unit.', nexts: ['h_shr'] },
+        { id: 'h_hrc',   title: 'HR Coordinator',              desc: 'Provides administrative support for HR operations — managing onboarding paperwork, HRIS data entry, employee records, and scheduling for the HR team.', nexts: ['h_hrg','h_tac'] },
+        { id: 'h_tac',   title: 'Talent Acquisition Coordinator', desc: 'Supports the full-cycle recruiting process — posting jobs, scheduling interviews, tracking candidates in the ATS, and coordinating offer letters.', nexts: ['h_rec','h_hrg'] },
+        { id: 'h_rec',   title: 'Recruiter',                   desc: 'Sources, screens, and manages candidates through the full hiring process — partnering with hiring managers to fill open roles across all RCCB departments.', nexts: ['h_srec','h_hrg'] },
+        { id: 'h_srec',  title: 'Sr. Recruiter',               desc: 'Manages complex or high-volume requisitions, builds talent pipelines for critical roles, and provides strategic sourcing guidance to the TA team.', nexts: ['h_shr','h_hrbp'] },
+        { id: 'h_hrg',   title: 'HR Generalist',               desc: 'Handles employee relations cases, benefits questions, leave administration, and HR compliance across a business unit or geographic area.', nexts: ['h_shr','h_hrsup'] },
       ]},
       { id: 'supervisor', roles: [
-        { id: 'h_shr', title: 'Sr. HR Generalist', desc: 'Manages complex employee relations issues and leads HR projects across multiple locations.', nexts: ['h_hrbp'] },
-        { id: 'h_hrbp', title: 'HR Business Partner', desc: 'Strategic HR partner to operational leaders; drives talent, engagement, and culture initiatives.', nexts: ['h_hrm'] },
+        { id: 'h_hrsup',  title: 'HR Supervisor',             desc: 'Supervises a team of HR coordinators and generalists, ensuring consistent delivery of HR services and compliance with policies and employment law.', nexts: ['h_hrm','h_recm'] },
+        { id: 'h_shr',   title: 'Sr. HR Generalist',         desc: 'Manages complex employee relations issues, leads HR process improvement projects, and serves as a resource for managers across multiple locations.', nexts: ['h_hrbp','h_hrm'] },
+        { id: 'h_tasup', title: 'Recruiting Supervisor',     desc: 'Supervises the recruiting team — managing recruiter performance, requisition pipelines, and ensuring hiring goals are met on time and within budget.', nexts: ['h_recm'] },
+        { id: 'h_hrisup',title: 'HRIS Supervisor',           desc: 'Supervises HRIS operations, leads data audits and system enhancements, and supports HR and payroll teams with analytics and automation.', nexts: ['h_hrism'] },
       ]},
       { id: 'manager', roles: [
-        { id: 'h_hrm', title: 'HR Manager', desc: 'Leads the HR team for a region or business unit, overseeing all people practices.', nexts: ['h_dhr'] },
+        { id: 'h_hrbp',  title: 'HR Business Partner',       desc: 'Strategic HR advisor to operational leaders — driving talent management, employee engagement, succession planning, and organizational effectiveness.', nexts: ['h_hrm','h_tam','h_srhm'] },
+        { id: 'h_recm',  title: 'Recruiting Manager',        desc: 'Manages the full talent acquisition function for a region or business unit — setting hiring strategy, managing recruiter teams, and partnering with HR leadership.', nexts: ['h_hrm','h_tad'] },
+        { id: 'h_hrism', title: 'HRIS Manager',              desc: 'Leads HR information systems — managing data governance, system configuration, workforce analytics, and vendor relationships for all HR technology.', nexts: ['h_srhm'] },
+        { id: 'h_hrm',   title: 'HR Manager',                desc: 'Leads the HR team for a region or market unit — owning all people practices, compliance, employee relations, and HR business partner delivery.', nexts: ['h_dhr','h_srhm'] },
+        { id: 'h_capm',  title: 'Capability Manager',        desc: 'Designs and delivers organizational capability programs — building leadership pipelines, skills frameworks, and learning journeys that accelerate employee growth.', nexts: ['h_capd','h_dhr'] },
       ]},
       { id: 'leader', roles: [
-        { id: 'h_dhr', title: 'Director of Human Resources', desc: 'Sets HR strategy, leads the regional HR function, and partners with senior leadership on people priorities.', nexts: ['h_vph'] },
-        { id: 'h_vph', title: 'VP of People', desc: 'Oversees all HR functions at the enterprise level, driving people strategy for the full organization.', nexts: [] },
+        { id: 'h_tam',   title: 'TA Director',               desc: 'Leads the talent acquisition function at the enterprise level — setting sourcing strategy, employer brand programs, and ensuring RCCB attracts top talent.', nexts: ['h_dhr'] },
+        { id: 'h_srhm',  title: 'HR Sr. Manager',            desc: 'Senior HR leader managing a large region or complex business unit — driving strategic HR initiatives and developing the next generation of HRBPs and managers.', nexts: ['h_dhr'] },
+        { id: 'h_dhr',   title: 'HR Director',               desc: 'Sets HR strategy for a major business unit or region — leading the HR team, partnering with senior operations leaders, and driving enterprise people priorities.', nexts: ['h_capd'] },
+        { id: 'h_capd',  title: 'Capabilities Director',     desc: 'Enterprise leader for organizational development and learning — designing capability-building strategy that unlocks the full potential of RCCB\'s people.', nexts: [] },
       ]},
     ],
     stories: [
-      { name: 'Sandra Rivera', role: 'HR Business Partner, Southwest Region', initials: 'SR', path: ['HR Coordinator','HR Generalist','Sr. HR Generalist','HR Business Partner'], responsibilities: ['Partners with 6 operational leaders across 3 locations','Leads talent review and succession planning','Drives employee engagement and culture initiatives'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Kevin Park', role: 'Director of Human Resources', initials: 'KP', path: ['HR Generalist','HR Business Partner','HR Manager','Director of HR'], responsibilities: ['Oversees HR function for 1,200+ employees in region','Partners with VP-level leaders on workforce strategy','Leads manager training and leadership development programs'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Amara Johnson', role: 'HR Generalist, Midwest Market', initials: 'AJ', path: ['HR Coordinator','Talent Acquisition Specialist','HR Generalist'], responsibilities: ['Supports onboarding for 100+ new hires per quarter','Manages employee relations caseload across 2 facilities','Partners with operations on performance management processes'], audioUrl: 'audio/Cole-Volkers.mp3' },
-      { name: 'Carlos Medina', role: 'HR Manager, Southeast Region', initials: 'CM', path: ['HR Generalist','Sr. HR Generalist','HR Business Partner','HR Manager'], responsibilities: ['Leads HR team of 6 supporting 900 employees across region','Reduced turnover 18% through targeted retention initiatives','Coaches HRBPs on strategic business partnership skills'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-    ]
-  },
-  equipment: {
-    name: 'Equipment Services', color: '#1D4ED8', icon: '🔧',
-    tiers: [
-      { id: 'ic', roles: [
-        { id: 'e_mt1', title: 'Equipment Technician I', desc: 'Installs, maintains, and repairs Coca-Cola coolers, fountains, and vending equipment at customer accounts.', nexts: ['e_mt2'] },
-        { id: 'e_mt2', title: 'Equipment Technician II', desc: 'Handles more complex repairs and preventive maintenance on coolers and fountain equipment independently.', nexts: ['e_mt3'] },
-        { id: 'e_mt3', title: 'Sr. Equipment Technician', desc: 'Troubleshoots advanced equipment failures and provides technical mentorship to junior technicians.', nexts: ['e_mnl'] },
-      ]},
-      { id: 'supervisor', roles: [
-        { id: 'e_mnl', title: 'Equipment Services Lead', desc: 'Leads a crew of technicians; schedules PMs, coordinates work orders, and monitors quality of service.', nexts: ['e_mns'] },
-        { id: 'e_mns', title: 'Equipment Services Supervisor', desc: 'Supervises the equipment services team for an area, driving uptime, safety, and customer satisfaction.', nexts: ['e_mnm'] },
-      ]},
-      { id: 'manager', roles: [
-        { id: 'e_mnm', title: 'Equipment Services Manager', desc: 'Manages the full equipment services function, overseeing budget, staffing, and service strategy.', nexts: ['e_ped'] },
-      ]},
-      { id: 'leader', roles: [
-        { id: 'e_ped', title: 'Director of Equipment Services', desc: 'Leads equipment strategy across the full region, driving service excellence and capital planning.', nexts: [] },
-      ]},
-    ],
-    stories: [
-      { name: 'David Reyes', role: 'Equipment Services Supervisor, Fresno', initials: 'DR', path: ['Equipment Technician I','Sr. Equipment Technician','Equipment Services Lead','Equipment Services Supervisor'], responsibilities: ['Manages 12 technicians across day and night shifts','Reduced unplanned downtime 31% in first year','Led $2M+ capital equipment upgrade project'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Angela Tran', role: 'Equipment Services Manager, Pacific Region', initials: 'AT', path: ['Equipment Technician I','Equipment Technician II','Equipment Services Lead','Equipment Services Supervisor','Equipment Services Manager'], responsibilities: ['Manages 35-person equipment services team across 4 markets','Drove first-time fix rate to 94% through technician training program','Oversees $1.8M annual PM budget and capital request process'], audioUrl: 'audio/Cole-Volkers.mp3' },
-      { name: 'Marcus Bell', role: 'Sr. Equipment Technician, Nashville Market', initials: 'MB', path: ['Equipment Technician I','Equipment Technician II','Sr. Equipment Technician'], responsibilities: ['Services 120+ active cooler and fountain accounts in Nashville','Certified trainer for new technician onboarding cohorts','Maintains 97% customer satisfaction rating across all accounts'], audioUrl: 'audio/Cole-Volkers.mp3'  },
-      { name: 'Patricia Nguyen', role: 'Director of Equipment Services, Southwest', initials: 'PN', path: ['Equipment Technician II','Equipment Services Supervisor','Equipment Services Manager','Director of Equipment Services'], responsibilities: ['Sets equipment strategy for 7 market units across Southwest region','Led IoT-enabled cooler monitoring pilot reducing service calls 19%','Develops equipment managers through annual leadership program'], audioUrl: 'audio/Cole-Volkers.mp3'  },
+      { name: 'Sandra Rivera', role: 'HR Business Partner, Southwest',  initials: 'SR', path: ['HR Coordinator','HR Generalist','Sr. HR Generalist','HR Business Partner'], responsibilities: ['Partners with 6 operational leaders across 3 locations','Leads talent review and succession planning','Drives employee engagement and culture initiatives'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Kevin Park',    role: 'HR Director, Western Region',     initials: 'KP', path: ['HR Generalist','HR Business Partner','HR Manager','HR Director'], responsibilities: ['Oversees HR function for 1,200+ employees','Partners with VP-level leaders on workforce strategy','Leads manager training and leadership development programs'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Amara Johnson', role: 'HR Generalist, Midwest Market',   initials: 'AJ', path: ['HR Coordinator','Talent Acquisition Coordinator','HR Generalist'], responsibilities: ['Supports onboarding for 100+ new hires per quarter','Manages employee relations caseload across 2 facilities','Partners with operations on performance management processes'], audioUrl: 'audio/Cole-Volkers.mp3' },
+      { name: 'Carlos Medina', role: 'Recruiting Manager, Southeast',   initials: 'CM', path: ['Recruiter','Sr. Recruiter','Recruiting Supervisor','Recruiting Manager'], responsibilities: ['Leads TA team of 8 supporting 900 employees across region','Reduced time-to-fill 22% through proactive pipeline building','Coaches recruiters on strategic sourcing and hiring manager partnerships'], audioUrl: 'audio/Cole-Volkers.mp3' },
     ]
   }
 };
+
+
 
 const TIER_CFG = {
   ic:         { bg: '#EDE7F6', text: '#4A148C', label: 'Individual Contributor', badge: 'IC' },
