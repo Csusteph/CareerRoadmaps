@@ -2144,30 +2144,35 @@ const TRACKS = {
   production: {
     name: 'Production', color: '#6B2D8B', icon: '⚙',
     tiers: [
-      { id: 'ic', roles: [
-        { id: 'p_ww',  title: 'Warehouse Worker',        desc: 'Supports production operations by receiving raw materials, staging finished goods, and keeping the production floor organized and safe.', nexts: ['p_ml','p_ws'] },
-        { id: 'p_pl',  title: 'Planner',                 desc: 'Coordinates production schedules and inventory plans to ensure lines run efficiently and product demand is met on time.', nexts: ['p_is'] },
-        { id: 'p_ic',  title: 'Inventory Coordinator',   desc: 'Tracks raw materials, WIP, and finished goods inventory; reconciles counts and flags discrepancies to minimize waste and downtime.', nexts: ['p_is'] },
-        { id: 'p_ml',  title: 'Manufacturing Lead',      desc: 'Directs hourly team members on the production line, coordinates shift workflow, and serves as first point of contact for line issues.', nexts: ['p_ps','p_sps','p_sans'] },
-      ]},
-      { id: 'supervisor', roles: [
-        { id: 'p_ps',   title: 'Production Supervisor',     desc: 'Supervises production operations for an assigned shift — managing headcount, safety compliance, quality standards, and throughput targets.', nexts: ['p_pm','p_wm','p_qm'] },
-        { id: 'p_sps',  title: 'Sr. Production Supervisor', desc: 'Manages multiple production lines or shifts, mentors supervisors, and drives continuous improvement across the manufacturing floor.', nexts: ['p_pm'] },
-        { id: 'p_ws',   title: 'Warehouse Supervisor',      desc: 'Oversees inbound/outbound warehouse operations on shift, ensuring accurate receiving, storage, and staging of production materials.', nexts: ['p_wm'] },
-        { id: 'p_sans', title: 'Sanitation Supervisor',     desc: 'Leads the sanitation crew in cleaning and sanitizing production equipment and facilities to meet food-safety and regulatory standards.', nexts: ['p_qm'] },
-        { id: 'p_is',   title: 'Inventory Supervisor',      desc: 'Supervises inventory control operations, cycle counts, and SAP/WMS data integrity across production and warehouse areas.', nexts: ['p_wm'] },
-      ]},
-      { id: 'manager', roles: [
-        { id: 'p_pm',  title: 'Production Manager', desc: 'Manages all production operations for an area, accountable for safety, quality, throughput KPIs, and the development of supervisory staff.', nexts: ['p_smom'] },
-        { id: 'p_wm',  title: 'Warehouse Manager',  desc: 'Leads warehouse operations including receiving, inventory control, and finished goods flow; partners cross-functionally with logistics and sales.', nexts: ['p_smom'] },
-        { id: 'p_qm',  title: 'Quality Manager',    desc: 'Oversees product quality programs, regulatory compliance, and food-safety audits; leads root-cause analysis and corrective action processes.', nexts: ['p_smom'] },
-      ]},
-      { id: 'leader', roles: [
-        { id: 'p_smom', title: 'Sr. Manufacturing Ops Manager', desc: 'Drives safety, quality, and productivity across all production and warehouse functions at the facility; leads the site management team.', nexts: ['p_som','p_pd'] },
-        { id: 'p_som',  title: 'Senior Operations Manager',     desc: 'Oversees multi-department operations, champions lean/CI programs, and partners with the Plant Director on strategic planning.', nexts: ['p_pd'] },
-        { id: 'p_pd',   title: 'Plant Director',                desc: 'Leads all plant operations — safety, quality, production volume, cost management, and full team development — with P&L accountability.', nexts: [] },
-      ]},
-    ],
+     
+{ id: 'ic', roles: [
+      { id: 'p_pw',  title: 'Production Worker',       desc: 'Operates production line equipment, follows standard work procedures, and supports quality and safety standards throughout the shift.',                    nexts: ['p_ps','p_ml','p_mo'] },
+      { id: 'p_mo',  title: 'Machine Operator',        desc: 'Runs, monitors, and adjusts production machinery to meet output and quality targets while following safety and sanitation protocols.',                     nexts: ['p_ps','p_ml','p_pw'] },
+      { id: 'p_ic',  title: 'Inventory Coordinator',   desc: 'Tracks raw materials, WIP, and finished goods inventory; reconciles counts and flags discrepancies to minimize waste and downtime.',                       nexts: ['p_is','p_ws','p_qa'] },
+      { id: 'p_ml',  title: 'Manufacturing Lead',      desc: 'Directs hourly team members on the production line, coordinates shift workflow, and serves as first point of contact for line issues.',                    nexts: ['p_ps','p_sps','p_sans','p_mo'] },
+      { id: 'p_qa',  title: 'QA Tech',                 desc: 'Performs quality checks, documents test results, monitors production for compliance, and escalates deviations to ensure food safety standards are met.',   nexts: ['p_qas','p_sans','p_ic'] },
+    ]},
+    { id: 'supervisor', roles: [
+      { id: 'p_ps',   title: 'Production Supervisor',        desc: 'Supervises production operations for an assigned shift — managing headcount, safety compliance, quality standards, and throughput targets.',              nexts: ['p_pm','p_sps','p_ws','p_sans'] },
+      { id: 'p_sps',  title: 'Sr. Production Supervisor',    desc: 'Manages multiple production lines or shifts, mentors supervisors, and drives continuous improvement across the manufacturing floor.',                    nexts: ['p_pm','p_oem','p_ps'] },
+      { id: 'p_sans', title: 'Sanitation Supervisor',        desc: 'Leads the sanitation crew in cleaning and sanitizing production equipment and facilities to meet food-safety and regulatory standards.',                  nexts: ['p_qm','p_ps','p_qas'] },
+      { id: 'p_ws',   title: 'Warehouse Supervisor',         desc: 'Oversees inbound/outbound warehouse operations on shift, ensuring accurate receiving, storage, and staging of production materials.',                    nexts: ['p_wm','p_ps','p_is'] },
+      { id: 'p_is',   title: 'Inventory Supervisor',         desc: 'Supervises inventory control operations, cycle counts, and SAP/WMS data integrity across production and warehouse areas.',                               nexts: ['p_wm','p_ws','p_qas'] },
+      { id: 'p_qas',  title: 'QA Supervisor',                desc: 'Supervises quality assurance technicians and processes, ensures audit readiness, and drives corrective actions across production.',                       nexts: ['p_qm','p_sans','p_is'] },
+      { id: 'p_ece',  title: 'Electrical Controls Engineer', desc: 'Designs, troubleshoots, and maintains electrical and control systems across production equipment to maximize uptime and reliability.',                   nexts: ['p_oem','p_pm'] },
+    ]},
+    { id: 'manager', roles: [
+      { id: 'p_pm',  title: 'Production Manager',            desc: 'Manages all production operations for an area, accountable for safety, quality, throughput KPIs, and the development of supervisory staff.',             nexts: ['p_smom','p_wm','p_qm','p_oem'] },
+      { id: 'p_wm',  title: 'Warehouse Manager',             desc: 'Leads warehouse operations including receiving, inventory control, and finished goods flow; partners cross-functionally with logistics and sales.',      nexts: ['p_smom','p_som','p_pm'] },
+      { id: 'p_qm',  title: 'Quality Manager',               desc: 'Oversees product quality programs, regulatory compliance, and food-safety audits; leads root-cause analysis and corrective action processes.',           nexts: ['p_smom','p_som','p_oem'] },
+      { id: 'p_oem', title: 'Operations Excellence Manager',  desc: 'Leads continuous improvement and lean initiatives across the plant, partnering with operations to drive safety, quality, and productivity gains.',      nexts: ['p_smom','p_som','p_pm','p_qm'] },
+    ]},
+    { id: 'leader', roles: [
+      { id: 'p_smom', title: 'Sr. Manufacturing Ops Manager', desc: 'Drives safety, quality, and productivity across all production and warehouse functions at the facility; leads the site management team.',               nexts: ['p_som','p_pd'] },
+      { id: 'p_som',  title: 'Senior Operations Manager',     desc: 'Oversees multi-department operations, champions lean/CI programs, and partners with the Plant Director on strategic planning.',                         nexts: ['p_pd','p_smom'] },
+      { id: 'p_pd',   title: 'Plant Director',                desc: 'Leads all plant operations — safety, quality, production volume, cost management, and full team development — with P&L accountability.',               nexts: [] },
+    ]},
+  ],
    stories: [
   { name: 'Mark Jones', role: 'Operations Manager, Grand Rapids PC', initials: 'MJ', path: ['Maintenance Planner','Operational Excellence Manager','Manufacturing Supervisor','Production Manager','Operations Manager'], responsibilities: ['Creates a culture where safety is the top priority','Drives processes to ensure quality products are produced to requirements','Operates the plant to meet volume and budget goals','Leads actions to improve and sustain production output','Develops team understanding of plant goals, processes, and financials'], audioUrl: 'audio/Mark-Jones.m4a' },
   { name: 'Joe Alves', role: 'Plant Director, Downey CA', initials: 'JA', path: ['Quality Assurance Supervisor','Quality Assurance Manager','Package Commercialization Manager','Director of Quality','Senior Operations Manager','Plant Director'], responsibilities: ['Ensures safety of all employees','Drives compliance and food safety','Leads profitability initiatives','Maintains business and community relationships','Develops crisis and continuity plans','Develops future leaders'], audioUrl: 'audio/Joe-Alves.mp3' },
