@@ -2374,22 +2374,29 @@ const TRACKS = {
   delivery: {
     name: 'Delivery / Transport', color: '#8B4513', icon: '▶',
     tiers: [
-      { id: 'ic', roles: [
-        { id: 'd_helper', title: 'Delivery Helper / Pre-Loader', desc: 'Assists with loading delivery trucks, staging product by route, and supporting drivers with physical unloading at customer accounts.', nexts: ['d_dr'] },
-        { id: 'd_dr',     title: 'Delivery Driver',              desc: 'Operates a delivery vehicle on an assigned route — safely transporting and delivering Coca-Cola products to retail, foodservice, and venue accounts daily.', nexts: ['d_sdr','d_dl'] },
-        { id: 'd_sdr',    title: 'Senior Delivery Driver',       desc: 'Manages a high-volume or complex route, mentors newer drivers on safety and customer service, and serves as a route specialist for the team.', nexts: ['d_dl'] },
-      ]},
-      { id: 'supervisor', roles: [
-        { id: 'd_dl', title: 'Delivery Lead',       desc: 'Coordinates a group of drivers on daily route execution, resolves delivery issues in real time, and supports the supervisor with scheduling and compliance.', nexts: ['d_ds'] },
-        { id: 'd_ds', title: 'Delivery Supervisor', desc: 'Supervises delivery operations for a market — managing driver performance, DOT safety compliance, and end-to-end customer satisfaction on all routes.', nexts: ['d_dm'] },
-      ]},
-      { id: 'manager', roles: [
-        { id: 'd_dm', title: 'Delivery Manager', desc: 'Manages the full delivery operation for a market unit — overseeing routing, driver scheduling, fleet compliance, cost control, and customer service outcomes.', nexts: ['d_dom'] },
-      ]},
-      { id: 'leader', roles: [
-        { id: 'd_dom', title: 'Director of Operations', desc: 'Leads delivery and distribution strategy across a full region — driving service levels, fleet safety, cost efficiency, and the development of market managers.', nexts: [] },
-      ]},
-    ],
+ { id: 'ic', roles: [
+      { id: 'd_helper',    title: 'Delivery Helper / Pre-Loader', desc: 'Loads and organizes delivery vehicles, assists drivers on routes, and ensures accurate product counts before departure.',                                          nexts: ['d_yard','d_assoc','d_dispatch'] },
+      { id: 'd_yard',      title: 'Yard Jockey',                  desc: 'Operates yard trucks to move trailers and equipment within the distribution center lot, supporting efficient loading and staging operations.',                       nexts: ['d_assoc','d_classb','d_helper'] },
+      { id: 'd_assoc',     title: 'Associate Driver',             desc: 'Delivers products on assigned routes under supervision, building foundational driving skills, customer service, and route management experience.',                   nexts: ['d_classb','d_yard','d_dispatch'] },
+      { id: 'd_classb',    title: 'CDL Class B Driver',           desc: 'Delivers products to customer accounts on assigned routes using Class B vehicles, managing safe delivery execution and strong customer relationships.',              nexts: ['d_classa','d_delsup','d_assoc','d_transport'] },
+      { id: 'd_classa',    title: 'CDL Class A Driver',           desc: 'Operates Class A vehicles for high-volume delivery and transport routes, handling complex loads and serving as a go-to resource for route efficiency.',              nexts: ['d_transport','d_delsup','d_transup','d_classb'] },
+      { id: 'd_transport', title: 'Transport Driver',             desc: 'Operates Class A vehicles for long-haul and inter-facility transport, ensuring safe, timely movement of product between distribution centers.',                     nexts: ['d_transup','d_delsup','d_classa'] },
+      { id: 'd_dispatch',  title: 'Dispatcher',                   desc: 'Coordinates daily route assignments, communicates with drivers in the field, and supports logistics operations to ensure on-time delivery performance.',            nexts: ['d_delsup','d_transup','d_assoc','d_helper'] },
+    ]},
+    { id: 'supervisor', roles: [
+      { id: 'd_delsup',    title: 'Delivery Supervisor',          desc: 'Supervises delivery drivers on daily route execution, safety compliance, and customer satisfaction metrics across the market.',                                      nexts: ['d_delmgr','d_transup','d_whsup'] },
+      { id: 'd_transup',   title: 'Transportation Supervisor',    desc: 'Supervises transport operations including scheduling, fleet compliance, DOT regulations, and driver performance for inter-facility logistics.',                      nexts: ['d_transmgr','d_delsup','d_whsup'] },
+      { id: 'd_whsup',     title: 'Warehouse Supervisor',         desc: 'Oversees inbound/outbound warehouse operations on shift, ensuring accurate receiving, storage, and staging of production materials.',                                nexts: ['d_whmgr','d_delsup','d_transup'] },
+    ]},
+    { id: 'manager', roles: [
+      { id: 'd_delmgr',    title: 'Delivery Manager',             desc: 'Manages daily delivery operations — driver scheduling, route efficiency, fleet compliance, and end-to-end customer satisfaction across the market unit.',            nexts: ['d_dirop','d_transmgr','d_whmgr'] },
+      { id: 'd_transmgr',  title: 'Transportation Manager',       desc: 'Manages transportation and logistics operations, fleet maintenance, DOT compliance, and cost performance across distribution and delivery networks.',               nexts: ['d_dirop','d_delmgr','d_whmgr'] },
+      { id: 'd_whmgr',     title: 'Warehouse Manager',            desc: 'Leads warehouse operations including receiving, inventory control, and finished goods flow — partnering cross-functionally with logistics and delivery.',            nexts: ['d_dirop','d_delmgr','d_transmgr'] },
+    ]},
+    { id: 'leader', roles: [
+      { id: 'd_dirop',     title: 'Director of Operations',       desc: 'Leads all delivery, transportation, and warehouse operations for a market unit — overseeing safety, service, cost, and team development with full accountability.', nexts: [] },
+    ]},
+  ],
    stories: [
   { name: 'Homero Perez Jr', role: 'Distribution Manager, Oceanside CA', initials: 'HP', path: ['CDL Driver','Distribution Supervisor','Distribution Manager'], responsibilities: ['Optimizes routes','Manages fleet','Tracks KPIs','Develops leaders'], audioUrl: 'audio/Homero-Perez.m4a' },
   { name: 'Jason Brunati', role: 'Operations Manager, West Dundee IL', initials: 'JB', path: ['ICA','Warehouse/Delivery Supervisor','Distribution Manager','Operations Manager'], responsibilities: ['Executes DC strategy','Controls OpEx','Ensures safety compliance','Drives CI'], audioUrl: 'audio/Jason-Brunati.m4a' },
