@@ -2259,16 +2259,16 @@ const TRACKS = {
     tiers: [
       { id: 'ic', roles: [
         { id: 'm_mer', title: 'Merchandiser',               desc: 'Stocks shelves, fills coolers, rotates product, and builds displays at retail and foodservice accounts to ensure maximum brand presence and availability.', nexts: ['m_rm','m_pos','m_cgr'] },
-        { id: 'm_rm',  title: 'Reset Merchandiser',         desc: 'Executes shelf resets, new product cuts, and planogram changes at retail accounts — often working off-hours to minimize disruption.', nexts: ['m_ms'] },
+        { id: 'm_rm',  title: 'Reset Merchandiser',         desc: 'Executes shelf resets, new product cuts, and planogram changes at retail accounts — often working off-hours to minimize disruption.', nexts: ['m_ms',''m_cgr'] },
         { id: 'm_pos', title: 'Point of Sale Clerk',        desc: 'Manages the distribution, placement, and tracking of point-of-sale materials across accounts to support brand campaigns and promotions.', nexts: ['m_ms'] },
         { id: 'm_cgr', title: 'Customer Growth Rep (West)', desc: 'Drives new distribution and volume growth in retail accounts, combining merchandising excellence with a consultative selling approach.', nexts: ['m_am','m_ms'] },
         { id: 'm_am',  title: 'Account Manager',            desc: 'Manages a portfolio of key retail accounts, executing brand standards and building strong customer relationships that grow volume and share.', nexts: ['m_dsm','m_ms'] },
         { id: 'm_ae',  title: 'Account Executive',          desc: 'Leads strategic retail account relationships — co-developing promotional programs, managing JBP execution, and driving incremental display and shelf wins.', nexts: ['m_dsm','m_asm'] },
       ]},
       { id: 'supervisor', roles: [
-        { id: 'm_ms',  title: 'Merchandising Supervisor', desc: 'Supervises a team of merchandisers and reset reps across a district, ensuring execution standards, account compliance, and team productivity.', nexts: ['m_mm'] },
-        { id: 'm_ws',  title: 'Warehouse Supervisor',     desc: 'Manages warehouse operations for a shift — receiving, picking, loading, and inventory accuracy — supporting the field merchandising team.', nexts: ['m_mm','m_wm'] },
-        { id: 'm_ds',  title: 'Delivery Supervisor',      desc: 'Supervises delivery drivers on daily route execution, safety compliance, and customer satisfaction metrics across the market.', nexts: ['m_dm'] },
+        { id: 'm_ms',  title: 'Merchandising Supervisor', desc: 'Supervises a team of merchandisers and reset reps across a district, ensuring execution standards, account compliance, and team productivity.', nexts: ['m_mm','m_ws','m_ds'] },
+        { id: 'm_ws',  title: 'Warehouse Supervisor',     desc: 'Manages warehouse operations for a shift — receiving, picking, loading, and inventory accuracy — supporting the field merchandising team.', nexts: ['m_mm','m_wm','m_ms','m_ds'] },
+        { id: 'm_ds',  title: 'Delivery Supervisor',      desc: 'Supervises delivery drivers on daily route execution, safety compliance, and customer satisfaction metrics across the market.', nexts: ['m_dm,'m_ws','m_ms'] },
         { id: 'm_dsm', title: 'District Sales Manager',   desc: 'Leads a team of sales and merchandising reps in a district, coaching on execution standards and driving volume, distribution, and display goals.', nexts: ['m_asm','m_mm'] },
         { id: 'm_tm',  title: 'Territory Manager (West)', desc: 'Manages all sales and merchandising activity across a defined geographic territory — owning the customer relationship and execution standards end-to-end.', nexts: ['m_asm'] },
       ]},
