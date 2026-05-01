@@ -2300,27 +2300,286 @@ const TRACKS = {
   finance: {
     name: 'Finance', color: '#CC0000', icon: '$',
     tiers: [
-      { id: 'ic', roles: [
-        { id: 'f_rpa',  title: 'Route Processing Admin',      desc: 'Processes daily route settlements, cash reconciliation, and invoice adjustments — ensuring every driver\'s financial close is accurate and timely.', nexts: ['f_da','f_ffa'] },
-        { id: 'f_da',   title: 'Distribution Administrator',  desc: 'Manages distribution center financial tracking, vendor invoicing, and daily reporting across warehouse and delivery operations.', nexts: ['f_ffa','f_lffa'] },
-        { id: 'f_ffa',  title: 'Field Finance Administrator', desc: 'Oversees field-level financial administration, accounts payable/receivable support, and compliance with RCCB internal controls.', nexts: ['f_lffa'] },
-        { id: 'f_hris', title: 'HRIS Analyst',                desc: 'Maintains HR information systems data integrity, generates workforce reports, and supports system configuration and user access management.', nexts: ['f_lffa','f_hrsup'] },
-      ]},
-      { id: 'supervisor', roles: [
-        { id: 'f_lffa',   title: 'Lead Field Finance Admin', desc: 'Leads a team of finance administrators; drives process improvements, reviews work for accuracy, and escalates compliance issues to management.', nexts: ['f_ffs'] },
-        { id: 'f_ffs',    title: 'Field Finance Supervisor', desc: 'Supervises the field finance team for a market, overseeing route settlement, cash handling, and financial compliance across all routes.', nexts: ['f_ffm'] },
-        { id: 'f_hrsup',  title: 'HRIS Supervisor',          desc: 'Supervises HRIS operations, leads system upgrades and data audits, and supports HR and payroll teams with reporting and process automation.', nexts: ['f_hrism'] },
-        { id: 'f_tacsup', title: 'TAC Supervisor',           desc: 'Supervises the Talent Acquisition Coordinator team — managing requisition volume, candidate pipelines, and recruiter performance metrics.', nexts: ['f_ffm'] },
-      ]},
-      { id: 'manager', roles: [
-        { id: 'f_ffm',   title: 'Field Finance Manager', desc: 'Manages all field finance operations for a region — overseeing budget, staffing, internal controls, and driving continuous improvement across sites.', nexts: ['f_pd','f_cap'] },
-        { id: 'f_hrism', title: 'HRIS Manager',          desc: 'Leads the HRIS function — managing system administration, data governance, workforce analytics, and vendor relationships for HR technology.', nexts: ['f_cap'] },
-      ]},
-      { id: 'leader', roles: [
-        { id: 'f_cap',  title: 'Capability Manager',        desc: 'Leads learning and organizational capability programs — designing development frameworks that build critical skills across the RCCB field finance workforce.', nexts: ['f_pd','f_capd'] },
-        { id: 'f_pd',   title: 'Plant / Business Director', desc: 'Manages cost plans, P&L analysis, and strategic financial planning for a facility or business unit — partnering with operations and senior leadership.', nexts: ['f_capd'] },
-        { id: 'f_capd', title: 'Capabilities Director',     desc: 'Sets the organizational capability and learning strategy for the enterprise — building programs that develop talent at every level of the organization.', nexts: [] },
-      ]},
+    
+ {
+      id: 'ic',
+      roles: [
+
+        {
+          id: 'f_ap',
+          title: 'Accounts Payable Specialist',
+          desc: 'Processes vendor invoices, resolves payment issues, and supports month-end close while maintaining strong internal controls.',
+          laterals: ['f_cash','f_dd','f_ar'],
+          nexts: ['f_acct_sup']
+        },
+
+        {
+          id: 'f_ar',
+          title: 'Accounts Receivable Specialist',
+          desc: 'Supports customer billing and receivables processes, researches payment questions, and helps keep accounts accurate and current.',
+          laterals: ['f_cash','f_dd','f_ap'],
+          nexts: ['f_coll_sup']
+        },
+
+        {
+          id: 'f_cash',
+          title: 'Cash Application Specialist',
+          desc: 'Applies customer payments accurately, reconciles cash activity, and resolves remittance issues to keep accounts balanced.',
+          laterals: ['f_ar','f_dd','f_ap'],
+          nexts: ['f_cash_sup']
+        },
+
+        {
+          id: 'f_prc_spec',
+          title: 'Pricing & Contracts Specialist',
+          desc: 'Supports pricing setup and contract administration, ensuring accuracy and compliance across pricing and customer agreements.',
+          laterals: ['f_prc_an','f_sales_an'],
+          nexts: ['f_prc_sup']
+        },
+
+        {
+          id: 'f_prc_an',
+          title: 'Pricing & Contracts Analyst',
+          desc: 'Analyzes pricing and contract data, identifies issues and opportunities, and partners with stakeholders to improve accuracy and performance.',
+          laterals: ['f_sales_an','f_fin_an','f_cost_an','f_prc_spec'],
+          nexts: ['f_prc_sup','f_mkt_inc_sup']
+        },
+
+        {
+          id: 'f_sales_an',
+          title: 'Sales Analyst',
+          desc: 'Analyzes sales trends and performance drivers, supports reporting, and partners with teams to inform business decisions.',
+          laterals: ['f_prc_an','f_fin_an','f_cost_an'],
+          nexts: ['f_mkt_inc_sup','f_cost_sup','f_prc_sup']
+        },
+
+        {
+          id: 'f_dd',
+          title: 'Disputes & Deductions Analyst',
+          desc: 'Researches customer disputes and deductions, resolves discrepancies, and partners cross-functionally to improve cash flow and accuracy.',
+          laterals: ['f_ar','f_cash','f_ap'],
+          nexts: ['f_coll_sup']
+        },
+
+        {
+          id: 'f_cap_coord',
+          title: 'Capital Management Coordinator',
+          desc: 'Supports capital tracking and reporting, documentation, and coordination to help ensure disciplined planning and accurate financial records.',
+          laterals: ['f_fin_an','f_cost_an'],
+          nexts: ['f_biz_mgr','f_acct_sup']
+        },
+
+        {
+          id: 'f_fin_an',
+          title: 'Financial Analyst',
+          desc: 'Builds forecasts, analyzes performance, and supports planning and reporting to help leaders make informed decisions.',
+          laterals: ['f_cost_an','f_sales_an','f_prc_an'],
+          nexts: ['f_sen_fin_an']
+        },
+
+        {
+          id: 'f_sen_fin_an',
+          title: 'Senior Financial Analyst',
+          desc: 'Leads deeper analysis, drives forecasting and planning, and delivers insights that shape financial and operational decisions.',
+          laterals: ['f_cost_an','f_sales_an'],
+          nexts: ['f_fpa_mgr','f_corp_fin_mgr']
+        },
+
+        {
+          id: 'f_cost_an',
+          title: 'Cost Analyst',
+          desc: 'Analyzes cost drivers, supports cost controls, and helps improve visibility into spending and operational efficiency.',
+          laterals: ['f_fin_an','f_sales_an','f_prc_an','f_cap_coord'],
+          nexts: ['f_cost_sup']
+        }
+
+      ]
+    },
+
+    {
+      id: 'supervisor',
+      roles: [
+
+        {
+          id: 'f_acct_sup',
+          title: 'Accounting Supervisor',
+          desc: 'Leads day-to-day accounting processes, ensures accuracy and compliance, and coaches the team through close and reporting cycles.',
+          laterals: ['f_coll_sup','f_cash_sup','f_cost_sup'],
+          nexts: ['f_acct_mgr']
+        },
+
+        {
+          id: 'f_prc_sup',
+          title: 'Pricing Supervisor',
+          desc: 'Supervises pricing and contract execution, drives accuracy and timeliness, and partners across teams to resolve pricing issues.',
+          laterals: ['f_mkt_inc_sup','f_cost_sup'],
+          nexts: ['f_prc_mgr','f_corp_fin_mgr']
+        },
+
+        {
+          id: 'f_coll_sup',
+          title: 'Collections Supervisor',
+          desc: 'Leads collections activities, supports dispute resolution and cash flow performance, and helps improve customer payment outcomes.',
+          laterals: ['f_cash_sup','f_acct_sup'],
+          nexts: ['f_ap_mgr','f_corp_fin_mgr']
+        },
+
+        {
+          id: 'f_cash_sup',
+          title: 'Cash Application Supervisor',
+          desc: 'Supervises payment application and reconciliation processes, ensures controls are followed, and drives accuracy and service levels.',
+          laterals: ['f_coll_sup','f_acct_sup'],
+          nexts: ['f_ap_mgr','f_acct_mgr']
+        },
+
+        {
+          id: 'f_mkt_inc_sup',
+          title: 'Market Incentives Supervisor',
+          desc: 'Oversees market incentives tracking and reporting, ensuring accuracy, compliance, and timely support to the business.',
+          laterals: ['f_prc_sup','f_cost_sup'],
+          nexts: ['f_prc_mgr','f_corp_fin_mgr']
+        },
+
+        {
+          id: 'f_cost_sup',
+          title: 'Cost Accounting Supervisor',
+          desc: 'Supervises cost accounting processes, supports inventory/cost controls, and improves reporting visibility and accuracy.',
+          laterals: ['f_acct_sup','f_prc_sup'],
+          nexts: ['f_corp_fin_mgr','f_acct_mgr']
+        },
+
+        {
+          id: 'f_biz_mgr',
+          title: 'Business Manager',
+          desc: 'Leads financial operations support for a business unit, coordinating priorities, reporting, and improvements with key stakeholders.',
+          laterals: ['f_cost_sup','f_acct_sup'],
+          nexts: ['f_mu_fin_mgr','f_corp_fin_mgr','f_field_fin_mgr']
+        }
+
+      ]
+    },
+
+    {
+      id: 'manager',
+      roles: [
+
+        {
+          id: 'f_acct_mgr',
+          title: 'Accounting Manager',
+          desc: 'Manages accounting operations, close cycles, compliance, and controls—partnering with leaders to deliver accurate financials.',
+          laterals: ['f_ap_mgr','f_corp_fin_mgr'],
+          nexts: ['f_dir_fin','f_controller']
+        },
+
+        {
+          id: 'f_prc_mgr',
+          title: 'Pricing Manager',
+          desc: 'Leads pricing strategy execution and governance, ensuring pricing accuracy and partnering cross-functionally to drive performance.',
+          laterals: ['f_corp_fin_mgr'],
+          nexts: ['f_dir_rgm','f_dir_fin']
+        },
+
+        {
+          id: 'f_fpa_mgr',
+          title: 'FP&A Manager',
+          desc: 'Leads forecasting, budgeting, and performance reporting—translating data into insights that guide business decisions.',
+          laterals: ['f_corp_fin_mgr','f_mu_fin_mgr'],
+          nexts: ['f_dir_fpa','f_dir_fin']
+        },
+
+        {
+          id: 'f_field_fin_mgr',
+          title: 'Field Finance Manager',
+          desc: 'Leads finance support for field operations—driving controls, operational reporting, and continuous improvement across sites.',
+          laterals: ['f_mu_fin_mgr','f_corp_fin_mgr'],
+          nexts: ['f_dir_fin']
+        },
+
+        {
+          id: 'f_corp_fin_mgr',
+          title: 'Corporate Finance Manager',
+          desc: 'Leads enterprise-level financial analysis and reporting, partnering across teams to drive planning, governance, and improvements.',
+          laterals: ['f_fpa_mgr','f_acct_mgr'],
+          nexts: ['f_dir_fin','f_controller']
+        },
+
+        {
+          id: 'f_ap_mgr',
+          title: 'Accounts Payable Manager',
+          desc: 'Leads AP operations and controls, drives vendor/payment performance, and ensures accuracy and compliance in disbursements.',
+          laterals: ['f_acct_mgr'],
+          nexts: ['f_dir_fin','f_controller']
+        },
+
+        {
+          id: 'f_tax_mgr',
+          title: 'Manager, Tax',
+          desc: 'Leads tax compliance and reporting, partners with stakeholders on requirements, and supports audits and filings.',
+          laterals: ['f_corp_fin_mgr'],
+          nexts: ['f_dir_tax']
+        },
+
+        {
+          id: 'f_mu_fin_mgr',
+          title: 'Market Unit Finance Manager',
+          desc: 'Leads finance support for a market unit, aligning planning and performance with operations and leadership priorities.',
+          laterals: ['f_field_fin_mgr','f_fpa_mgr'],
+          nexts: ['f_dir_fin']
+        }
+
+      ]
+    },
+
+    {
+      id: 'leader',
+      roles: [
+
+        {
+          id: 'f_dir_fin',
+          title: 'Director of Finance',
+          desc: 'Sets finance direction and governance, leads key financial priorities, and partners with senior leaders to drive business performance.',
+          laterals: ['f_controller'],
+          nexts: []
+        },
+
+        {
+          id: 'f_dir_rgm',
+          title: 'Director, Revenue Growth Management',
+          desc: 'Leads revenue growth management strategy, pricing effectiveness, and performance insights to drive profitable growth.',
+          laterals: ['f_dir_fin'],
+          nexts: []
+        },
+
+        {
+          id: 'f_dir_fpa',
+          title: 'Director, FP&A',
+          desc: 'Leads enterprise planning, forecasting, and performance reporting—driving insight, accountability, and decision support.',
+          laterals: ['f_dir_fin'],
+          nexts: []
+        },
+
+        {
+          id: 'f_dir_tax',
+          title: 'Director, Tax',
+          desc: 'Leads tax strategy, compliance, and governance—ensuring RCCB meets regulatory obligations and manages risk effectively.',
+          laterals: ['f_dir_fin'],
+          nexts: []
+        },
+
+        {
+          id: 'f_controller',
+          title: 'Controller',
+          desc: 'Leads financial reporting, controls, close governance, and audit readiness—ensuring integrity and accuracy across financial statements.',
+          laterals: ['f_dir_fin'],
+          nexts: []
+        }
+
+      ]
+    }
+
+  ]
+},
+
     ],
    stories: [
   { name: 'Carter Adams', role: 'Supply Chain Finance Manager', initials: 'CA', path: ['Cost Analyst','Cost Accounting Supervisor','Senior Cost Analyst','Finance Manager'], responsibilities: ['Partners with production on budgets','Leads analysts','Drives cost savings','Automates processes'], audioUrl: 'audio/Carter-Adams.m4a' },
