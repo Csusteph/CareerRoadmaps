@@ -2158,8 +2158,6 @@
 <script>
 const COLE = 'audio/Cole-Volkers.mp3';
 
-const TRACKS = {
-
   
 /* =========================================================
    EDGE‑AWARE MOVE LOGIC
@@ -2186,9 +2184,10 @@ const MOVE_OVERRIDES = {
 };
 
 function tierIndexOf(trackKey, roleId) {
-  return TRACKS[trackKey].tiers.findIndex(t =>
-    t.roles.some(r => r.id === roleId)
-  );
+return TRACKS[trackKey].tiers.findIndex(t =>
+  t.roles.some(r => r.id === roleId)
+);
+
 }
 
 function normalizeNextMoves() {
@@ -2208,7 +2207,7 @@ function normalizeNextMoves() {
     });
   });
 }
-
+const TRACKS = {
   production: {
     name: 'Production', color: '#6B2D8B', icon: '⚙',
     tiers: [
@@ -2589,12 +2588,12 @@ function explorerSelectRole(roleId) {
   renderExplorer();
 }
 
-
 function applyHighlighting() {
   if (!selectedRoleId) return;
 
   const t = TRACKS[currentTrack];
- === selectedRoleId);  const allRoles = t.tiers.flatMap(ti => ti.roles);
+  const allRoles = t.tiers.flatMap(ti => ti.roles);
+  const sel = allRoles.find(r => r.id === selectedRoleId);
   const nextMap = new Map((sel?.nexts || []).map(n => [n.id, n.type]));
 
   document.querySelectorAll('.flip-wrap').forEach(card => {
