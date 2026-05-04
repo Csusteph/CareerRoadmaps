@@ -1264,10 +1264,36 @@
     box-shadow: var(--sh-md);
   }
   .flip-wrap.dimmed { opacity: 0.32; pointer-events: none; filter: grayscale(0.3); }
-  .flip-wrap.next-step .flip-front {
+  /* Upward move = SOLID border */
+  .flip-wrap.upward-step .flip-front {
     border-width: 2px;
+    border-style: solid;
     box-shadow: var(--sh-md);
   }
+  /* Lateral move = DOTTED border */
+  .flip-wrap.lateral-step .flip-front {
+    border-width: 2px;
+    border-style: dotted;
+    box-shadow: var(--sh-md);
+  }
+  /* Small move-type badge in top-right of highlighted cards */
+  .move-type-tag {
+    position: absolute;
+    top: 8px; right: 8px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 8.5px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    z-index: 2;
+    background: white;
+    border: 1px solid currentColor;
+    line-height: 1;
+  }
+  .move-type-tag.upward  { color: var(--red-dark); }
+  .move-type-tag.lateral { color: var(--char); }
   .card-badge {
     display: inline-flex; align-items: center; gap: 4px;
     font-family: 'Nunito Sans', sans-serif;
@@ -2718,7 +2744,11 @@ function renderExplorer() {
           <div class="back-close">Tap to flip back</div>
         </div>
       </div>`;
-      wrap.addEventListener('click', () => explorerToggleFlip(role.id));
+wrap.addEventListener('click', (e) => {
+  if (e.target.closest('.select-btn')) return; // ✅ do nothing
+  explorerToggleFlip(role.id);
+});
+
       col.appendChild(wrap);
     });
     container.appendChild(col);
