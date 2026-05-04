@@ -2774,40 +2774,40 @@ function applyHighlighting() {
   if (!selectedRoleId) return;
 
   const t = TRACKS[currentTrack];
-  const allRoles = t.tiers.flatMap(ti => ti.roles);
+  const tiers = t.tiers;
+  const allRoles = tiers.flatMap(ti => ti.roles);
   const sel = allRoles.find(r => r.id === selectedRoleId);
-  const nextMap = new Map((sel?.nexts || []).map(n => [n.id, n.type]));
+  if (!sel) return;
+
+  // Build a map of nextId → move type from the normalized nexts array
+  const nextMap = new Map((sel.nexts || []).map(n => [n.id, n.type]));
 
   document.querySelectorAll('.flip-wrap').forEach(card => {
     const rid = card.dataset.roleId;
-    
- // Reset state
-    card.classList.remove('dimmed', 'next-step', 'upward-step', 'lateral-step');
 
-    // Remove any old move-type tag
-    const oldTag = card.querySelector('.move-type-tag');
-    if (oldTag) oldTag.remove();
+    // Remove all state classes and old tags
+    card.classList.remove('dimmed', 'upward-step', 'lateral-step');
+    card.querySelectorAll('.move-type-tag').forEach(el => el.remove());
+    const front = card.querySelector('.flip-front');
+    if (front) { front.style.borderColor = ''; front.style.borderWidth = ''; front.style.borderStyle = ''; }
 
     if (rid === selectedRoleId) {
-      // Selected card itself — leave as-is
+      // Selected card — no extra styling needed
       return;
     }
 
-    if (nextSet.has(rid)) {
-      const nextTierIdx = tiers.findIndex(ti => ti.roles.some(r => r.id === rid));
-      const isLateral = nextTierIdx === selTierIdx;
+    if (nextMap.has(rid)) {
+      const moveType = nextMap.get(rid); // 'upward' or 'lateral'
+      card.classList.add(moveType === 'lateral' ? 'lateral-step' : 'upward-step');
 
-      card.classList.add(isLateral ? 'lateral-step' : 'upward-step');
-
-      const front = card.querySelector('.flip-front');
       if (front) {
-        front.style.borderColor = TRACKS[currentTrack].color;
+        front.style.borderColor = t.color;
         front.style.borderWidth = '2px';
-        front.style.borderStyle = isLateral ? 'dotted' : 'solid';
+        front.style.borderStyle = moveType === 'lateral' ? 'dotted' : 'solid';
 
         const tag = document.createElement('div');
-        tag.className = 'move-type-tag ' + (isLateral ? 'lateral' : 'upward');
-        tag.textContent = isLateral ? '↔ Lateral' : '↑ Upward';
+        tag.className = 'move-type-tag ' + (moveType === 'lateral' ? 'lateral' : 'upward');
+        tag.textContent = moveType === 'lateral' ? '↔ Lateral' : '↑ Upward';
         front.appendChild(tag);
       }
     } else {
@@ -2815,6 +2815,7 @@ function applyHighlighting() {
     }
   });
 }
+
 
 
 function explorerSwitchTrack(track) {
@@ -2836,28 +2837,22 @@ function renderDetailEmpty() {
       <div class="legend-item"><div class="legend-swatch" style="background:${TIER_RAW.leader.bg};border:1px solid ${TIER_RAW.leader.border};"></div> Director / Leadership</div>
     </div></div>`;
 }
-
-
 function renderDetailForRole(roleId) {
   const t = TRACKS[currentTrack];
   const allRoles = getAllRoles(currentTrack);
   const role = allRoles.find(r => r.id === roleId); if (!role) return;
   const cfg = TIER_CFG[role.tierId];
 
-  const tiers = TRACKS[currentTrack].tiers;
-  const selTierIdx = tiers.findIndex(ti => ti.id === role.tierId);
-
+  // nexts are now {id, type} objects after normalizeNextMoves()
   const nextRoles = (role.nexts || [])
-    .map(nid => {
-      const r = allRoles.find(x => x.id === nid);
+    .map(n => {
+      const r = allRoles.find(x => x.id === n.id);
       if (!r) return null;
-      const nextTierIdx = tiers.findIndex(ti => ti.id === r.tierId);
-      const moveType = (nextTierIdx === selTierIdx) ? 'lateral' : 'upward';
-      return { ...r, cfg: TIER_CFG[r.tierId], moveType };
+      return { ...r, cfg: TIER_CFG[r.tierId], moveType: n.type };
     })
     .filter(Boolean);
 
-  const upwardMoves = nextRoles.filter(n => n.moveType === 'upward');
+  const upwardMoves  = nextRoles.filter(n => n.moveType === 'upward');
   const lateralMoves = nextRoles.filter(n => n.moveType === 'lateral');
 
   document.getElementById('detail-panel').innerHTML = `
@@ -2868,38 +2863,34 @@ function renderDetailForRole(roleId) {
       <div class="detail-desc">${role.desc}</div>
     </div>
     <div>
-      <div class="detail-section-label">${nextRoles.length>0?'Possible next moves':'Top of the track'}</div>
-      ${nextRoles.length>0 ? `
+      <div class="detail-section-label">${nextRoles.length > 0 ? 'Possible next moves' : 'Top of the track'}</div>
+      ${nextRoles.length > 0 ? `
         ${upwardMoves.length ? `
-          <div class="detail-subhead">↑ Upward moves</div>
-          <div class="detail-paths-list">${upwardMoves.map(nr=>`
+          <div class="detail-subhead" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--char-soft);margin:8px 0 5px;">↑ Upward moves</div>
+          <div class="detail-paths-list">${upwardMoves.map(nr => `
             <div class="detail-path-item" onclick="explorerSelectRole('${nr.id}')">
               <span class="path-arrow-icon" style="color:${t.color};">↑</span>
               <span class="path-item-text">${nr.title}</span>
               <span class="path-type-tag" style="background:${nr.cfg.bg};color:${nr.cfg.text};">${nr.cfg.badge}</span>
-              <span class="path-move-tag" style="border:2px solid ${t.color};color:${t.color};">Upward</span>
             </div>`).join('')}
           </div>
-        `:''}
+        ` : ''}
         ${lateralMoves.length ? `
-          <div class="detail-subhead">↔ Lateral moves</div>
-          <div class="detail-paths-list">${lateralMoves.map(nr=>`
+          <div class="detail-subhead" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--char-soft);margin:8px 0 5px;">↔ Lateral moves</div>
+          <div class="detail-paths-list">${lateralMoves.map(nr => `
             <div class="detail-path-item" onclick="explorerSelectRole('${nr.id}')">
               <span class="path-arrow-icon" style="color:${t.color};">↔</span>
               <span class="path-item-text">${nr.title}</span>
               <span class="path-type-tag" style="background:${nr.cfg.bg};color:${nr.cfg.text};">${nr.cfg.badge}</span>
-              <span class="path-move-tag" style="border:2px dotted ${t.color};color:${t.color};">Lateral</span>
             </div>`).join('')}
           </div>
-        `:''}
+        ` : ''}
       ` : `
         <div class="top-of-track-msg">You've reached the top of this career track. Consider leadership development programs or cross-functional opportunities.</div>
       `}
     </div>
     <button class="reset-btn" onclick="explorerSelectRole('${roleId}')">✕ Clear selection</button>`;
 }
-
-
 
 function renderStories() {
   const t = TRACKS[currentTrack];
