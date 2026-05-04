@@ -2342,23 +2342,90 @@ const COLE = 'audio/Cole-Volkers.mp3';
    ========================================================= */
 
 const MOVE_OVERRIDES = {
+
+  // ─── PRODUCTION ───────────────────────────────────────────────────
   production: {
-    p_pw: { p_ml: 'upward' },
-    p_mo: { p_ml: 'upward' },
+    // → Lead / Senior = upward even within same tier
+    p_pw:  { p_ml:  'upward' },  // Production Worker     → Manufacturing Lead
+    p_mo:  { p_ml:  'upward' },  // Machine Operator      → Manufacturing Lead
+    p_ps:  { p_sps: 'upward' },  // Production Supervisor → Sr. Production Supervisor
+    p_sps: { p_oem: 'upward' },  // Sr. Production Sup.   → Ops Excellence Manager (broader scope, same tier)
+    p_smom:{ p_som: 'upward' },  // Sr. Mfg Ops Manager   → Senior Operations Manager
   },
+
+  // ─── WAREHOUSE ────────────────────────────────────────────────────
   warehouse: {
-    w_wl: { w_ws: 'upward' },
+    // → Lead = upward within IC tier
+    w_ww:  { w_wl: 'upward' },   // Warehouse Worker   → Warehouse Lead
+    w_ob:  { w_wl: 'upward' },   // Order Builder      → Warehouse Lead
+    w_fo:  { w_wl: 'upward' },   // Forklift Operator  → Warehouse Lead
+    w_ch:  { w_wl: 'upward' },   // Checker            → Warehouse Lead
+    w_yj:  { w_wl: 'upward' },   // Yard Jockey        → Warehouse Lead
+    // → Senior / broader scope at leader tier
+    w_muod:{ w_gm: 'upward', w_od2: 'upward' },  // MU Ops Director → GM / Ops Director Field Ops
+    w_od3: { w_gm: 'upward' },                    // Sr. Operations Manager → General Manager
   },
+
+  // ─── SALES ────────────────────────────────────────────────────────
+  sales: {
+    // → Senior = upward within IC tier
+    s_sa:  { s_sen_sa: 'upward' },  // Sales Analyst → Sr. Sales Analyst (if you add this role)
+    // → Sr. Director = upward from any Director-level role in same tier
+    s_dso:     { s_sds: 'upward' },  // Dir. Sales Operations  → Sr. Director Sales
+    s_sdl:     { s_sds: 'upward' },  // OP Development Lead    → Sr. Director Sales
+    s_dodfsop: { s_sds: 'upward' },  // Dir. MU FSOP           → Sr. Director Sales
+    s_dkt:     { s_sds: 'upward' },  // Dir. Key Customer Teams→ Sr. Director Sales
+  },
+
+  // ─── MERCHANDISING ────────────────────────────────────────────────
+  merchandising: {
+    // → Lead / Senior = upward within IC tier
+    m_mer: { m_rm: 'upward' },   // Merchandiser → Reset Merchandiser (specialized = step up)
+    // → GM has broader P&L than any single-function Director
+    m_od:   { m_gm: 'upward' },
+    m_sd:   { m_gm: 'upward' },
+    m_fodm: { m_gm: 'upward' },
+    m_odm:  { m_gm: 'upward' },
+  },
+
+  // ─── FINANCE ──────────────────────────────────────────────────────
+  finance: {
+    // → Senior = upward within IC tier
+    f_fin_an:    { f_sen_fin_an: 'upward' },  // Financial Analyst → Sr. Financial Analyst
+    f_prc_spec:  { f_prc_an:    'upward' },   // Pricing Specialist → Pricing Analyst
+    f_cap_coord: { f_fin_an:    'upward', f_cost_an: 'upward' },  // Coordinator → Analyst
+    // → Director of Finance = top of leader tier
+    f_dir_rgm:   { f_dir_fin: 'upward' },
+    f_dir_fpa:   { f_dir_fin: 'upward' },
+    f_dir_tax:   { f_dir_fin: 'upward' },
+  },
+
+  // ─── DELIVERY ─────────────────────────────────────────────────────
   delivery: {
-    d_helper: { d_assoc: 'upward' },
-    d_assoc: { d_classb: 'upward' },
-    d_classb: { d_classa: 'upward' },
+    // → CDL upgrades = upward (more training and certification required)
+    d_helper:  { d_yard: 'upward', d_assoc: 'upward' },   // Helper → Yard Jockey / Associate Driver
+    d_yard:    { d_assoc: 'upward', d_classb: 'upward' }, // Yard Jockey → Associate / Class B
+    d_assoc:   { d_classb: 'upward' },                    // Associate → CDL Class B
+    d_classb:  { d_classa: 'upward', d_transport: 'upward' }, // Class B → Class A / Transport
+    d_classa:  { d_transport: 'upward' },                 // Class A → Transport Driver
+    // → Senior / Lead at supervisor tier
+    d_delsup:  { d_transup: 'lateral', d_whsup: 'lateral' }, // Peer supervisors, not step-ups
   },
+
+  // ─── HUMAN RESOURCES ──────────────────────────────────────────────
   hr: {
-    h_hrc: { h_hrg: 'upward', h_tac: 'upward' },
-    h_tac: { h_rec: 'upward' },
-    h_rec: { h_srec: 'upward' },
-  }
+    // → Senior / Lead = upward within same tier
+    h_hrc:  { h_hrg: 'upward', h_tac: 'upward' },  // HR Coordinator → Generalist / TA Coordinator
+    h_tac:  { h_rec: 'upward' },                    // TA Coordinator → Recruiter
+    h_rec:  { h_srec: 'upward' },                   // Recruiter → Sr. Recruiter
+    h_hrg:  { h_shr: 'upward' },                    // HR Generalist → Sr. HR Generalist
+    h_shr:  { h_hrbp: 'upward' },                   // Sr. HR Generalist → HR Business Partner
+    h_hrbp: { h_hrm: 'upward' },                    // HR Business Partner → HR Manager
+    // → Senior / Director at leader tier
+    h_tam:  { h_dhr: 'upward' },                    // TA Director → HR Director
+    h_srhm: { h_dhr: 'upward' },                    // HR Sr. Manager → HR Director
+    h_dhr:  { h_capd: 'upward' },                   // HR Director → Capabilities Director
+  },
 };
 
 function tierIndexOf(trackKey, roleId) {
