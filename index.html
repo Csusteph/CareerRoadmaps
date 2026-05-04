@@ -2159,6 +2159,56 @@
 const COLE = 'audio/Cole-Volkers.mp3';
 
 const TRACKS = {
+
+  
+/* =========================================================
+   EDGE‑AWARE MOVE LOGIC
+   ========================================================= */
+
+const MOVE_OVERRIDES = {
+  production: {
+    p_pw: { p_ml: 'upward' },
+    p_mo: { p_ml: 'upward' },
+  },
+  warehouse: {
+    w_wl: { w_ws: 'upward' },
+  },
+  delivery: {
+    d_helper: { d_assoc: 'upward' },
+    d_assoc: { d_classb: 'upward' },
+    d_classb: { d_classa: 'upward' },
+  },
+  hr: {
+    h_hrc: { h_hrg: 'upward', h_tac: 'upward' },
+    h_tac: { h_rec: 'upward' },
+    h_rec: { h_srec: 'upward' },
+  }
+};
+
+function tierIndexOf(trackKey, roleId) {
+  return TRACKS[trackKey].tiers.findIndex(t =>
+    t.roles.some(r => r.id === roleId)
+  );
+}
+
+function normalizeNextMoves() {
+  Object.keys(TRACKS).forEach(trackKey => {
+    TRACKS[trackKey].tiers.forEach(tier => {
+      tier.roles.forEach(role => {
+        const fromTier = tierIndexOf(trackKey, role.id);
+        role.nexts = (role.nexts || []).map(n => {
+          const toId = typeof n === 'string' ? n : n.id;
+          const override = MOVE_OVERRIDES?.[trackKey]?.[role.id]?.[toId];
+          if (override) return { id: toId, type: override };
+
+          const toTier = tierIndexOf(trackKey, toId);
+          return { id: toId, type: toTier === fromTier ? 'lateral' : 'upward' };
+        });
+      });
+    });
+  });
+}
+
   production: {
     name: 'Production', color: '#6B2D8B', icon: '⚙',
     tiers: [
@@ -2463,7 +2513,14 @@ let currentTrack = 'production';
 let selectedRoleId = null;
 let flippedCards = new Set();
 
-function init() { renderTabs(); renderExplorer(); renderDetailEmpty(); }
+
+function init() {
+  normalizeNextMoves();
+  renderTabs();
+  renderExplorer();
+  renderDetailEmpty();
+}
+
 
 function renderTabs() {
   const t = TRACKS[currentTrack];
@@ -2532,21 +2589,35 @@ function explorerSelectRole(roleId) {
   renderExplorer();
 }
 
+
 function applyHighlighting() {
   if (!selectedRoleId) return;
-  const allRoles = TRACKS[currentTrack].tiers.flatMap(ti => ti.roles);
-  const sel = allRoles.find(r => r.id === selectedRoleId);
-  const nextSet = new Set(sel ? sel.nexts : []);
+
+  const t = TRACKS[currentTrack];
+ === selectedRoleId);  const allRoles = t.tiers.flatMap(ti => ti.roles);
+  const nextMap = new Map((sel?.nexts || []).map(n => [n.id, n.type]));
+
   document.querySelectorAll('.flip-wrap').forEach(card => {
     const rid = card.dataset.roleId;
-    if (rid === selectedRoleId) { card.classList.remove('dimmed','next-step'); }
-    else if (nextSet.has(rid)) {
-      card.classList.remove('dimmed'); card.classList.add('next-step');
-      const front = card.querySelector('.flip-front');
-      if (front) { front.style.borderColor = TRACKS[currentTrack].color; front.style.borderWidth = '2px'; }
-    } else { card.classList.add('dimmed'); card.classList.remove('next-step'); }
+    card.classList.remove('dimmed', 'upward-step', 'lateral-step');
+    card.querySelector('.move-type-tag')?.remove();
+
+    if (rid === selectedRoleId) return;
+
+    if (nextMap.has(rid)) {
+      const type = nextMap.get(rid);
+      card.classList.add(type === 'lateral' ? 'lateral-step' : 'upward-step');
+
+      const tag = document.createElement('div');
+      tag.className = 'move-type-tag ' + type;
+      tag.textContent = type === 'lateral' ? '↔ Lateral' : '↑ Upward';
+      card.querySelector('.flip-front')?.appendChild(tag);
+    } else {
+      card.classList.add('dimmed');
+    }
   });
 }
+
 
 function explorerSwitchTrack(track) {
   currentTrack = track; selectedRoleId = null; flippedCards = new Set();
@@ -2568,31 +2639,49 @@ function renderDetailEmpty() {
     </div></div>`;
 }
 
+
 function renderDetailForRole(roleId) {
   const t = TRACKS[currentTrack];
   const allRoles = getAllRoles(currentTrack);
-  const role = allRoles.find(r => r.id === roleId); if (!role) return;
+  const role = allRoles.find(r => r.id === roleId);
+  if (!role) return;
+
   const cfg = TIER_CFG[role.tierId];
-  const nextRoles = (role.nexts||[]).map(nid => { const r = allRoles.find(x=>x.id===nid); return r ? {...r, cfg: TIER_CFG[r.tierId]} : null; }).filter(Boolean);
+
+  const next = role.nexts || [];
+  const upward = next.filter(n => n.type === 'upward');
+  const lateral = next.filter(n => n.type === 'lateral');
+
+  const renderList = list =>
+    list.map(n => {
+      const r = allRoles.find(x => x.id === n.id);
+      return `
+        <div class="detail-path-item" onclick="explorerSelectRole('${r.id}')">
+          <span class="path-arrow-icon">↑</span>
+          <span class="path-item-text">${r.title}</span>
+          <span class="path-type-tag">${n.type}</span>
+        </div>`;
+    }).join('');
+
   document.getElementById('detail-panel').innerHTML = `
     <div>
       <div class="detail-section-label">Selected role</div>
       <div class="detail-role-name">${role.title}</div>
-      <div class="detail-tier-badge" style="background:${cfg.bg};color:${cfg.text};">↑ ${cfg.label}</div>
+      <div class="detail-tier-badge" style="background:${cfg.bg};color:${cfg.text};">
+        ${cfg.label}
+      </div>
       <div class="detail-desc">${role.desc}</div>
     </div>
+
     <div>
-      <div class="detail-section-label">${nextRoles.length>0?'Possible next moves':'Top of the track'}</div>
-      ${nextRoles.length>0 ? `<div class="detail-paths-list">${nextRoles.map(nr=>`
-        <div class="detail-path-item" onclick="explorerSelectRole('${nr.id}')">
-          <span class="path-arrow-icon" style="color:${t.color};">↑</span>
-          <span class="path-item-text">${nr.title}</span>
-          <span class="path-type-tag" style="background:${nr.cfg.bg};color:${nr.cfg.text};">${nr.cfg.badge}</span>
-        </div>`).join('')}</div>`
-      : `<div class="top-of-track-msg">You've reached the top of this career track. Consider leadership development programs or cross-functional opportunities.</div>`}
+      ${upward.length ? `<div class="detail-subhead">↑ Upward Moves</div>${renderList(upward)}` : ''}
+      ${lateral.length ? `<div class="detail-subhead">↔ Lateral Moves</div>${renderList(lateral)}` : ''}
     </div>
-    <button class="reset-btn" onclick="explorerSelectRole('${roleId}')">✕ Clear selection</button>`;
+
+    <button class="reset-btn" onclick="explorerSelectRole('${roleId}')">✕ Clear</button>
+  `;
 }
+
 
 function renderStories() {
   const t = TRACKS[currentTrack];
