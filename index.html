@@ -184,6 +184,77 @@
     margin: 12px 16px;
   }
 
+/* =========================================================
+   COLLAPSIBLE SIDE NAV
+   ========================================================= */
+
+.side-nav {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Collapsed state */
+.side-nav.collapsed {
+  width: 72px;
+}
+
+/* Hide text when collapsed */
+.side-nav.collapsed .side-section-label,
+.side-nav.collapsed .side-nav-item span:not(.icon) {
+  display: none;
+}
+
+/* Center icons */
+.side-nav.collapsed .side-nav-item {
+  justify-content: center;
+  padding: 14px 0;
+}
+
+/* Collapse button */
+.side-collapse-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  padding: 12px;
+  cursor: pointer;
+  color: var(--red);
+  align-self: flex-end;
+  margin-right: 8px;
+  transition: transform 0.3s;
+}
+
+/* Rotate arrow when collapsed */
+.side-nav.collapsed .side-collapse-btn {
+  transform: rotate(180deg);
+}
+
+/* Tooltip on collapsed icons */
+.side-nav.collapsed .side-nav-item {
+  position: relative;
+}
+
+.side-nav.collapsed .side-nav-item::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 80px;
+  background: var(--ink);
+  color: white;
+  padding: 6px 10px;
+  font-size: 11px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: var(--sh-md);
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translateX(-4px);
+}
+
+.side-nav.collapsed .side-nav-item:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
   /* MAIN */
   .main { flex: 1; overflow-y: auto; }
   .page { display: none; padding: 48px 56px 80px; max-width: 1040px; }
@@ -1762,22 +1833,96 @@
 </nav>
 
 <div class="layout">
-  <aside class="side-nav">
-    <div class="side-section-label">The Guide</div>
-    <a class="side-nav-item active" data-page="home" onclick="showPage('home')"><span class="icon">🏠</span> Home</a>
-    <a class="side-nav-item" data-page="about" onclick="showPage('about')"><span class="icon">📖</span> About the Program</a>
-    <a class="side-nav-item" data-page="vision" onclick="showPage('vision')"><span class="icon">👥</span> Our People Vision</a>
-    <a class="side-nav-item" data-page="development" onclick="showPage('development')"><span class="icon">🌱</span> Own Your Development</a>
-    <a class="side-nav-item" data-page="competencies" onclick="showPage('competencies')"><span class="icon">⭐</span> Core Competencies</a>
-    <a class="side-nav-item" data-page="steps" onclick="showPage('steps')"><span class="icon">📋</span> Steps to Advance</a>
-    <a class="side-nav-item" data-page="applying" onclick="showPage('applying')"><span class="icon">📝</span> Applying Internally</a>
-    <div class="side-track-divider"></div>
-    <div class="side-section-label">Explore by Track</div>
-    <a class="side-nav-item" data-page="roadmap" onclick="showPage('roadmap')"><span class="icon">🗺️</span> Career Roadmap</a>
-    <a class="side-nav-item" data-page="stories" onclick="showPage('stories')"><span class="icon">🎙️</span> Success Stories</a>
-  </aside>
+  
+<aside class="side-nav">
 
-  <main class="main">
+  <!-- Collapse / Expand Toggle -->
+  <div class="side-nav-header">
+    <button
+      class="side-collapse-btn"
+      onclick="toggleSideNav()"
+      aria-label="Collapse menu"
+    >
+      ⟨
+    </button>
+  </div>
+
+  <!-- Guide Section -->
+  <div class="side-section-label">The Guide</div>
+
+
+<a class="side-nav-item active"
+   data-page="home"
+   data-tooltip="Home"
+   onclick="showPage('home')">
+  <span class="icon">🏠</span> Home
+</a>
+
+
+  <a class="side-nav-item"
+     data-page="about"
+     data-tooltip="About the Program"
+     onclick="showPage('about')">
+    <span class="icon">📖</span> About the Program
+  </a>
+
+  <a class="side-nav-item"
+     data-page="vision"
+     data-tooltip="Our People Vision"
+     onclick="showPage('vision')">
+    <span class="icon">👥</span> Our People Vision
+  </a>
+
+  <a class="side-nav-item"
+     data-page="development"
+     data-tooltip="Own Your Development"
+     onclick="showPage('development')">
+    <span class="icon">🌱</span> Own Your Development
+  </a>
+
+  <a class="side-nav-item"
+     data-page="competencies"
+     data-tooltip="Core Competencies"
+     onclick="showPage('competencies')">
+    <span class="icon">⭐</span> Core Competencies
+  </a>
+
+  <a class="side-nav-item"
+     data-page="steps"
+     data-tooltip="Steps to Advance"
+     onclick="showPage('steps')">
+    <span class="icon">📋</span> Steps to Advance
+  </a>
+
+  <a class="side-nav-item"
+     data-page="applying"
+     data-tooltip="Applying Internally"
+     onclick="showPage('applying')">
+    <span class="icon">📝</span> Applying Internally
+  </a>
+
+  <div class="side-track-divider"></div>
+
+  <!-- Track Section -->
+  <div class="side-section-label">Explore by Track</div>
+
+  <a class="side-nav-item"
+     data-page="roadmap"
+     data-tooltip="Career Roadmap"
+     onclick="showPage('roadmap')">
+    <span class="icon">🗺️</span> Career Roadmap
+  </a>
+
+  <a class="side-nav-item"
+     data-page="stories"
+     data-tooltip="Success Stories"
+     onclick="showPage('stories')">
+    <span class="icon">🎙️</span> Success Stories
+  </a>
+
+</aside>
+
+<main class="main">
 
     <!-- ============ HERO ============ -->
     <div class="page active hero-page" id="page-home">
@@ -2512,14 +2657,7 @@ let currentTrack = 'production';
 let selectedRoleId = null;
 let flippedCards = new Set();
 
-
-function init() {
-  normalizeNextMoves();
-  renderTabs();
-  renderExplorer();
-  renderDetailEmpty();
-}
-
+function init() { renderTabs(); renderExplorer(); renderDetailEmpty(); }
 
 function renderTabs() {
   const t = TRACKS[currentTrack];
@@ -2776,6 +2914,25 @@ function toggleMobileMenu() {
   document.querySelector('.side-nav')?.classList.toggle('open');
 }
 function switchTrack(track) { explorerSwitchTrack(track); }
+function toggleSideNav() {
+  const nav = document.querySelector('.side-nav');
+  nav.classList.toggle('collapsed');
+
+  // Optional: remember preference
+  localStorage.setItem(
+    'sideNavCollapsed',
+    nav.classList.contains('collapsed')
+  );
+}
+
+// Restore state on load
+document.addEventListener('DOMContentLoaded', () => {
+  const collapsed = localStorage.getItem('sideNavCollapsed') === 'true';
+  if (collapsed) {
+    document.querySelector('.side-nav')?.classList.add('collapsed');
+  }
+});
+
 init();
 </script>
 </body>
