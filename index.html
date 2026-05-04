@@ -2841,44 +2841,64 @@ function renderDetailEmpty() {
 function renderDetailForRole(roleId) {
   const t = TRACKS[currentTrack];
   const allRoles = getAllRoles(currentTrack);
-  const role = allRoles.find(r => r.id === roleId);
-  if (!role) return;
-
+  const role = allRoles.find(r => r.id === roleId); if (!role) return;
   const cfg = TIER_CFG[role.tierId];
 
-  const next = role.nexts || [];
-  const upward = next.filter(n => n.type === 'upward');
-  const lateral = next.filter(n => n.type === 'lateral');
+  const tiers = TRACKS[currentTrack].tiers;
+  const selTierIdx = tiers.findIndex(ti => ti.id === role.tierId);
 
-  const renderList = list =>
-    list.map(n => {
-      const r = allRoles.find(x => x.id === n.id);
-      return `
-        <div class="detail-path-item" onclick="explorerSelectRole('${r.id}')">
-          <span class="path-arrow-icon">↑</span>
-          <span class="path-item-text">${r.title}</span>
-          <span class="path-type-tag">${n.type}</span>
-        </div>`;
-    }).join('');
+  const nextRoles = (role.nexts || [])
+    .map(nid => {
+      const r = allRoles.find(x => x.id === nid);
+      if (!r) return null;
+      const nextTierIdx = tiers.findIndex(ti => ti.id === r.tierId);
+      const moveType = (nextTierIdx === selTierIdx) ? 'lateral' : 'upward';
+      return { ...r, cfg: TIER_CFG[r.tierId], moveType };
+    })
+    .filter(Boolean);
+
+  const upwardMoves = nextRoles.filter(n => n.moveType === 'upward');
+  const lateralMoves = nextRoles.filter(n => n.moveType === 'lateral');
 
   document.getElementById('detail-panel').innerHTML = `
     <div>
       <div class="detail-section-label">Selected role</div>
       <div class="detail-role-name">${role.title}</div>
-      <div class="detail-tier-badge" style="background:${cfg.bg};color:${cfg.text};">
-        ${cfg.label}
-      </div>
+      <div class="detail-tier-badge" style="background:${cfg.bg};color:${cfg.text};">↑ ${cfg.label}</div>
       <div class="detail-desc">${role.desc}</div>
     </div>
-
     <div>
-      ${upward.length ? `<div class="detail-subhead">↑ Upward Moves</div>${renderList(upward)}` : ''}
-      ${lateral.length ? `<div class="detail-subhead">↔ Lateral Moves</div>${renderList(lateral)}` : ''}
+      <div class="detail-section-label">${nextRoles.length>0?'Possible next moves':'Top of the track'}</div>
+      ${nextRoles.length>0 ? `
+        ${upwardMoves.length ? `
+          <div class="detail-subhead">↑ Upward moves</div>
+          <div class="detail-paths-list">${upwardMoves.map(nr=>`
+            <div class="detail-path-item" onclick="explorerSelectRole('${nr.id}')">
+              <span class="path-arrow-icon" style="color:${t.color};">↑</span>
+              <span class="path-item-text">${nr.title}</span>
+              <span class="path-type-tag" style="background:${nr.cfg.bg};color:${nr.cfg.text};">${nr.cfg.badge}</span>
+              <span class="path-move-tag" style="border:2px solid ${t.color};color:${t.color};">Upward</span>
+            </div>`).join('')}
+          </div>
+        `:''}
+        ${lateralMoves.length ? `
+          <div class="detail-subhead">↔ Lateral moves</div>
+          <div class="detail-paths-list">${lateralMoves.map(nr=>`
+            <div class="detail-path-item" onclick="explorerSelectRole('${nr.id}')">
+              <span class="path-arrow-icon" style="color:${t.color};">↔</span>
+              <span class="path-item-text">${nr.title}</span>
+              <span class="path-type-tag" style="background:${nr.cfg.bg};color:${nr.cfg.text};">${nr.cfg.badge}</span>
+              <span class="path-move-tag" style="border:2px dotted ${t.color};color:${t.color};">Lateral</span>
+            </div>`).join('')}
+          </div>
+        `:''}
+      ` : `
+        <div class="top-of-track-msg">You've reached the top of this career track. Consider leadership development programs or cross-functional opportunities.</div>
+      `}
     </div>
-
-    <button class="reset-btn" onclick="explorerSelectRole('${roleId}')">✕ Clear</button>
-  `;
+    <button class="reset-btn" onclick="explorerSelectRole('${roleId}')">✕ Clear selection</button>`;
 }
+
 
 
 function renderStories() {
