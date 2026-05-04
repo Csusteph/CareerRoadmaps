@@ -1885,7 +1885,7 @@
             <rect x="28" y="172" width="144" height="30" rx="6" fill="#F0EAFF" stroke="#C8B6E8" stroke-width="1.5"/>
             <text x="100" y="191" text-anchor="middle" font-family="Nunito Sans, sans-serif" font-weight="800" font-size="10" fill="#4A148C">INDIVIDUAL CONTRIBUTOR</text>
           </svg>
-        </div>
+           </div>
         <div class="progression-visual-card">
           <h4><span class="ic-circle">🕸️</span> The Career Lattice</h4>
           <p>A flexible path — move up, sideways, or diagonally across departments.</p>
@@ -2598,19 +2598,36 @@ function applyHighlighting() {
 
   document.querySelectorAll('.flip-wrap').forEach(card => {
     const rid = card.dataset.roleId;
-    card.classList.remove('dimmed', 'upward-step', 'lateral-step');
-    card.querySelector('.move-type-tag')?.remove();
+    
+ // Reset state
+    card.classList.remove('dimmed', 'next-step', 'upward-step', 'lateral-step');
 
-    if (rid === selectedRoleId) return;
+    // Remove any old move-type tag
+    const oldTag = card.querySelector('.move-type-tag');
+    if (oldTag) oldTag.remove();
 
-    if (nextMap.has(rid)) {
-      const type = nextMap.get(rid);
-      card.classList.add(type === 'lateral' ? 'lateral-step' : 'upward-step');
+    if (rid === selectedRoleId) {
+      // Selected card itself — leave as-is
+      return;
+    }
 
-      const tag = document.createElement('div');
-      tag.className = 'move-type-tag ' + type;
-      tag.textContent = type === 'lateral' ? '↔ Lateral' : '↑ Upward';
-      card.querySelector('.flip-front')?.appendChild(tag);
+    if (nextSet.has(rid)) {
+      const nextTierIdx = tiers.findIndex(ti => ti.roles.some(r => r.id === rid));
+      const isLateral = nextTierIdx === selTierIdx;
+
+      card.classList.add(isLateral ? 'lateral-step' : 'upward-step');
+
+      const front = card.querySelector('.flip-front');
+      if (front) {
+        front.style.borderColor = TRACKS[currentTrack].color;
+        front.style.borderWidth = '2px';
+        front.style.borderStyle = isLateral ? 'dotted' : 'solid';
+
+        const tag = document.createElement('div');
+        tag.className = 'move-type-tag ' + (isLateral ? 'lateral' : 'upward');
+        tag.textContent = isLateral ? '↔ Lateral' : '↑ Upward';
+        front.appendChild(tag);
+      }
     } else {
       card.classList.add('dimmed');
     }
