@@ -2819,7 +2819,7 @@ function applyHighlighting() {
 
 function explorerSwitchTrack(track) {
   currentTrack = track; selectedRoleId = null; flippedCards = new Set();
-  renderTabs(); renderExplorer(); renderDetailEmpty();
+   normalizeNextMoves(); renderTabs(); renderExplorer(); renderDetailEmpty();
 }
 
 function getAllRoles(track) {
