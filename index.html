@@ -2538,17 +2538,17 @@ const TRACKS = {
     tiers: [
       { id: 'ic', roles: [
         { id: 's_cgr',  title: 'Customer Growth Rep (CGR)',       desc: 'Grows volume and distribution in assigned accounts through relationship-building, product placement, and promotional execution in the field.', nexts: ['s_sam','s_am','s_amop'] },
-        { id: 's_sam',  title: 'Sales Account Manager',           desc: 'Manages a portfolio of retail and foodservice accounts, delivering against volume, distribution, and revenue objectives through consultative selling.', nexts: ['s_dsm','s_rel'] },
-        { id: 's_am',   title: 'Account Manager',                 desc: 'Builds and maintains customer relationships across a territory, executing brand programs and driving incremental sales volume and new distribution.', nexts: ['s_dsm'] },
+        { id: 's_sam',  title: 'Sales Account Manager',           desc: 'Manages a portfolio of retail and foodservice accounts, delivering against volume, distribution, and revenue objectives through consultative selling.', nexts: ['s_dsm','s_rel','s_sa'] },
+        { id: 's_am',   title: 'Account Manager',                 desc: 'Builds and maintains customer relationships across a territory, executing brand programs and driving incremental sales volume and new distribution.', nexts: ['s_dsm','s_sa','s_san'] },
         { id: 's_amop', title: 'Account Manager — On-Premise',    desc: 'Specializes in on-premise (restaurant, bar, venue) accounts — selling and growing fountain, draft, and cold drink placements across the territory.', nexts: ['s_dsm','s_opm'] },
         { id: 's_rel',  title: 'Relief Account Mgr',              desc: 'Covers open routes and accounts during vacations and vacancies, maintaining service continuity and relationship quality across the market.', nexts: ['s_sam','s_dsm'] },
         { id: 's_sa',   title: 'Sr. Sales Analyst',               desc: 'Analyzes sales data, market trends, and competitive intelligence to generate insights that support territory and district business planning.', nexts: ['s_san','s_dsm'] },
-        { id: 's_ae',   title: 'Account Executive — Retail/FSOP', desc: 'Drives volume growth and strategic partnerships with key retail and foodservice accounts, leading JBPs and multi-category initiatives.', nexts: ['s_dsm','s_ktm'] },
+        { id: 's_ae',   title: 'Account Executive — Retail/FSOP', desc: 'Drives volume growth and strategic partnerships with key retail and foodservice accounts, leading JBPs and multi-category initiatives.', nexts: ['s_dsm','s_opm'] },
       ]},
       { id: 'supervisor', roles: [
         { id: 's_dsm', title: 'District Sales Manager',   desc: 'Leads a team of sales reps across an assigned district — coaching performance, managing customer escalations, and driving execution of brand priorities.', nexts: ['s_asm','s_opm'] },
-        { id: 's_opm', title: 'OP Manager',               desc: 'Manages on-premise sales operations across a market, setting strategy for fountain and cold drink growth and leading the on-premise account team.', nexts: ['s_asm'] },
-        { id: 's_san', title: 'Sales Analytics Manager',  desc: 'Leads the sales analytics function — building reporting frameworks, dashboards, and insights tools that enable data-driven selling at all levels.', nexts: ['s_asm','s_dso'] },
+        { id: 's_opm', title: 'On-Premise Manager',               desc: 'Manages on-premise sales operations across a market, setting strategy for fountain and cold drink growth and leading the on-premise account team.', nexts: ['s_asm'] },
+        { id: 's_san', title: 'Sales Analytics Manager',  desc: 'Leads the sales analytics function — building reporting frameworks, dashboards, and insights tools that enable data-driven selling at all levels.', nexts: ['s_asm','s_sdm'] },
       ]},
       { id: 'manager', roles: [
         { id: 's_asm',  title: 'Area Sales Manager',          desc: 'Manages multiple district managers and their teams across a geographic area, translating regional strategy into local execution plans and results.', nexts: ['s_sdm','s_odm','s_ktm','s_dso'] },
