@@ -2664,7 +2664,14 @@ let currentTrack = 'production';
 let selectedRoleId = null;
 let flippedCards = new Set();
 
-function init() { renderTabs(); renderExplorer(); renderDetailEmpty(); }
+
+function init() {
+  normalizeNextMoves(); 
+  renderTabs();
+  renderExplorer();
+  renderDetailEmpty();
+}
+
 
 function renderTabs() {
   const t = TRACKS[currentTrack];
