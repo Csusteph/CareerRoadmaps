@@ -2371,6 +2371,8 @@ const MOVE_OVERRIDES = {
     // → Senior = upward within IC tier
     s_sa:  { s_sen_sa: 'upward' },  // Sales Analyst → Sr. Sales Analyst (if you add this role)
     // → Sr. Director = upward from any Director-level role in same tier
+    s_sam:      { s_sa: 'upward' }, 
+     s_am:      { s_sa: 'upward' }, 
     s_dso:     { s_sds: 'upward' },  // Dir. Sales Operations  → Sr. Director Sales
     s_sdl:     { s_sds: 'upward' },  // OP Development Lead    → Sr. Director Sales
     s_dodfsop: { s_sds: 'upward' },  // Dir. MU FSOP           → Sr. Director Sales
